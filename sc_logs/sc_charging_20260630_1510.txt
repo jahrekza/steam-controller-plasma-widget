@@ -1,0 +1,4 @@
+[16:38:52] START monitorowania ładowania
+[16:38:52] Urządzenie: /dev/hidraw0
+[16:38:52] Maks. czas: 3h
+============================================================
