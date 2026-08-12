@@ -1,0 +1,13 @@
+{
+    "KPlugin": {
+        "Authors": [{"Name": "Jahrek"}],
+        "Category": "Utilities",
+        "Description": "Shows Steam Controller 2 battery level and connection status",
+        "Icon": "input-gamepad",
+        "Id": "com.jahrek.steamcontroller",
+        "Name": "Steam Controller Battery",
+        "Version": "0.1"
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

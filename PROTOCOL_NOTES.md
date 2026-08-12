@@ -1,181 +1,185 @@
 # Steam Controller 2 ("Triton") — HID Protocol Research Notes
 
-**Data zaczęcia badań:** 2026-06-12  
-**Ostatnia aktualizacja:** 2026-06-30  
-**Autor:** Jahrek + Claude Sonnet 4.6  
-**Cel:** Widget KDE Plasma pokazujący stan baterii kontrolera
+**Research started:** 2026-06-12
+**Last updated:** 2026-06-30
+**Author:** Jahrek + Claude Sonnet 4.6
+**Goal:** A KDE Plasma widget showing controller battery status
 
 ---
 
-## 1. Identyfikacja urządzenia
+## 1. Device identification
 
-| Parametr | Wartość |
+| Parameter | Value |
 |---|---|
 | VID | `0x28de` (Valve) |
 | PID | `0x1304` |
-| Nazwa | Steam Controller 2nd gen ("Triton", 2026) |
-| Kernel driver | `hid-generic` (NIE `hid-steam` — ten obsługuje tylko starego SC) |
+| Name | Steam Controller 2nd gen ("Triton", 2026) |
+| Kernel driver | `hid-generic` (NOT `hid-steam` — that one only supports the old SC) |
 | Usage page | `0xFF00` (vendor/proprietary) |
-| Węzeł | `/dev/hidraw0` (może się zmienić; skrypt skanuje hidraw0-19 po VID:PID) |
+| Node | `/dev/hidraw0` (may vary; the daemon scans hidraw0-19 by VID:PID) |
 
-**Ważne:** Kernel `hid-steam.c` ma wsparcie dla starego Steam Controllera (PID `0x1102`),
-ale NIE dla nowego (PID `0x1304`). Wszystkie dane trzeba czytać z hidraw bezpośrednio.
+**Important:** The kernel's `hid-steam.c` supports the old Steam Controller
+(PID `0x1102`), but NOT the new one (PID `0x1304`). All data has to be read
+directly from hidraw.
 
-Jak znaleźć właściwy hidraw:
+How to find the right hidraw node:
 ```python
 import fcntl, struct
 fd = os.open("/dev/hidraw0", os.O_RDWR)
 buf = bytearray(8)
 fcntl.ioctl(fd, 0x80084803, buf, True)   # HIDIOCGRAWINFO
 _, vendor, product = struct.unpack("ihh", bytes(buf))
-# vendor == 0x28de and product == 0x1304 → to nasz kontroler
+# vendor == 0x28de and product == 0x1304 -> this is our controller
 ```
 
 ---
 
-## 2. Typy raportów HID
+## 2. HID report types
 
-Strumień `/dev/hidraw0` zawiera trzy typy raportów. Pierwszym bajtem jest zawsze Report ID.
+The `/dev/hidraw0` stream contains three report types. The first byte is
+always the Report ID.
 
-### Report ID `0x45` — główny raport wejściowy (~99% strumienia)
+### Report ID `0x45` — main input report (~99% of the stream)
 
-**Długość:** 46 bajtów  
-**Częstotliwość:** ~100/s ciągłe  
-**Kiedy:** cały czas gdy kontroler jest aktywny i poza dockiem
+**Length:** 46 bytes
+**Frequency:** ~100/s, continuous
+**When:** constantly while the controller is active and off the dock
 
 ```
-Offset  Rozmiar  Opis
-------  -------  ----
-[0]     1        Report ID = 0x45
-[1]     1        Licznik pakietów (0-255, kołowy)
-[2-9]   8        Zera w spoczynku; prawdopodobnie przyciski/wyzwalacze (TODO)
-[10]    1        Dane IMU/żyroskop/akcelerometr (ciągle zmienne)
-[11]    1        Flaga (1 lub 2, zmienne)
-[12]    1        Dane IMU
-[13]    1        Flaga (3-4, zmienne)
-[14]    1        Dane IMU
-[15]    1        Flaga (1-2, zmienne)
-[16]    1        Dane IMU
-[17]    1        Flaga (1-2, zmienne)
-[18-29] 12       Zera
-[30-45] 16       Stałe bajty, unikalne per urządzenie (prawdopodobnie device ID lub kalibracja)
+Offset  Size  Description
+------  ----  -----------
+[0]     1     Report ID = 0x45
+[1]     1     Packet counter (0-255, wraps around)
+[2-9]   8     Zero at rest; likely buttons/triggers (TODO)
+[10]    1     IMU/gyro/accelerometer data (constantly changing)
+[11]    1     Flag (1 or 2, variable)
+[12]    1     IMU data
+[13]    1     Flag (3-4, variable)
+[14]    1     IMU data
+[15]    1     Flag (1-2, variable)
+[16]    1     IMU data
+[17]    1     Flag (1-2, variable)
+[18-29] 12    Zeros
+[30-45] 16    Constant bytes, unique per device (likely device ID or calibration data)
 ```
 
-Przykładowy surowy hex (urządzenie w spoczynku, 4% baterii):
+Example raw hex (device at rest, 4% battery):
 ```
 451e0000000000000000d6017c02630187020000000000000000000000004cc9f482e1009
 0f39a3f0100ffffff
 ```
 
-Bajty `[30-45]` są CONST dla danego urządzenia:
+Bytes `[30-45]` are CONST for a given device:
 - `4c c9 f4 82 e1 00 90 f3 9a 3f 01 00 ff ff ff ff`
 
-### Report ID `0x7b` — raport zdarzeniowy
+### Report ID `0x7b` — event report
 
-**Długość:** 13 bajtów  
-**Częstotliwość:** ~1-2/minutę (event-driven, nie ciągłe)  
-**Kiedy:** nieregularnie, niezależnie od aktywności pada
+**Length:** 13 bytes
+**Frequency:** ~1-2/minute (event-driven, not continuous)
+**When:** irregular, independent of controller activity
 
 ```
-Offset  Rozmiar  Opis
-------  -------  ----
-[0]     1        Report ID = 0x7b
-[1]     1        Licznik klatek (varies, np. 245-251)
-[2]     1        Stała = 0x01
-[3]     1        Nieznane (135-136, minimalnie zmienne)
-[4-8]   5        Zera
-[9]     1        Jakość RF / siła sygnału? (216-224 przy każdym poziomie baterii)
-[10]    1        Nieznane (0x00 lub 0x01 przy 4%, 0x00 przy 50%)
-[11]    1        !! PUŁAPKA: NIE bateria — patrz sekcja "Martwe uliczki"
-[12]    1        Stała = 0x02 (tryb bezprzewodowy?)
+Offset  Size  Description
+------  ----  -----------
+[0]     1     Report ID = 0x7b
+[1]     1     Frame counter (varies, e.g. 245-251)
+[2]     1     Constant = 0x01
+[3]     1     Unknown (135-136, minimally variable)
+[4-8]   5     Zeros
+[9]     1     RF quality / signal strength? (216-224 at every battery level)
+[10]    1     Unknown (0x00 or 0x01 at 4%, 0x00 at 50%)
+[11]    1     !! TRAP: NOT battery — see "Dead ends" section
+[12]    1     Constant = 0x02 (wireless mode?)
 ```
 
-Przykłady hex przy ~50% baterii:
+Example hex at ~50% battery:
 ```
 7bf801880000000300dd003002
 7bf501870000000300dd003002
 ```
 
-Przy 4% baterii (odłączony, na baterii):
+At 4% battery (disconnected, on battery):
 ```
 7bf801860003000500d8001602
 7bf701860005000600d7001602
 ```
 
-Przy 100% baterii (po naładowaniu):
+At 100% battery (after charging):
 ```
-7bf801860005000500d8001602   ← byte[11] zmienia się losowo 4-78
+7bf801860005000500d8001602   <- byte[11] changes randomly, 4-78
 ```
 
-### Report ID `0x43` — raport telemetryczny ⭐
+### Report ID `0x43` — telemetry report ⭐
 
-**Długość:** 15 bajtów  
-**Częstotliwość:** ~15 na 15000 odczytów (bardzo rzadki, ~raz/min)  
-**Kiedy:** sporadycznie, niezależnie od aktywności
+**Length:** 15 bytes
+**Frequency:** ~15 out of 15000 reads (very rare, ~once/min)
+**When:** sporadic, independent of activity
 
 ```
-Offset  Rozmiar  Opis
-------  -------  ----
-[0]     1        Report ID = 0x43
-[1]     1        Stała = 0x01
-[2]     1        ⭐ BATERIA % przy starcie sesji, potem timer sesji ↑
-[3]     1        Licznik kołowy (szybko zmienne)
-[4]     1        Nieznane (14-16, lekka korelacja z baterią? TODO)
-[5]     1        Multipleksowany czujnik A (zmienne: 0x00, 0x28, 0x40, 0x74, 0x88...)
-[6]     1        Nieznane (14-16)
-[7-12]  6        Zera
-[13]    1        Multipleksowany czujnik B (zmienne, patrz niżej)
-[14]    1        Multipleksowany czujnik B' (para do byte[13])
+Offset  Size  Description
+------  ----  -----------
+[0]     1     Report ID = 0x43
+[1]     1     Constant = 0x01
+[2]     1     ⭐ BATTERY % at session start, then a session timer that counts up
+[3]     1     Wrapping counter (fast-changing)
+[4]     1     Unknown (14-16, slight correlation with battery? TODO)
+[5]     1     Multiplexed sensor A (variable: 0x00, 0x28, 0x40, 0x74, 0x88...)
+[6]     1     Unknown (14-16)
+[7-12]  6     Zeros
+[13]    1     Multiplexed sensor B (variable, see below)
+[14]    1     Multiplexed sensor B' (paired with byte[13])
 ```
 
 ---
 
-## 3. ⭐ Klucz: Battery % w `0x43 byte[2]`
+## 3. ⭐ The key: battery % in `0x43 byte[2]`
 
-### Odkrycie (2026-06-30)
+### Discovery (2026-06-30)
 
-`byte[2]` raportu `0x43` zawiera **procent baterii w chwili startu sesji**.  
-Po nawiązaniu połączenia ta wartość powoli inkrementuje jako timer sesji (~1/min).
+`byte[2]` of report `0x43` contains **the battery percentage at the moment
+the session started**. After the connection is established, this value
+slowly increments as a session timer (~1/min).
 
-**Dane kalibracyjne:**
+**Calibration data:**
 
-| Bateria (szacunek) | byte[2] | Data pomiaru | Uwagi |
+| Battery (estimated) | byte[2] | Measured on | Notes |
 |---|---|---|---|
-| ~4% | **4** | 2026-06-30 14:28 | Kontroler rozładowany, wł. po bezczynności |
-| ~44% | **44** | 2026-06-12 22:56 | Szacunek użytkownika "około 50%" |
-| ~97% | **97** | 2026-06-30 19:52 | Po pełnym naładowaniu, ~17 min sesji |
+| ~4% | **4** | 2026-06-30 14:28 | Controller drained, powered on after being idle |
+| ~44% | **44** | 2026-06-12 22:56 | User estimate "around 50%" |
+| ~97% | **97** | 2026-06-30 19:52 | After a full charge, ~17 min into the session |
 
-Korelacja jest uderzająca (4→4, 44→44, 97≈100) i wyklucza przypadek.
+The correlation is striking (4→4, 44→44, 97≈100) and rules out coincidence.
 
-### Mechanizm
+### Mechanism
 
 ```
 byte[2] = battery_pct_at_connect + elapsed_minutes * ~1
 ```
 
-Przy pierwszym połączeniu (`byte[2]` odczytany jak najwcześniej):
+On first connection (`byte[2]` read as early as possible):
 ```python
-battery_pct = byte[2]  # ≈ faktyczny % baterii
+battery_pct = byte[2]  # approx. actual battery %
 ```
 
-Po dłuższej sesji wartość drifuje w górę. Dlatego daemon przechwytuje ją
-przy PIERWSZYM 0x43 po każdym połączeniu i zapisuje jako `session_b2`.
+Over a longer session the value drifts upward. That's why the daemon
+captures it on the FIRST `0x43` after each connection and stores it as
+`session_b2`.
 
-### Surowe heksy potwierdzające
+### Raw hex confirming this
 
-**4% baterii (pierwsze raporty po włączeniu):**
+**4% battery (first reports after power-on):**
 ```
 4301 04 6c0e740e000000000000df68
           ^^ byte[2] = 0x04 = 4
 ```
 
-**~44% baterii:**
+**~44% battery:**
 ```
 4301 2c e20e000f000000000000225c
           ^^ byte[2] = 0x2c = 44
 ```
 
-**~97% baterii (17 min po połączeniu, pad naładowany):**
+**~97% battery (17 min after connecting, pad fully charged):**
 ```
 4301 61 1c1040100000000000003867
           ^^ byte[2] = 0x61 = 97
@@ -183,135 +187,139 @@ przy PIERWSZYM 0x43 po każdym połączeniu i zapisuje jako `session_b2`.
 
 ---
 
-## 4. Multipleksowanie w `0x43 byte[13]` — martwa uliczka #1
+## 4. Multiplexing in `0x43 byte[13]` — dead end #1
 
-### Co zaobserwowano
+### What was observed
 
-`byte[13]` i `byte[14]` rotują przez kilka różnych par w jednej sesji.
-Każda para to prawdopodobnie inny czujnik sprzętowy.
+`byte[13]` and `byte[14]` rotate through several different pairs within a
+single session. Each pair is likely a different hardware sensor.
 
-**Obserwowane pary (byte[13], byte[14]) przy różnych poziomach baterii:**
+**Observed pairs (byte[13], byte[14]) at different battery levels:**
 
-| Para (b13, b14) | hex | Kiedy widoczna | Interpretacja |
+| Pair (b13, b14) | hex | Seen when | Interpretation |
 |---|---|---|---|
-| (34, 92) | `22 5c` | 2026-06-12 ~44% | Jedna para przy 44% |
-| (223, 104) | `df 68` | 4% ORAZ 100% | Stały czujnik (NIE bateria!) |
-| (95, 98) | `5f 62` | 4% ~14:28 | Czujnik zewnętrzny |
-| (149, 101) | `95 65` | 4% + przy 100% po 17 min | Czujnik zewnętrzny |
-| (248, 99) | `f8 63` | 4% | Czujnik zewnętrzny |
-| (56, 103) | `38 67` | 4% + 100% po 8 min | Czujnik zewnętrzny |
-| (139, 106) | `8b 6a` | 100% pierwsze 8 min | Potencjalnie czujnik napięcia |
-| (202, 96) | `ca 60` | 4%, rzadka | Czujnik zewnętrzny |
+| (34, 92) | `22 5c` | 2026-06-12 ~44% | One pair seen at 44% |
+| (223, 104) | `df 68` | 4% AND 100% | A constant sensor (NOT battery!) |
+| (95, 98) | `5f 62` | 4% ~14:28 | External sensor |
+| (149, 101) | `95 65` | 4% + at 100% after 17 min | External sensor |
+| (248, 99) | `f8 63` | 4% | External sensor |
+| (56, 103) | `38 67` | 4% + 100% after 8 min | External sensor |
+| (139, 106) | `8b 6a` | 100%, first 8 min | Possibly a voltage sensor |
+| (202, 96) | `ca 60` | 4%, rare | External sensor |
 
-**Kluczowa obserwacja:** `(223, 104)` pojawia się zarówno przy 4% JAK I przy 100%.
-To wyklucza ją jako wskaźnik baterii. Wcześniej błędnie ją za taki uznaliśmy.
+**Key observation:** `(223, 104)` shows up both at 4% AND at 100%. That
+rules it out as a battery indicator — it was previously mistaken for one.
 
-### Zmiany byte[13] podczas jednej sesji (100% bateria, 2026-06-30)
+### byte[13] changes during a single session (100% battery, 2026-06-30)
 
 ```
-19:35 → 19:44  (0-8 min):    cycles(139, 223)
-19:44 → 19:52  (8-17 min):   cycles(56, 223)
-19:52 →         (17+ min):   cycles(56, 149)
+19:35 -> 19:44  (0-8 min):    cycles(139, 223)
+19:44 -> 19:52  (8-17 min):   cycles(56, 223)
+19:52 ->         (17+ min):   cycles(56, 149)
 ```
 
-Wartość w byte[13] **zmienia się nawet przy stałym poziomie baterii** — to potwierdza
-że jest to multiplekser czujników, nie bezpośrednie kodowanie baterii.
+The value in byte[13] **changes even at a constant battery level** —
+confirming this is a sensor multiplexer, not a direct battery encoding.
 
-### Próba filtru matematycznego (PORZUCONA)
+### Linear-fit attempt (ABANDONED)
 
-Przez pewien czas próbowaliśmy identyfikować parę bateryjną przez linię prostą:
+For a while we tried to identify the "battery pair" via a straight line fit:
 ```python
-# Linia przez (34,92)@50% i (223,104)@4%
+# Line through (34,92)@50% and (223,104)@4%
 def battery_line(b13):
     return 92 + (b13 - 34) * (104 - 92) / (223 - 34)
 ```
-Filtr działał dla 2 punktów kalibracyjnych, ale okazał się błędny — `(223,104)` to
-NIE jest para bateryjna. Porzucono na rzecz `byte[2]`.
+This fit worked for 2 calibration points, but turned out to be wrong —
+`(223,104)` is NOT the battery pair. Abandoned in favor of `byte[2]`.
 
 ---
 
-## 5. `0x7b byte[11]` — martwa uliczka #2
+## 5. `0x7b byte[11]` — dead end #2
 
-Przez pewien czas podejrzewaliśmy, że `byte[11]` w raporcie `0x7b` to procent baterii.
+For a while we suspected `byte[11]` in report `0x7b` was the battery
+percentage.
 
-**Dlaczego to fałszywy trop:**
+**Why this was a false lead:**
 
-| Czas | byte[11] | Stan baterii |
+| Time | byte[11] | Battery state |
 |---|---|---|
-| 14:28 (świeżo włączony) | 48 | ~4% |
-| 14:32 | 38 | ~4% (bez ładowania!) |
-| 14:35 | 20 | ~4% (spadek mimo braku ładowania) |
-| 19:35 (naładowany) | 4 | 100% (!!!) — wartość MNIEJSZA niż przy 4% |
+| 14:28 (just powered on) | 48 | ~4% |
+| 14:32 | 38 | ~4% (no charging!) |
+| 14:35 | 20 | ~4% (drops despite no charging) |
+| 19:35 (charged) | 4 | 100% (!!!) — a value LOWER than at 4% |
 | 19:36 | 78 | 100% |
-| 19:37 | 56, 76, 46, 64... | 100% — losowe oscylacje |
+| 19:37 | 56, 76, 46, 64... | 100% — random oscillation |
 
-Wartość oscyluje 36-78 przy 100% i jest MNIEJSZA przy 100% niż przy 4%.
-To zdecydowanie NIE jest bateria. Prawdopodobnie licznik pakietów RF, RSSI lub inny
-wskaźnik połączenia bezprzewodowego.
+The value oscillates between 36-78 at 100% and is LOWER at 100% than at 4%.
+This is definitely NOT battery. Likely an RF packet counter, RSSI, or some
+other wireless-connection indicator.
 
 ---
 
-## 6. Inne obserwacje
+## 6. Other observations
 
-### `0x43 byte[2]` jako timer sesji
+### `0x43 byte[2]` as a session timer
 
-Po starcie sesji `byte[2]` powoli rośnie. Tempo: ~1 jednostka na ~1 minutę.  
-Po ~12 minutach sesji przy 100% baterii: byte[2] = 97 (start był ~85-100).
+After a session starts, `byte[2]` slowly rises. Rate: ~1 unit per ~1 minute.
+After ~12 minutes into a session at 100% battery: byte[2] = 97 (session
+started at ~85-100).
 
-Oznacza to że przy długich sesjach wartość będzie wyższa od faktycznej baterii.
-**Rozwiązanie:** przechwytuj PIERWSZY 0x43 raportu po połączeniu.
+This means on long sessions the value will read higher than the actual
+battery level. **Solution:** capture the FIRST `0x43` report after each
+connection.
 
-### `0x43 byte[4]` i `byte[6]`
+### `0x43 byte[4]` and `byte[6]`
 
-Lekka zmiana wraz z baterią:
-- 4% bateria: `0x0e` (14) i `0x0e` (14)
-- ~44% bateria: `0x0e` (14) i `0x0f` (15)  
-- ~100% bateria: `0x10` (16) i `0x10` (16)
+Slight variation with battery level:
+- 4% battery: `0x0e` (14) and `0x0e` (14)
+- ~44% battery: `0x0e` (14) and `0x0f` (15)
+- ~100% battery: `0x10` (16) and `0x10` (16)
 
-Mogą być ADC odczytem napięcia ogniwa (bardzo powolna zmiana w zakresie 20-80%,
-szybsza na skrajach). **TODO:** więcej danych do potwierdzenia.
+May be an ADC reading of cell voltage (very slow change in the 20-80% range,
+faster at the extremes). **TODO:** needs more data to confirm.
 
-### `0x45 byte[30-45]` — stałe per-device
+### `0x45 byte[30-45]` — constant per device
 
 ```
 4c c9 f4 82 e1 00 90 f3 9a 3f 01 00 ff ff ff ff
 ```
-Te 16 bajtów jest stałe przez całą sesję i prawdopodobnie przez życie urządzenia.
-Może to być unikalny identyfikator urządzenia, dane kalibracji fabrycznej lub klucz BT.
+These 16 bytes are constant throughout a session and likely for the
+device's entire lifetime. Could be a unique device identifier, factory
+calibration data, or a Bluetooth key.
 
 ### `0x7b byte[9]`
 
-Stały w zakresie 216-224 niezależnie od baterii i aktywności.  
-Prawdopodobnie: siła sygnału RF lub jakość połączenia (wysoka = dobra).
+Stays in the 216-224 range regardless of battery or activity. Likely: RF
+signal strength or connection quality (higher = better).
 
-### Kontroler na docku (pucku)
+### Controller on the charging dock (puck)
 
-Gdy kontroler jest na doku ładującym:
-- `/dev/hidraw0` może nadal istnieć (BT) ale nie wysyła danych 0x45
-- `select()` zwraca timeout (silence)
-- Demon interpretuje ciszę jako "pad na pucku / ładowanie"
+When the controller is on the charging dock:
+- `/dev/hidraw0` may still exist (BT) but stops sending `0x45` data
+- `select()` returns a timeout (silence)
+- The daemon interprets silence as "pad on the puck / charging"
 
 ---
 
-## 7. Architektura implementacji
+## 7. Implementation architecture
 
-### Demon Python
+### Python daemon
 
-**Lokalizacja:** `/var/home/jahrek/.local/bin/sc-battery-daemon`  
-**Autostart:** `/var/home/jahrek/.config/autostart/sc-battery-daemon.desktop`
+**Location:** `~/.local/bin/sc-battery-daemon`
+**Autostart:** `~/.config/autostart/sc-battery-daemon.desktop`
 
-**Schemat działania:**
+**How it works:**
 ```
 loop:
-    find_sc_hidraw()          ← skanuje hidraw0-19 po VID:PID
+    find_sc_hidraw()          <- scans hidraw0-19 by VID:PID
     open(O_RDONLY)
     read hidraw continuously:
-        0x43 → first report: capture byte[2] as battery_pct
+        0x43 -> first report: capture byte[2] as battery_pct
         every 3000 reads: write /tmp/sc-battery.json
     on IOError: reconnect
 ```
 
-**Format JSON `/tmp/sc-battery.json`:**
+**JSON format at `/tmp/sc-battery.json`:**
 ```json
 {
     "battery_pct": 97,
@@ -323,11 +331,11 @@ loop:
 }
 ```
 
-Plik aktualizowany atomowo przez `rename()` żeby uniknąć partial reads w QML.
+The file is written atomically via `rename()` to avoid partial reads in QML.
 
-### Widget KDE Plasma 6
+### KDE Plasma 6 widget
 
-**Lokalizacja:** `/var/home/jahrek/.local/share/plasma/plasmoids/com.jahrek.steamcontroller/`
+**Location:** `~/.local/share/plasma/plasmoids/com.jahrek.steamcontroller/`
 
 ```
 com.jahrek.steamcontroller/
@@ -337,27 +345,27 @@ com.jahrek.steamcontroller/
         └── main.qml
 ```
 
-**Ważne pułapki Plasma 6:**
+**Plasma 6 gotchas worth knowing:**
 
-1. `PlasmaCore.DataSource` został USUNIĘTY w Plasma 6.  
-   Poprawny import: `import org.kde.plasma.plasma5support as P5Support`  
-   i `P5Support.DataSource { engine: "executable" }`
+1. `PlasmaCore.DataSource` was REMOVED in Plasma 6.
+   Correct import: `import org.kde.plasma.plasma5support as P5Support`
+   and `P5Support.DataSource { engine: "executable" }`
 
-2. `metadata.json` MUSI zawierać `"KPackageStructure": "Plasma/Applet"`.  
-   Bez tego widget nie pojawia się na liście.
+2. `metadata.json` MUST contain `"KPackageStructure": "Plasma/Applet"`.
+   Without it, the widget won't show up in the widget list.
 
-3. `kpackagetool6 --upgrade` kasuje katalog przy błędzie — lepiej pisać pliki
-   bezpośrednio i restartować plasmashell.
+3. `kpackagetool6 --upgrade` deletes the target directory on error — it's
+   safer to write files directly and restart plasmashell.
 
-4. `XMLHttpRequest` z `file://` nie działa w sandboxie Plasma — stąd `P5Support.DataSource`
-   z `cat /tmp/sc-battery.json`.
+4. `XMLHttpRequest` against `file://` doesn't work inside the Plasma
+   sandbox — hence `P5Support.DataSource` running `cat /tmp/sc-battery.json`.
 
-5. Restart plasmashell po zmianach:
+5. Restarting plasmashell after changes:
    ```bash
    kquitapp6 plasmashell && kstart plasmashell
    ```
 
-**Odczyt JSON w QML:**
+**Reading the JSON in QML:**
 ```qml
 import org.kde.plasma.plasma5support as P5Support
 
@@ -381,108 +389,117 @@ Timer { interval: 30000; running: true; repeat: true;
 
 ---
 
-## 8. Narzędzia badawcze
+## 8. Research tools
 
-Wszystkie w `/var/home/jahrek/Claude Code/steam-controller-battery/`:
+All in this repository's root:
 
-| Plik | Opis |
+| File | Description |
 |---|---|
-| `sc_dump.py` | Zapisuje surowy strumień HID do pliku tekstowego (hex) |
-| `sc_filter.py` | Filtruje strumień po Report ID, zlicza N raportów danego typu |
-| `sc_monitor.py` | Analiza statystyczna bajtów (CONST vs VARIES) dla danego raportu |
-| `sc_charge_monitor.py` | Monitor ładowania: loguje 0x43 i 0x7b do pliku, auto-reconnect |
+| `sc_dump.py` | Dumps the raw HID stream to a text file (hex) |
+| `sc_filter.py` | Filters the stream by Report ID, counts N reports of that type |
+| `sc_monitor.py` | Statistical analysis of bytes (CONST vs VARIES) for a given report |
+| `sc_charge_monitor.py` | Charging monitor: logs 0x43 and 0x7b to a file, auto-reconnects |
 
-### Użycie
+### Usage
 
 ```bash
-# Zbierz 15000 raportów 0x43
+# Collect 15000 reports of type 0x43
 python3 sc_filter.py /dev/hidraw0 15000 43
 
-# Zbierz 8000 raportów 0x7b
+# Collect 8000 reports of type 0x7b
 python3 sc_filter.py /dev/hidraw0 8000 7b
 
-# Analiza bajtów raportu 0x45 (8000 próbek)
+# Byte analysis of report 0x45 (8000 samples)
 python3 sc_monitor.py /dev/hidraw0 45 8000
 
-# Monitor ładowania (loguje do sc_logs/)
-python3 sc_charge_monitor.py sc_logs/moja_sesja.txt
+# Charging monitor (logs to sc_logs/)
+python3 sc_charge_monitor.py sc_logs/my_session.txt
 ```
 
 ---
 
-## 9. Logi kalibracyjne
+## 9. Calibration logs
 
-Zebrane dane w `sc_logs/`:
+Data collected in `sc_logs/`:
 
-| Plik | Opis |
+| File | Description |
 |---|---|
-| `sc_monitor_4pct_20260630_1428.txt` | Analiza bajtów 0x45 i 0x7b przy ~4% baterii |
-| `sc_4pct_20260630_1428.txt` | 60 raportów 0x7b przy 4% — surowe hex |
-| `sc_43_4pct_20260630_1430.txt` | 16 raportów 0x43 przy 4% — surowe hex |
-| `sc_45pct_20260612_2255.txt` | 20 raportów 0x7b przy ~44% baterii |
-| `sc_monitor_50pct_20260612_2256.txt` | Analiza bajtów przy ~44% (2 raporty 0x43) |
-| `sc_charging_20260630_1510.txt` | Sesja ładowania (4% → naładowany), nieukończona |
-| `sc_100pct_20260630.txt` | Monitor przy 100% — ~20 min danych, kluczowe obserwacje |
+| `sc_monitor_4pct_20260630_1428.txt` | Byte analysis of 0x45 and 0x7b at ~4% battery |
+| `sc_4pct_20260630_1428.txt` | 60 reports of 0x7b at 4% — raw hex |
+| `sc_43_4pct_20260630_1430.txt` | 16 reports of 0x43 at 4% — raw hex |
+| `sc_45pct_20260612_2255.txt` | 20 reports of 0x7b at ~44% battery |
+| `sc_monitor_50pct_20260612_2256.txt` | Byte analysis at ~44% (2 reports of 0x43) |
+| `sc_charging_20260630_1510.txt` | Charging session (4% -> full), unfinished |
+| `sc_100pct_20260630.txt` | Monitor at 100% — ~20 min of data, key observations |
 
 ---
 
-## 10. Nierozwiązane pytania / TODO
+## 10. Open questions / TODO
 
-### Wysokie priorytety
-- [ ] **Czego są `0x43 byte[4]` i `byte[6]`?** Czy to ADC napięcia? Zebrać dane przy 20%, 50%, 80%.
-- [ ] **Czy da się wysłać Feature Report zapytanie o baterię?** Starego SC można było
-  "zapytać" przez HIDIOCGFEATURE. Nieznane raporty wyjściowe nowego.
-- [ ] **Wykrywanie ładowania.** Czy kontroler wysyła cokolwiek specyficznego gdy jest na
-  doku i się ładuje? Daemon zakłada "silence = ładowanie" co jest przybliżeniem.
-- [ ] **Kalibracja byte[2] przy niskich wartościach.** Czy 4→4% jest dokładne też dla
-  2%, 1%? Czy kontroler odcina się zanim osiągnie 0?
+### High priority
+- [ ] **What are `0x43 byte[4]` and `byte[6]`?** Are they voltage ADC
+  readings? Collect data at 20%, 50%, 80%.
+- [ ] **Can a Feature Report be used to actively query battery status?**
+  The old SC could be "polled" via HIDIOCGFEATURE. The new one's output
+  reports are unknown.
+- [ ] **Charging detection.** Does the controller send anything specific
+  while docked and charging? The daemon currently assumes
+  "silence = charging", which is an approximation.
+- [ ] **Calibration of byte[2] at low values.** Is the 4→4% mapping also
+  accurate at 2%, 1%? Does the controller shut off before reaching 0?
 
-### Niższe priorytety
-- [ ] **Zdekodować 0x45 przyciski.** Jakie bity odpowiadają przyciskom A/B/X/Y, triggerom,
-  touchpadom? Patrz bytes [2-9] które są zero w spoczynku.
-- [ ] **0x45 byte[10-17] — IMU.** Prawdopodobnie żyroskop + akcelerometr. 4 pary
-  (wartość, flaga) — dekodować format (big/little endian? signed?).
-- [ ] **0x45 byte[30-45] — device ID.** Porównać między egzemplarzami.
-- [ ] **Tray icon dla Plasma.** Oddzielny typ plasmoid (StatusNotifierItem).
-- [ ] **Tryb wired (USB).** Czy hidraw działa inaczej przez kabel?
-- [ ] **Dane o stanie RF.** Czy byte[9] w 0x7b to RSSI? Jak reaguje na odległość?
-- [ ] **hid-steam.c contribution.** Docelowo zintegrować z kernelem dla natywnego wsparcia.
+### Lower priority
+- [ ] **Decode 0x45 buttons.** Which bits correspond to A/B/X/Y, triggers,
+  touchpads? See bytes [2-9], which are zero at rest.
+- [ ] **0x45 byte[10-17] — IMU.** Likely gyro + accelerometer. 4 pairs
+  (value, flag) — decode the format (big/little endian? signed?).
+- [ ] **0x45 byte[30-45] — device ID.** Compare across different units.
+- [ ] **Plasma tray icon.** A separate plasmoid type (StatusNotifierItem).
+- [ ] **Wired (USB) mode.** Does hidraw behave differently over cable?
+- [ ] **RF state data.** Is byte[9] in 0x7b an RSSI value? How does it
+  respond to distance?
+- [ ] **hid-steam.c contribution.** Eventually integrate with the kernel
+  for native support.
 
-### Pytania bez odpowiedzi
-- **Co to są `0x43 byte[13]/byte[14]`?** Rotujące czujniki, ale jakie konkretnie?
-  Temperatura, napięcie, prąd? Potrzeba sprzętu do analizy energetycznej.
-- **Dlaczego 0x43 jest tak rzadki (~1/1000)?** Może do triggerowania go jest Feature Report?
-- **Czym jest byte[12] w 0x7b (`0x02`)?** Stała — może encoding trybu BT?
+### Unanswered questions
+- **What are `0x43 byte[13]/byte[14]`?** Rotating sensors, but which
+  specifically? Temperature, voltage, current? Would need power-analysis
+  hardware to pin down.
+- **Why is 0x43 so rare (~1/1000)?** Maybe there's a Feature Report that
+  triggers it more often?
+- **What is byte[12] in 0x7b (`0x02`)?** Constant — possibly a Bluetooth
+  mode encoding?
 
 ---
 
-## 11. Środowisko deweloperskie
+## 11. Development environment
 
 - **System:** Bazzite Linux (Fedora-based, immutable)
 - **DE:** KDE Plasma 6.7.1
 - **GPU:** RTX 4090
 - **CPU:** i9-13900K
-- **Path uwaga:** `/var/home/jahrek` i `/home/jahrek` to ten sam inode,
-  ale `kpackagetool6` zachowuje się inaczej — używać `/var/home/jahrek`
+- **Path note:** `/var/home/jahrek` and `/home/jahrek` are the same inode,
+  but `kpackagetool6` behaves differently depending on which is used —
+  prefer `/var/home/jahrek`.
 
 ---
 
-## 12. Oś czasu badań
+## 12. Research timeline
 
 ```
-2026-06-12  Pierwsze zbieranie danych przy ~44% baterii.
-            2 próbki 0x43 z byte[2]=44 (0x2c).
-            Błędna hipoteza: byte[13]=34 to kalibracja baterii.
+2026-06-12  First data collection at ~44% battery.
+            2 samples of 0x43 with byte[2]=44 (0x2c).
+            Wrong hypothesis: byte[13]=34 is a battery calibration value.
 
-2026-06-30  Zbieranie danych przy 4% baterii.
-            16 próbek 0x43 z byte[2]=4 (0x04).
-            Odkrycie że (223,104) pojawia się stale — to NIE bateria.
+2026-06-30  Data collection at 4% battery.
+            16 samples of 0x43 with byte[2]=4 (0x04).
+            Discovery that (223,104) shows up constantly - it's NOT battery.
 
-2026-06-30  Pełne ładowanie (4% → 100%, ~4h).
-            Monitor ładowania uruchomiony podczas ładowania.
+2026-06-30  Full charge cycle (4% -> 100%, ~4h).
+            Charging monitor run during the charge.
 
-2026-06-30  Dane przy 100%: byte[2]=97 (0x61).
-            Przełom: byte[2] koreluje z %! 4→4%, 44→44%, 97≈100%.
-            Daemon przepisany pod byte[2].
-            Testy: JSON pokazuje 97%, widget wyświetla poprawnie.
+2026-06-30  Data at 100%: byte[2]=97 (0x61).
+            Breakthrough: byte[2] correlates with %! 4->4%, 44->44%, 97≈100%.
+            Daemon rewritten around byte[2].
+            Tests: JSON shows 97%, widget displays it correctly.
 ```

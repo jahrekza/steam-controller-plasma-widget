@@ -1,143 +1,111 @@
-# Steam Controller 2 (2026) — Battery HID Reverse Engineering
+# Steam Controller 2 — Battery Widget for KDE Plasma
 
-## Cel
-Zlokalizować bajt(y) reprezentujące poziom baterii w surowych raportach HID
-Steam Controller 2nd gen (2026), żeby zbudować widget KDE Plasma pokazujący
-battery % i status połączenia. Cel finalny: kontrybucja do społeczności
-Bazzite/KDE (widget + ew. patch do kernela `hid-steam`).
+A background daemon + KDE Plasma 6 widget that shows the battery level and
+connection status of the Steam Controller 2 ("Triton", released May 2026) on
+Linux — reverse-engineered from its raw HID protocol, since the Linux kernel's
+`hid-steam` driver doesn't support this controller yet (see below).
 
-## Sprzęt
-- Steam Controller (2nd gen / "Triton"), wydany 4 maja 2026
-- VID:PID = `28de:1304` ("Steam Controller Puck" — dongle USB)
-- Bus 3 (USB), 5x hidraw interfejsy (hidraw0–4), tylko **hidraw0** ma żywe dane
-- System: Bazzite Linux (Fedora-based, rpm-ostree), KDE Plasma
+![status](https://img.shields.io/badge/status-working%20prototype-yellow)
 
-## Stan sterownika
-Sterownik kernela widzi urządzenie jako `hid-generic` (NIE `hid-steam`) —
-istniejący `hid-steam.c` w kernelu Linux jest pisany dla **starszego**
-Steam Controllera (2018) i nie rozpoznaje nowego PID. Stąd:
-- `/sys/class/power_supply/` — PUSTE, brak ekspozycji baterii przez kernel
-- `upower -e` — tylko `DisplayDevice`, brak urządzenia pada
-- Trzeba czytać surowy strumień przez `/dev/hidraw0`
+## Why this exists
 
-## Report descriptor
-Usage Page `0xFF00` — w pełni proprietarny protokół Valve, BEZ standardowych
-usage'ów (np. Battery Strength 0x06/0x20). Bateria, jeśli jest w strumieniu,
-jest zakodowana jako "magiczny bajt" bez deklaracji semantycznej —
-identyfikacja możliwa tylko empirycznie (porównanie różnych stanów baterii).
+The Steam Controller 2 (VID:PID `28de:1304`) is not recognized by the kernel's
+`hid-steam.c` driver — it falls back to generic `hid-generic`, which means:
 
-Pełny hex deskryptora w historii projektu (372 bajty na hidraw0-3, 54 bajty
-na hidraw4).
+- Nothing shows up under `/sys/class/power_supply/`
+- `upower -e` shows no controller device
+- There is no standard way to read the battery level
 
-## Zidentyfikowane raporty (Report ID = pierwszy bajt)
+This project reads the raw HID report stream directly from `/dev/hidraw*`,
+decodes the (fully undocumented, vendor-proprietary) battery field, and
+exposes it to a small KDE Plasma widget.
 
-| Report ID | Rozmiar | Częstotliwość | Charakter |
-|---|---|---|---|
-| **0x45** | 46 bajtów | continuous (~99% strumienia) | Main input: przyciski, analogi (bajty 10-17), IMU/accel/gyro (bajty 30-39, stałe gdy pad leży nieruchomo) |
-| **0x7b** | 13 bajtów | event-driven (rzadki, ~15-60 / 8000-15000 odczytów) | **Najbardziej obiecujący kandydat na status/telemetrię** |
-| **0x43** | 15 bajtów | bardzo rzadki (2-16 / 8000-15000) | Możliwe: config/firmware/battery info |
+Full reverse-engineering notes, including how the battery byte was found and
+several dead ends that were ruled out, are in [PROTOCOL_NOTES.md](PROTOCOL_NOTES.md).
 
-## Dane referencyjne — porównanie stanów baterii
+## What's included
 
-### ~50% baterii (12 czerwca 2026, 22:55-22:56)
-Plik: `sc_logs/sc_45pct_20260612_2255.txt`, `sc_logs/sc_monitor_50pct_20260612_2256.txt`
+| Path | What it is |
+|---|---|
+| [`daemon/sc-battery-daemon`](daemon/sc-battery-daemon) | Python daemon: reads `/dev/hidraw*`, finds the controller by VID:PID, writes battery/connection state to `/tmp/sc-battery.json` |
+| [`plasmoid/com.jahrek.steamcontroller/`](plasmoid/com.jahrek.steamcontroller) | KDE Plasma 6 widget (QML) that polls the JSON file and renders a battery icon in the panel |
+| [`install.sh`](install.sh) | Installs both for the current user |
+| `sc_dump.py`, `sc_monitor.py`, `sc_filter.py`, `sc_charge_monitor.py` | Diagnostic/research tools used to reverse-engineer the protocol (not needed just to use the widget) |
+| [`PROTOCOL_NOTES.md`](PROTOCOL_NOTES.md) | Detailed HID protocol research notes |
 
-**Report 0x43** (2 próbki, identyczne):
+## Status
+
+This is a **working prototype** running on the author's own machine (Bazzite
+Linux / KDE Plasma 6.7), not a polished, widely-tested release. Expect rough
+edges. Tested only with one controller unit on one system.
+
+## Requirements
+
+- Linux with KDE Plasma 6
+- Python 3 (no extra packages needed — uses only the standard library)
+- udev/permissions that let your user read `/dev/hidraw*` for the controller.
+  On most distros this "just works" thanks to a udev rule shipped for Steam;
+  if not, you may need a udev rule granting your user rw access to the
+  device's hidraw nodes.
+
+## Install
+
+```bash
+git clone https://github.com/jahrekza/steam-controller-plasma-widget.git
+cd steam-controller-plasma-widget
+./install.sh
 ```
-43012ce20e000f000000000000225c
+
+This will:
+1. Copy the daemon to `~/.local/bin/sc-battery-daemon` and start it
+2. Add an autostart entry so it starts on login
+3. Copy the Plasma widget to `~/.local/share/plasma/plasmoids/com.jahrek.steamcontroller`
+
+Then add the widget: **right-click desktop/panel → Add Widgets → search "Steam Controller Battery"**.
+
+If it doesn't appear in the widget list, restart Plasma:
+```bash
+kquitapp6 plasmashell && kstart plasmashell
 ```
-- byte[13] = **0x22 (34)** — STAŁE
 
-**Report 0x7b** (15 próbek w monitorze):
-- byte[3] VARIES 134-136
-- byte[9] VARIES 220-221
-- byte[11] = CONST 0x32 (50) -- *podejrzane, ale prawdopodobnie zbieg okoliczności, nie battery%*
+### Uninstall
 
-### ~4% baterii (30 czerwca 2026, 14:xx) — kilka tygodni później
-Plik: `sc_logs/sc_4pct_*.txt`, `sc_logs/sc_monitor_4pct_*.txt`, `sc_logs/sc_43_4pct_*.txt`
-
-**Report 0x43** (16 próbek, stabilizuje się):
+```bash
+rm ~/.local/bin/sc-battery-daemon
+rm ~/.config/autostart/sc-battery-daemon.desktop
+rm -rf ~/.local/share/plasma/plasmoids/com.jahrek.steamcontroller
+pkill -f sc-battery-daemon
 ```
-4301046c0e740e000000000000df68   (najczęstsza wartość, 9/16)
-```
-- byte[5] = VARIES 0x6b-0x6d (107-109) -- **nowy ruchomy bajt, był inny w 50% dump**
-- byte[13] = **0xdf (223)** — STABILNE po kilku próbkach (pierwsze 2 próbki w monitor_4pct miały anomalię 139/223, prawdopodobnie przejściowe)
 
-**Report 0x7b** (15 próbek w monitorze):
-- byte[3] VARIES 135-136
-- byte[9] VARIES 218-219
-- byte[11] = CONST 0x30 (48)
+## How it works, in short
 
-## Kluczowa obserwacja — GŁÓWNY KANDYDAT
+- Report ID `0x43` (a rare, event-driven HID report) has a byte that equals
+  the battery percentage at the moment the controller connects/wakes up,
+  then slowly drifts upward as a session-uptime counter (~1 unit/minute).
+  The daemon captures that byte from the *first* `0x43` report of each
+  connection, which gives an accurate one-shot battery reading.
+- The daemon writes `/tmp/sc-battery.json`; the widget polls it every 30s.
+- If the controller goes silent (e.g. sitting in its charging puck), the
+  daemon reports it as disconnected/charging.
 
-**Report 0x43, byte[13]:**
-- 50% baterii → `0x22` = 34 (dziesiętnie)
-- 4% baterii → `0xdf` = 223 (dziesiętnie)
+See [PROTOCOL_NOTES.md](PROTOCOL_NOTES.md) for the full derivation, including
+two dead-end hypotheses that were ruled out with real data.
 
-Zależność NIE jest prostym liniowym % (34→223 rosnąco przy spadku baterii
-sugeruje albo odwróconą skalę, albo inną jednostkę — np. surowe napięcie
-ADC, gdzie wartość rośnie/maleje nieliniowo, lub wartość może zawijać się
-(wraparound) w jakimś zakresie).
+## Roadmap / next steps
 
-**Hipotezy do zweryfikowania:**
-1. To surowe napięcie baterii (Li-ion 8.39 Wh) zakodowane jako single-byte
-   ADC reading ze skalowaniem — wymaga kalibracji w 2-3 punktach
-   (pełne 100%, ~50%, ~4%, idealnie też podczas ładowania)
-2. To może być wartość ze znakiem (int8) lub mieć inny offset/scaling
-3. Może wymagać dodatkowego bajtu sąsiedniego (byte[5] w 0x43 też się
-   zmienił między pomiarami — możliwe że to wieloajtowa wartość)
+- [ ] More calibration data points (currently only ~4%, ~44%, ~97% confirmed)
+- [ ] Detect charging state more reliably than "went silent"
+- [ ] Investigate whether a Feature Report can be used to actively query
+      battery state instead of waiting for a rare passive report
+- [ ] Consider upstreaming controller support to the kernel's `hid-steam.c`
+      and/or contributing findings to the related
+      [SDL issue](https://github.com/libsdl-org/SDL/issues/15471)
 
-**Report 0x43, byte[5]** również się zmienił:
-- 50% → VARIES [0, 236] (niespójne, mało próbek)
-- 4% → VARIES [0x6b-0x6d] = 107-109 (stabilniejsze)
-Wymaga więcej danych do potwierdzenia czy jest skorelowany z baterią.
+## Contributing
 
-## Narzędzia (w tym folderze)
+Issues and PRs welcome — especially calibration data from other controller
+units/battery levels, or testing on non-Bazzite KDE Plasma distros.
 
-- **`sc_dump.py`** — zrzut HID report descriptora (`HIDIOCGRDESC` ioctl)
-  Użycie: `sudo python3 sc_dump.py /dev/hidraw0`
+## License
 
-- **`sc_monitor.py`** — zbiera N próbek ze strumienia, grupuje po Report ID,
-  pokazuje które bajty są CONST vs VARIES (i w jakim zakresie)
-  Użycie: `sudo python3 sc_monitor.py /dev/hidraw0 2000`
-
-- **`sc_filter.py`** — filtruje strumień do konkretnego Report ID, wypisuje
-  surowy hex każdej próbki
-  Użycie: `sudo python3 sc_filter.py /dev/hidraw0 8000 43`
-  (ostatni argument: report ID w hex, bez "0x")
-
-## Metodologia zbierania danych
-
-WAŻNE: replikować warunki między pomiarami:
-- Pad w tym samym fizycznym miejscu i orientacji (minimalizuje szum IMU
-  w raporcie 0x45, choć nie powinno wpływać na 0x43/0x7b)
-- Raport 0x43 jest rzadki — potrzeba dużo próbek (`n=15000` dało tylko 16
-  trafień), więc dla pewnych danych warto zwiększać `n` w `sc_filter.py`
-
-## Następne kroki
-
-1. **Złapać więcej próbek 0x43 przy różnych poziomach baterii** — szczególnie
-   przy **pełnym naładowaniu (100%)** i **podczas ładowania na pucku**
-   (jeśli pad ma taką funkcję), żeby mieć min. 3-4 punkty kalibracyjne
-2. Zbudować tabelę: battery_reported_% → byte[13] (i ew. byte[5]) →
-   dopasować funkcję (liniową, czy inną)
-3. Sprawdzić czy `byte[5]` i `byte[13]` razem tworzą 16-bit wartość
-   (little/big endian) — częsta praktyka w HID dla precyzyjniejszych
-   odczytów napięcia
-4. Po namierzeniu offsetu: napisać daemon Python czytający `/dev/hidraw0`,
-   wystawiający wartość przez D-Bus lub plik w `/tmp`, który KDE Plasma
-   widget (QML) mógłby odpytywać
-5. Rozważyć też zgłoszenie znalezisk do:
-   - SDL issue: https://github.com/libsdl-org/SDL/issues/15471
-   - Kernel `hid-steam.c` maintainerzy (Rodrigo Rivas Costa i in.)
-
-## MVP widgetu (cele funkcjonalne)
-**Priorytet 1:** battery % + connection status
-**Priorytet 2 (nice to have):** charging indicator, signal strength,
-sleep/idle state
-
-## Kontekst osobisty
-Projekt prowadzony przez Jahrek/Jarek, Bazzite (KDE Plasma), RTX 4090,
-i9-13900K. Celem jest stworzenie rozwiązania społecznościowego (open source,
-kontrybucja do Bazzite/KDE), a nie czekanie na oficjalne wsparcie
-kernela/SDL — mimo że temat jest już śledzony w SDL issue tracker.
+MIT — see [LICENSE](LICENSE). Use it, fork it, break it, it's yours.
