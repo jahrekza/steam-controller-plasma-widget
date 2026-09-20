@@ -35,12 +35,32 @@ PlasmoidItem {
             disconnectSource(source)
         }
         function poll() {
-            connectSource("cat /tmp/sc-battery.json 2>/dev/null || echo '{}'")
+            connectSource("cat \"${XDG_RUNTIME_DIR:-/tmp}/sc-battery.json\" 2>/dev/null || echo '{}'")
+        }
+    }
+
+    // Daemon bundled in the plasmoid: reads /dev/hidraw*, writes the JSON state file.
+    // It holds a lock file, so re-launching it is a no-op when already running.
+    readonly property string daemonPath: Qt.resolvedUrl("../code/sc_battery_daemon.py").toString().replace(/^file:\/\//, "")
+
+    P5Support.DataSource {
+        id: launcher
+        engine: "executable"
+        connectedSources: []
+        onNewData: function(source, data) { disconnectSource(source) }
+        function start() {
+            connectSource("setsid -f python3 \"" + root.daemonPath + "\" >/dev/null 2>&1")
         }
     }
 
     Timer {
-        interval: 30000; running: true; repeat: true; triggeredOnStart: true
+        // (re)start daemon on load and every 5 min in case it died
+        interval: 300000; running: true; repeat: true; triggeredOnStart: true
+        onTriggered: launcher.start()
+    }
+
+    Timer {
+        interval: 10000; running: true; repeat: true; triggeredOnStart: true
         onTriggered: runner.poll()
     }
 

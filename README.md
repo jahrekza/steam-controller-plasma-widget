@@ -27,9 +27,9 @@ several dead ends that were ruled out, are in [PROTOCOL_NOTES.md](PROTOCOL_NOTES
 
 | Path | What it is |
 |---|---|
-| [`daemon/sc-battery-daemon`](daemon/sc-battery-daemon) | Python daemon: reads `/dev/hidraw*`, finds the controller by VID:PID, writes battery/connection state to `/tmp/sc-battery.json` |
-| [`plasmoid/com.jahrek.steamcontroller/`](plasmoid/com.jahrek.steamcontroller) | KDE Plasma 6 widget (QML) that polls the JSON file and renders a battery icon in the panel |
-| [`install.sh`](install.sh) | Installs both for the current user |
+| [`plasmoid/com.jahrek.steamcontroller/`](plasmoid/com.jahrek.steamcontroller) | KDE Plasma 6 widget (QML) that renders a battery icon in the panel |
+| [`plasmoid/.../contents/code/sc_battery_daemon.py`](plasmoid/com.jahrek.steamcontroller/contents/code/sc_battery_daemon.py) | Python daemon bundled inside the widget: reads `/dev/hidraw*`, finds the controller by VID:PID, writes battery/connection state to `$XDG_RUNTIME_DIR/sc-battery.json`. The widget starts it automatically. |
+| [`install.sh`](install.sh) | Installs the widget for the current user (alternative to the KDE Store) |
 | `sc_dump.py`, `sc_monitor.py`, `sc_filter.py`, `sc_charge_monitor.py` | Diagnostic/research tools used to reverse-engineer the protocol (not needed just to use the widget) |
 | [`PROTOCOL_NOTES.md`](PROTOCOL_NOTES.md) | Detailed HID protocol research notes |
 
@@ -50,16 +50,22 @@ edges. Tested only with one controller unit on one system.
 
 ## Install
 
+**From the KDE Store:** right-click panel → *Add Widgets* → *Get New Widgets* →
+search "Steam Controller Battery" (version **0.2 or newer** — 0.1 shipped without
+the daemon and shows a grey icon).
+
+**From git:**
+
 ```bash
 git clone https://github.com/jahrekza/steam-controller-plasma-widget.git
 cd steam-controller-plasma-widget
 ./install.sh
 ```
 
-This will:
-1. Copy the daemon to `~/.local/bin/sc-battery-daemon` and start it
-2. Add an autostart entry so it starts on login
-3. Copy the Plasma widget to `~/.local/share/plasma/plasmoids/com.jahrek.steamcontroller`
+Either way the widget is self-contained: it launches the bundled daemon itself
+(single instance, guarded by a lock file) and restarts it if it dies. No
+autostart entry or separate service needed. `setsid` (util-linux) and
+`python3` must be on `PATH`.
 
 Then add the widget: **right-click desktop/panel → Add Widgets → search "Steam Controller Battery"**.
 
@@ -71,11 +77,12 @@ kquitapp6 plasmashell && kstart plasmashell
 ### Uninstall
 
 ```bash
-rm ~/.local/bin/sc-battery-daemon
-rm ~/.config/autostart/sc-battery-daemon.desktop
+kill "$(cat "$XDG_RUNTIME_DIR/sc-battery-daemon.lock")" 2>/dev/null
 rm -rf ~/.local/share/plasma/plasmoids/com.jahrek.steamcontroller
-pkill -f sc-battery-daemon
 ```
+
+If you installed v0.1, also remove its standalone daemon:
+`rm ~/.local/bin/sc-battery-daemon ~/.config/autostart/sc-battery-daemon.desktop`
 
 ## How it works, in short
 
@@ -84,7 +91,8 @@ pkill -f sc-battery-daemon
   then slowly drifts upward as a session-uptime counter (~1 unit/minute).
   The daemon captures that byte from the *first* `0x43` report of each
   connection, which gives an accurate one-shot battery reading.
-- The daemon writes `/tmp/sc-battery.json`; the widget polls it every 30s.
+- The daemon writes `$XDG_RUNTIME_DIR/sc-battery.json` (atomic rename); the
+  widget polls it every 10s.
 - If the controller goes silent (e.g. sitting in its charging puck), the
   daemon reports it as disconnected/charging.
 
@@ -100,6 +108,13 @@ two dead-end hypotheses that were ruled out with real data.
 - [ ] Consider upstreaming controller support to the kernel's `hid-steam.c`
       and/or contributing findings to the related
       [SDL issue](https://github.com/libsdl-org/SDL/issues/15471)
+
+## Changelog
+
+- **0.2** (2026-09-20) — daemon is now bundled inside the plasmoid and started by
+  the widget; v0.1 from the KDE Store was missing it entirely and never showed a
+  reading. State file moved to `$XDG_RUNTIME_DIR`. Poll interval 30s → 10s.
+- **0.1** (2026-08-12) — initial release.
 
 ## Contributing
 
