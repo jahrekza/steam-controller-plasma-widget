@@ -454,6 +454,9 @@ Data collected in `sc_logs/`:
   | asleep/off on the dock | 1 | 2 |
   | off, not docked | 1 | 1 |
 
+  The dock answers 2 also when the pad is linked over Bluetooth and only
+  charging on the puck (the slots then all say 1).
+
   The daemon polls the dock every 30 s, so "silent" is no longer assumed to mean
   "charging". Note the pad keeps streaming while docked and awake (its LED pulses
   white). Feature report 2 is a shared response buffer that Steam also uses: if

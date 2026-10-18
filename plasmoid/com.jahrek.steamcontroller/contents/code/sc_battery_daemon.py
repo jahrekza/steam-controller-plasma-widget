@@ -287,7 +287,8 @@ def run():
                         st.session_b2 = -1   # don't let the 0x43 heuristic override it
                 silent_since = None
                 st.connected = True
-                st.docked = st.connection == "receiver" and dock.get()
+                # The dock charges the pad whatever link it uses (puck radio or Bluetooth)
+                st.docked = st.connection != "usb" and dock.get()
                 if data and data[0] == 0x43 and len(data) >= 2 and data[1] in (1, 2):
                     charge_flag = data[1] == 2   # dock, or a USB-C cable/charger in any mode
                 if charge_flag is not None:

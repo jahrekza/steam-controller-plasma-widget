@@ -122,6 +122,8 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **0.3.6** (2026-10-18) — a pad on Bluetooth that sits on the puck's dock is now
+  shown as "Charging · on puck" (blue, pulsing), not "Charging · cable".
 - **0.3.5** (2026-10-18) — the widget now mirrors the controller's LED: colour =
   connection, pulsing = charging, orange pulsing = switched off on the dock.
   Charging is read from a flag the pad itself sends, so a USB-C cable/charger is
