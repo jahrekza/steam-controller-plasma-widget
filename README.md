@@ -73,6 +73,8 @@ autostart entry or separate service needed. `setsid` (util-linux) and
 `python3` must be on `PATH`.
 
 Then add the widget: **right-click desktop/panel → Add Widgets → search "Steam Controller Battery"**.
+To have it in the **system tray** instead: right-click the tray arrow → *Configure
+System Tray…* → *Entries* → *Steam Controller Battery* → *Always shown*.
 
 If it doesn't appear in the widget list, restart Plasma:
 ```bash
@@ -122,6 +124,9 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **0.3.7** (2026-10-18) — can live in the system tray (Configure System Tray →
+  Entries → Steam Controller Battery). Panel/tray icon now matches the size of its
+  neighbours and sits right next to the percentage.
 - **0.3.6** (2026-10-18) — a pad on Bluetooth that sits on the puck's dock is now
   shown as "Charging · on puck" (blue, pulsing), not "Charging · cable".
 - **0.3.5** (2026-10-18) — the widget now mirrors the controller's LED: colour =

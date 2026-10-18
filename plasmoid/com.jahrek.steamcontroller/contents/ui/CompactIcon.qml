@@ -24,20 +24,22 @@ MouseArea {
     RowLayout {
         id: row
         anchors.centerIn: parent
-        spacing: 6
+        spacing: Math.round(glyph.h * 0.2)
 
         Item {
             id: glyph
             // 120:84 aspect, sized to the panel thickness
-            readonly property real h: Math.round(Math.min(compact.vertical ? compact.width * 0.7 * 84 / 120
-                                                                        : compact.height * 0.5,
-                                                          Kirigami.Units.iconSizes.medium))
+            // as wide as the neighbouring tray/panel icons (120:84 aspect)
+            readonly property real w: Math.round(Math.min(compact.vertical ? compact.width : compact.height,
+                                                          Kirigami.Units.iconSizes.smallMedium) * 1.15)
+            readonly property real h: Math.round(w * 84 / 120)
             Layout.preferredHeight: h
-            Layout.preferredWidth: Math.round(h * 120 / 84)
+            Layout.preferredWidth: w
             height: h
 
             Kirigami.Icon {
                 anchors.fill: parent
+                roundToIconSize: false   // fill the 120:84 box instead of snapping to a 16/22 px square
                 source: root.glyph
                 isMask: true
                 color: compact.tint
@@ -50,7 +52,7 @@ MouseArea {
                 anchors {
                     left: parent.left; right: parent.right; top: parent.bottom
                     leftMargin: parent.width * 0.2; rightMargin: parent.width * 0.2
-                    topMargin: 0
+                    topMargin: 2
                 }
                 height: 3; radius: 1.5
                 color: root.colorTrack
