@@ -3,7 +3,8 @@
 Steam Controller 2 battery daemon for the Plasma widget.
 
 Reads raw HID reports from /dev/hidraw*, captures battery % from the first
-0x43 report after each connection (byte[2]), and writes a JSON state file
+0x43 report after each connection (byte[2]) and the charging flag from every
+0x43 (byte[1]: 1 = on battery, 2 = charging), and writes a JSON state file
 the widget polls. Launched by the widget itself; a lock file guarantees a
 single instance. Only needs Python 3 stdlib.
 """
@@ -13,15 +14,19 @@ from datetime import datetime
 SC_VID = 0x28de
 SC_PIDS = (0x1304, 0x1302, 0x1303)  # wireless receiver ("puck"), USB-C cable, Bluetooth LE
 HIDIOCGRAWINFO = 0x80084803
+HIDIOCSFEATURE_64 = (3 << 30) | (64 << 16) | (ord("H") << 8) | 0x06
+HIDIOCGFEATURE_65 = (3 << 30) | (65 << 16) | (ord("H") << 8) | 0x07
+DOCK_POLL = 3               # s between "is the pad on the dock?" queries
 
 RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"
 STATE_FILE  = os.path.join(RUNTIME_DIR, "sc-battery.json")
 LOCK_FILE   = os.path.join(RUNTIME_DIR, "sc-battery-daemon.lock")
 
-# Silence on hidraw (or no live device) = pad sitting on the charging puck or
-# asleep; we can't tell them apart, so it is reported as "charging" like the
-# original standalone daemon did.
-SILENCE_DISCONNECT = 20     # s without reports -> treat as disconnected / docked
+# Is the pad on the puck's charging dock? Silence alone can't tell (an idle pad
+# that switched itself off is silent too), but the puck can: asked with command
+# 0xB4 (link state), its dock interface (the one without OUTPUT reports) answers
+# 2 while a pad sits on it, 1 otherwise -- whether the pad is awake or not.
+SILENCE_DISCONNECT = 2      # s without reports -> pad is off (awake it streams ~250 reports/s)
 SILENCE_NEW_SESSION = 120   # s without reports -> next 0x43 is a fresh session value
 WRITE_INTERVAL = 5          # s between state file writes
 
@@ -77,6 +82,75 @@ def bluez_battery(address):
     return None
 
 
+def puck_dock_node():
+    """hidraw node of the puck's dock interface: a 28de:1304 node without OUTPUT reports."""
+    for i in range(32):
+        base = f"/sys/class/hidraw/hidraw{i}/device"
+        try:
+            with open(base + "/uevent") as f:
+                if "28DE:00001304" not in f.read().upper():
+                    continue
+            with open(base + "/report_descriptor", "rb") as f:
+                desc = f.read()
+        except OSError:
+            continue
+        j, has_out = 0, False
+        while j < len(desc):
+            b = desc[j]
+            if b == 0xFE:                      # long item
+                j += 3 + (desc[j + 1] if j + 1 < len(desc) else 0)
+                continue
+            if (b & 0xFC) == 0x90:             # Main item, tag Output
+                has_out = True
+                break
+            j += 1 + (0, 1, 2, 4)[b & 3]
+        if not has_out:
+            return f"/dev/hidraw{i}"
+    return None
+
+
+def puck_docked():
+    """True/False = pad on/off the puck's dock, None = can't tell (no puck, no access)."""
+    dev = puck_dock_node()
+    if not dev:
+        return None
+    try:
+        fd = os.open(dev, os.O_RDWR)
+    except OSError:
+        return None
+    try:
+        out = bytearray(64)
+        out[0], out[1] = 0x02, 0xB4
+        fcntl.ioctl(fd, HIDIOCSFEATURE_64, bytes(out))
+        time.sleep(0.05)
+        buf = bytearray(65)
+        buf[0] = 0x02
+        fcntl.ioctl(fd, HIDIOCGFEATURE_65, buf, True)
+        if buf[1] != 0xB4:                     # answer to someone else's command (e.g. Steam)
+            return None
+        return buf[3] == 2
+    except OSError:
+        return None
+    finally:
+        os.close(fd)
+
+
+class DockCache:
+    def __init__(self):
+        self.value, self.at = None, 0
+
+    def get(self):
+        if time.time() - self.at >= DOCK_POLL:
+            v = puck_docked()
+            self.at = time.time()
+            if v is not None:
+                self.value = v
+        return bool(self.value)
+
+    def reset(self):
+        self.at = 0
+
+
 def find_device():
     """Returns (live hidraw node or None, connection of any silent controller/puck node or "")."""
     present = ""
@@ -93,7 +167,7 @@ def find_device():
             if vendor & 0xffff != SC_VID or product & 0xffff not in SC_PIDS:
                 continue
             present = present or hid_info(dev)[0]
-            if select.select([fd], [], [], 0.3)[0]:
+            if select.select([fd], [], [], 0.15)[0]:
                 return dev, present
         except OSError:
             pass
@@ -111,6 +185,7 @@ class State:
         self.last_seen = ""
         self.connection = ""
         self.address = ""
+        self.docked = False         # on the puck's charging dock
         self.session_b2 = None
         self._last_write = 0
         self._last_dump = None
@@ -134,9 +209,10 @@ class State:
             "last_seen": self.last_seen,
             "connection": self.connection,
             "address": self.address,
+            "docked": self.docked,
             "updated_at": datetime.now().isoformat(timespec="seconds"),
         }
-        key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"])
+        key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"], d["docked"])
         if not force and key == self._last_dump and now - self._last_write < WRITE_INTERVAL:
             return
         tmp = STATE_FILE + ".tmp"
@@ -152,43 +228,52 @@ def run():
     st.write(force=True)
     silent_since = None
     bt_polled = 0
+    dock = DockCache()
+    charge_flag = None
 
     while True:
         dev, present = find_device()
         if not dev:
-            # A silent puck node = pad docked on the puck (or asleep);
-            # no node at all = receiver unplugged / nothing to talk to.
+            # Silent puck: ask it whether the pad is on the dock (charging) or off.
+            # No node at all = receiver unplugged / nothing to talk to.
             st.connected = False
-            st.charging = bool(present)
-            st.connection = present
+            st.docked = present == "receiver" and dock.get()
+            if present == "receiver":
+                st.charging = st.docked
+                st.connection = "receiver" if st.docked else ""
+            else:
+                st.charging = present == "usb"
+                st.connection = present
             st.address = ""
-            st.session_b2 = None
-            st.provisional = True
+            # A short dropout keeps the session's battery reading; a long one
+            # means the next 0x43 starts a fresh session.
+            silent_since = silent_since or time.time()
+            if time.time() - silent_since >= SILENCE_NEW_SESSION:
+                st.session_b2 = None
+                st.provisional = True
             st.write()
-            time.sleep(5)
+            time.sleep(1)
             continue
 
         try:
             fd = os.open(dev, os.O_RDONLY)
             st.connection, st.address = hid_info(dev)
             bt_polled = 0
+            dock.reset()
+            charge_flag = None
         except OSError:
-            time.sleep(5)
+            time.sleep(1)
             continue
 
         try:
             while True:
-                r, _, _ = select.select([fd], [], [], 5.0)
+                r, _, _ = select.select([fd], [], [], 1.0)
                 if not r:
                     silent_since = silent_since or time.time()
                     gap = time.time() - silent_since
                     if gap >= SILENCE_DISCONNECT:
-                        st.connected = False
-                        st.charging = True
-                    if gap >= SILENCE_NEW_SESSION:
-                        st.session_b2 = None
-                        st.provisional = True
-                    st.write()
+                        # Pad went quiet: rescan, so a switch to cable/Bluetooth is noticed too
+                        break
                     continue
 
                 data = os.read(fd, 64)
@@ -202,8 +287,13 @@ def run():
                         st.session_b2 = -1   # don't let the 0x43 heuristic override it
                 silent_since = None
                 st.connected = True
-                # On a USB-C cable the controller is powered (and charged) by the PC.
-                st.charging = st.connection == "usb"
+                st.docked = st.connection == "receiver" and dock.get()
+                if data and data[0] == 0x43 and len(data) >= 2 and data[1] in (1, 2):
+                    charge_flag = data[1] == 2   # dock, or a USB-C cable/charger in any mode
+                if charge_flag is not None:
+                    st.charging = charge_flag or st.docked
+                else:
+                    st.charging = st.docked or st.connection == "usb"
                 st.last_seen = datetime.now().strftime("%H:%M")
 
                 if data and data[0] == 0x43 and len(data) >= 3 and st.session_b2 is None:
@@ -214,6 +304,7 @@ def run():
         except OSError:
             st.connected = False
             st.charging = False
+            st.docked = False
             st.session_b2 = None
             st.provisional = True
             st.write()
@@ -222,7 +313,7 @@ def run():
                 os.close(fd)
             except OSError:
                 pass
-        time.sleep(3)
+        time.sleep(1)
 
 
 if __name__ == "__main__":

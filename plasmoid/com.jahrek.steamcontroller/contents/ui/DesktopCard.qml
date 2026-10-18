@@ -110,6 +110,7 @@ Item {
                     source: root.bolt
                     isMask: true
                     color: root.stateColor
+                    opacity: root.pulse
                 }
                 PC3.Label {
                     text: root.statusText()
@@ -151,6 +152,7 @@ Item {
                     height: full * Math.max(0, Math.min(100, root.batteryPct)) / 100
                     radius: 7
                     color: root.stateColor
+                    opacity: root.pulse
 
                     Behavior on height { NumberAnimation { duration: 800; easing.type: Easing.OutCubic } }
                     Behavior on color  { ColorAnimation  { duration: 400 } }
@@ -162,7 +164,7 @@ Item {
                     implicitWidth: 18; implicitHeight: 18
                     source: root.bolt
                     isMask: true
-                    color: "#fcfcfc"
+                    color: root.boltOnFill
                 }
             }
         }

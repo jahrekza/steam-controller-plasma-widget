@@ -442,9 +442,30 @@ Data collected in `sc_logs/`:
 - [ ] **Can a Feature Report be used to actively query battery status?**
   The old SC could be "polled" via HIDIOCGFEATURE. The new one's output
   reports are unknown.
-- [ ] **Charging detection.** Does the controller send anything specific
-  while docked and charging? The daemon currently assumes
-  "silence = charging", which is an approximation.
+- [x] **Charging detection.** Solved 2026-10-18. The puck exposes 4 pad
+  "slots" (interfaces 2-5) and a dock interface (6, the only one without OUTPUT
+  reports). Feature report 2 with command `0xB4` (SET `02 b4 00…`, then GET) returns
+  `02 b4 01 <state>`, state 1 = not connected, 2 = connected:
+
+  | Pad | slot (input2) | dock (input6) |
+  |---|---|---|
+  | awake, wireless | 2 | 1 |
+  | awake and on the dock | 2 | 2 |
+  | asleep/off on the dock | 1 | 2 |
+  | off, not docked | 1 | 1 |
+
+  The daemon polls the dock every 30 s, so "silent" is no longer assumed to mean
+  "charging". Note the pad keeps streaming while docked and awake (its LED pulses
+  white). Feature report 2 is a shared response buffer that Steam also uses: if
+  the answer's command byte isn't `0xB4`, the daemon discards it.
+- [x] **Charging flag in 0x43.** Found 2026-10-18: byte[1] of every `0x43`
+  report is the charging state — `01` on battery, `02` charging — in all three
+  modes (puck, Bluetooth, USB-C). It catches cases nothing else can see, e.g. a
+  USB-C cable plugged in while the pad stays on Bluetooth (the pad then does
+  *not* enumerate on USB; the cable only charges). `0x43` arrives every ~3.5 s over
+  Bluetooth. The pad's LED follows the same logic the widget now mirrors: colour =
+  link (white puck, blue Bluetooth, green USB-C), pulsing = charging, orange
+  pulsing = switched off on the dock.
 - [ ] **Calibration of byte[2] at low values.** Is the 4→4% mapping also
   accurate at 2%, 1%? Does the controller shut off before reaching 0?
 

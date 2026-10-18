@@ -70,6 +70,7 @@ MouseArea {
                 source: root.mode === "charging" ? root.bolt : root.btLogo
                 isMask: true
                 color: root.stateColor
+                opacity: root.pulse
             }
         }
 

@@ -92,6 +92,7 @@ ColumnLayout {
                 height: parent.height
                 radius: 4
                 color: root.stateColor
+                opacity: root.pulse
                 Behavior on width { NumberAnimation { duration: 600; easing.type: Easing.OutCubic } }
             }
         }

@@ -11,7 +11,8 @@ PlasmoidItem {
     // ── State from the daemon ────────────────────────────────────────────
     property int    batteryPct:  -1
     property bool   connected:   false
-    property bool   charging:    false      // on a USB-C cable, or silent with the puck present (docked)
+    property bool   charging:    false      // dock, USB-C cable or charger (flag from the pad itself)
+    property bool   docked:      false      // on the puck's charging dock
     property bool   provisional: true       // batteryPct is the last known value, not read this session
     property string lastSeen:    ""
     property string connection:  ""         // "receiver" (puck) | "usb" (USB-C cable) | "bluetooth"
@@ -31,24 +32,39 @@ PlasmoidItem {
     readonly property bool isDesktop: Plasmoid.formFactor === PlasmaCore.Types.Planar
                                    || Plasmoid.formFactor === PlasmaCore.Types.MediaCenter
 
-    // ── Palette: one colour per way the pad is connected ─────────────────
-    readonly property color colorDocked:    "#ff9a3c"   // charging on the puck
-    readonly property color colorCable:     "#3ec47a"   // charging on a USB-C cable
-    readonly property color colorWireless:  "#fcfcfc"   // wireless through the puck, not charging
+    // ── Palette: mirrors the pad's own LED ───────────────────────────────
+    // Colour = how it is connected; pulsing = charging.
+    readonly property color colorWireless:  "#fcfcfc"   // through the puck
     readonly property color colorBluetooth: "#3daee9"
+    readonly property color colorCable:     "#3ec47a"   // USB-C cable to the PC
+    readonly property color colorDocked:    "#ff9a3c"   // switched off, charging on the puck
     readonly property color colorLow:       "#ed4c4c"   // ≤ threshold and not charging
     readonly property color colorOutline:   "#5a6068"
     readonly property color colorTrack:     "#3a3f45"
+    readonly property bool pulsing: mode === "charging"
     readonly property color stateColor: mode === "low"          ? colorLow
                                       : mode === "disconnected" ? colorOutline
-                                      : mode === "charging"     ? (connection === "usb" ? colorCable : colorDocked)
+                                      : !connected              ? colorDocked
+                                      : connection === "usb"       ? colorCable
                                       : connection === "bluetooth" ? colorBluetooth
                                       : colorWireless
+    // Bolt drawn on top of the battery fill: dark on a white fill, white otherwise
+    readonly property color boltOnFill: Qt.colorEqual(stateColor, colorWireless) ? "#23262a" : "#fcfcfc"
 
     readonly property url illustration: Qt.resolvedUrl("../images/steam-controller.svg")
     readonly property url glyph:        Qt.resolvedUrl("../images/steam-controller-symbolic.svg")
     readonly property url bolt:         Qt.resolvedUrl("../images/bolt.svg")
     readonly property url btLogo:       Qt.resolvedUrl("../images/bluetooth.svg")
+
+    // Breathing opacity shared by everything that pulses (1 when not pulsing)
+    property real pulse: 1
+    SequentialAnimation on pulse {
+        running: root.pulsing
+        loops: Animation.Infinite
+        NumberAnimation { to: 0.3; duration: 1200; easing.type: Easing.InOutSine }
+        NumberAnimation { to: 1;   duration: 1200; easing.type: Easing.InOutSine }
+        onRunningChanged: if (!running) root.pulse = 1
+    }
 
     function pctText() { return known ? batteryPct + "%" : "—" }
 
@@ -56,9 +72,9 @@ PlasmoidItem {
         switch (mode) {
         case "ok":       return i18n("Connected")
         case "low":      return i18n("Low — plug in")
-        case "charging": return connection === "usb"      ? i18n("Charging · USB-C")
-                              : connection === "receiver" ? i18n("Charging · on puck")
-                              : i18n("Charging")
+        case "charging": return docked                ? i18n("Charging · on puck")
+                              : connection === "usb" ? i18n("Charging · USB-C")
+                              : i18n("Charging · cable")
         }
         return i18n("Disconnected")
     }
@@ -67,7 +83,7 @@ PlasmoidItem {
         switch (connection) {
         case "bluetooth": return i18n("Bluetooth")
         case "usb":       return i18n("USB-C cable")
-        case "receiver":  return connected ? i18n("Wireless (puck)") : i18n("Docked on puck")
+        case "receiver":  return connected ? i18n("Wireless (puck)") : docked ? i18n("Docked on puck") : "—"
         }
         return "—"
     }
@@ -102,6 +118,7 @@ PlasmoidItem {
                 root.provisional = (d.provisional  !== undefined) ? d.provisional  : true
                 root.lastSeen    = (d.last_seen    !== undefined) ? d.last_seen    : ""
                 root.connection  = (d.connection   !== undefined) ? d.connection   : ""
+                root.docked      = (d.docked       !== undefined) ? d.docked       : false
                 root.address     = (d.address      !== undefined) ? d.address      : ""
             } catch(e) {
                 root.connected = false
@@ -134,7 +151,8 @@ PlasmoidItem {
     }
 
     Timer {
-        interval: 10000; running: true; repeat: true; triggeredOnStart: true
+        // the daemon rewrites the file the moment something changes; reading it is a cheap `cat`
+        interval: 1000; running: true; repeat: true; triggeredOnStart: true
         onTriggered: runner.poll()
     }
 

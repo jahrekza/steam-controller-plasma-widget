@@ -7,6 +7,12 @@ Linux — reverse-engineered from its raw HID protocol, since the Linux kernel's
 
 ![status](https://img.shields.io/badge/status-working%20prototype-yellow)
 
+![Widget states](screenshots/gallery-states.png)
+
+The widget mirrors the controller's own LED: **colour = how it's connected**
+(white = puck, blue = Bluetooth, green = USB-C cable), **pulsing = charging**,
+orange = switched off on the puck's dock, red = low battery.
+
 ## Why this exists
 
 The Steam Controller 2 (VID:PID `28de:1304`) is not recognized by the kernel's
@@ -27,7 +33,7 @@ several dead ends that were ruled out, are in [PROTOCOL_NOTES.md](PROTOCOL_NOTES
 
 | Path | What it is |
 |---|---|
-| [`plasmoid/com.jahrek.steamcontroller/`](plasmoid/com.jahrek.steamcontroller) | KDE Plasma 6 widget (QML) that renders a battery icon in the panel |
+| [`plasmoid/com.jahrek.steamcontroller/`](plasmoid/com.jahrek.steamcontroller) | KDE Plasma 6 widget (QML): a card on the desktop, or an icon + popup in the panel |
 | [`plasmoid/.../contents/code/sc_battery_daemon.py`](plasmoid/com.jahrek.steamcontroller/contents/code/sc_battery_daemon.py) | Python daemon bundled inside the widget: reads `/dev/hidraw*`, finds the controller by VID:PID, writes battery/connection state to `$XDG_RUNTIME_DIR/sc-battery.json`. The widget starts it automatically. |
 | [`install.sh`](install.sh) | Installs the widget for the current user (alternative to the KDE Store) |
 | `sc_dump.py`, `sc_monitor.py`, `sc_filter.py`, `sc_charge_monitor.py` | Diagnostic/research tools used to reverse-engineer the protocol (not needed just to use the widget) |
@@ -51,8 +57,7 @@ edges. Tested only with one controller unit on one system.
 ## Install
 
 **From the KDE Store:** right-click panel → *Add Widgets* → *Get New Widgets* →
-search "Steam Controller Battery" (version **0.2 or newer** — 0.1 shipped without
-the daemon and shows a grey icon).
+search "Steam Controller Battery".
 
 **From git:**
 
@@ -91,10 +96,16 @@ If you installed v0.1, also remove its standalone daemon:
   then slowly drifts upward as a session-uptime counter (~1 unit/minute).
   The daemon captures that byte from the *first* `0x43` report of each
   connection, which gives an accurate one-shot battery reading.
-- The daemon writes `$XDG_RUNTIME_DIR/sc-battery.json` (atomic rename); the
-  widget polls it every 10s.
-- If the controller goes silent (e.g. sitting in its charging puck), the
-  daemon reports it as disconnected/charging.
+- Every `0x43` also carries a charging flag (byte[1]: 1 = on battery,
+  2 = charging) — in all modes, including a cable that only charges while the
+  pad stays on Bluetooth.
+- Over Bluetooth the pad exposes a standard Battery Service, so the battery %
+  there is live and exact (read from BlueZ).
+- Whether a silent pad is on the puck's dock or switched off is asked from the
+  puck itself (command `0xB4` on its dock interface), every 3 s.
+- The daemon writes `$XDG_RUNTIME_DIR/sc-battery.json` (atomic rename) the
+  moment something changes; the widget reads it every second, so it follows
+  the controller within a few seconds.
 
 See [PROTOCOL_NOTES.md](PROTOCOL_NOTES.md) for the full derivation, including
 two dead-end hypotheses that were ruled out with real data.
@@ -102,15 +113,22 @@ two dead-end hypotheses that were ruled out with real data.
 ## Roadmap / next steps
 
 - [ ] More calibration data points (currently only ~4%, ~44%, ~97% confirmed)
-- [ ] Detect charging state more reliably than "went silent"
+- [x] Detect charging state more reliably than "went silent" (0.3.5)
 - [ ] Investigate whether a Feature Report can be used to actively query
-      battery state instead of waiting for a rare passive report
+      battery state over the puck (Bluetooth already reports it live)
 - [ ] Consider upstreaming controller support to the kernel's `hid-steam.c`
       and/or contributing findings to the related
       [SDL issue](https://github.com/libsdl-org/SDL/issues/15471)
 
 ## Changelog
 
+- **0.3.5** (2026-10-18) — the widget now mirrors the controller's LED: colour =
+  connection, pulsing = charging, orange pulsing = switched off on the dock.
+  Charging is read from a flag the pad itself sends, so a USB-C cable/charger is
+  detected in every mode. A pad that switched itself off is no longer shown as
+  "charging on puck" — the puck is asked whether the pad is on its dock. Much
+  faster updates: a few seconds instead of up to a minute. The daemon also
+  notices a switch to cable/Bluetooth right after the pad goes quiet.
 - **0.3** (2026-10-18) — redesign: desktop card (controller + tall battery,
   Connected / Charging / Low / Disconnected states), panel icon with bar and
   charging badge, expanded popup with details. Settings: low-battery threshold
