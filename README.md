@@ -111,6 +111,15 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **0.3** (2026-10-18) — redesign: desktop card (controller + tall battery,
+  Connected / Charging / Low / Disconnected states), panel icon with bar and
+  charging badge, expanded popup with details. Settings: low-battery threshold
+  and optional notification. The daemon now reports the connection type and tells
+  "pad docked on the puck" apart from "receiver unplugged". The controller on a
+  USB-C cable (`28de:1302`) is now supported too and shown as "Charging · USB-C".
+  Bluetooth (`28de:1303`) too, with a live battery % from the BLE Battery Service.
+  Colours by connection: white = puck, blue = Bluetooth, orange = charging on the
+  puck, green = USB-C cable, red = low battery.
 - **0.2** (2026-09-20) — daemon is now bundled inside the plasmoid and started by
   the widget; v0.1 from the KDE Store was missing it entirely and never showed a
   reading. State file moved to `$XDG_RUNTIME_DIR`. Poll interval 30s → 10s.

@@ -6,7 +6,7 @@
         "Icon": "input-gamepad",
         "Id": "com.jahrek.steamcontroller",
         "Name": "Steam Controller Battery",
-        "Version": "0.2"
+        "Version": "0.3"
     },
     "KPackageStructure": "Plasma/Applet",
     "X-Plasma-API-Minimum-Version": "6.0"

@@ -455,7 +455,20 @@ Data collected in `sc_logs/`:
   (value, flag) — decode the format (big/little endian? signed?).
 - [ ] **0x45 byte[30-45] — device ID.** Compare across different units.
 - [ ] **Plasma tray icon.** A separate plasmoid type (StatusNotifierItem).
-- [ ] **Wired (USB) mode.** Does hidraw behave differently over cable?
+- [x] **Wired (USB) mode.** Tested 2026-10-18: on a USB-C cable the controller
+      enumerates as `28de:1302` "Valve Software Steam Controller" (a single HID
+      interface, `hid-generic`), not as the puck (`28de:1304`, 5 interfaces). It
+      streams the same reports as over the puck: `0x42` (~250/s) and a rare `0x43`
+      whose byte[2] held the battery % (0x4b → ~75–78%). The daemon matches both PIDs
+      and reports `connection: "usb"` + `charging: true` for the cable.
+- [x] **Bluetooth mode.** Tested 2026-10-18: the pad is a BLE HID device named
+      "Steam Ctrl (BT) <serial>" with a rotating random address; once paired it
+      shows up as `28de:1303` on bus `0005`. It exposes the standard **Battery
+      Service** (0x180F), so BlueZ (`org.bluez.Battery1.Percentage`) and UPower
+      report a live, accurate battery % — the daemon uses that instead of the
+      0x43 heuristic. Pairing gotcha: after connecting, the pad requests pairing
+      authorization ("Just Works"); if nobody confirms it, the pad gives up and
+      powers off.
 - [ ] **RF state data.** Is byte[9] in 0x7b an RSSI value? How does it
   respond to distance?
 - [ ] **hid-steam.c contribution.** Eventually integrate with the kernel

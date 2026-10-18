@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 84" width="120" height="84">
+<style id="current-color-scheme" type="text/css">.ColorScheme-Text { color:#fcfcfc; }</style>
+<path class="ColorScheme-Text" fill="currentColor" fill-rule="evenodd" d="M10 18 C10 8 18 3.5 28 3.5 C38 3.5 45 7.5 60 7.5 C75 7.5 82 3.5 92 3.5 C102 3.5 110 8 110 18 C112 30 116 46 116 60 C117 74 112 81 104 81 C97 81 93 77 90 72 L88 70 H32 L30 72 C27 77 23 81 16 81 C8 81 3 74 4 60 C4 46 8 30 10 18 Z M31 39 h19 a6 6 0 0 1 6 6 v15 a6 6 0 0 1 -6 6 h-19 a6 6 0 0 1 -6 -6 v-15 a6 6 0 0 1 6 -6 Z M70 39 h19 a6 6 0 0 1 6 6 v15 a6 6 0 0 1 -6 6 h-19 a6 6 0 0 1 -6 -6 v-15 a6 6 0 0 1 6 -6 Z M34 26 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0 Z M68 26 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0 Z"/>
+<path class="ColorScheme-Text" fill="currentColor" d="M38.5 26 a4.5 4.5 0 1 0 9.0 0 a4.5 4.5 0 1 0 -9.0 0 Z M72.5 26 a4.5 4.5 0 1 0 9.0 0 a4.5 4.5 0 1 0 -9.0 0 Z"/>
+</svg>

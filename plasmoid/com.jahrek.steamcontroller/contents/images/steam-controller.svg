@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 84" width="120" height="84">
+<path d="M10 18 C10 8 18 3.5 28 3.5 C38 3.5 45 7.5 60 7.5 C75 7.5 82 3.5 92 3.5 C102 3.5 110 8 110 18 C112 30 116 46 116 60 C117 74 112 81 104 81 C97 81 93 77 90 72 L88 70 H32 L30 72 C27 77 23 81 16 81 C8 81 3 74 4 60 C4 46 8 30 10 18 Z" fill="#2c3035" stroke="#4a5058" stroke-width="1.4"></path>
+<path d="M13.5 11 C16 5.5 22 3 30 3 C34 3 37 3.6 39.5 4.6" fill="none" stroke="#50565e" stroke-width="2.6" stroke-linecap="round"></path>
+<path d="M106.5 11 C104 5.5 98 3 90 3 C86 3 83 3.6 80.5 4.6" fill="none" stroke="#50565e" stroke-width="2.6" stroke-linecap="round"></path>
+<path d="M8 37 C26 33.5 94 33.5 112 37" fill="none" stroke="#4a5058" stroke-width="0.8"></path>
+<rect x="26" y="40" width="29" height="25" rx="5" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></rect>
+<rect x="65" y="40" width="29" height="25" rx="5" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></rect>
+<circle cx="43" cy="27" r="8" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></circle>
+<circle cx="43" cy="27" r="4.6" fill="#3a3f45"></circle>
+<circle cx="77" cy="27" r="8" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></circle>
+<circle cx="77" cy="27" r="4.6" fill="#3a3f45"></circle>
+<rect x="18.5" y="13" width="5.5" height="13" rx="1.4" fill="#1c1e21"></rect>
+<rect x="14.75" y="16.75" width="13" height="5.5" rx="1.4" fill="#1c1e21"></rect>
+<circle cx="100" cy="13" r="3" fill="#50565e"></circle>
+<circle cx="94" cy="19" r="3" fill="#50565e"></circle>
+<circle cx="106" cy="19" r="3" fill="#50565e"></circle>
+<circle cx="100" cy="25" r="3" fill="#50565e"></circle>
+<circle cx="60" cy="17" r="4.4" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></circle>
+<rect x="33" y="10.5" width="8" height="3.4" rx="1.7" fill="#50565e"></rect>
+<rect x="79" y="10.5" width="8" height="3.4" rx="1.7" fill="#50565e"></rect>
+<rect x="56" y="51" width="8" height="3.6" rx="1.8" fill="#50565e"></rect>
+<circle cx="60" cy="8.5" r="1" fill="#fcfcfc"></circle>
+</svg>
