@@ -258,7 +258,15 @@ other wireless-connection indicator.
 
 ## 6. Other observations
 
-### `0x43 byte[2]` as a session timer
+### `0x43 byte[2]` as a session timer — WRONG (corrected 2026-10-18)
+
+> **Correction:** byte[2] is the *live* battery %. The "rising" below was the pad
+> charging (those sessions started right after a full charge), which wasn't
+> visible before the charging flag in byte[1] was found. Evidence: over Bluetooth
+> byte[2] matched the BLE Battery Service exactly (82 = 82, 83 = 83), and on the
+> puck it fell 84 → 80 over an hour of play while the one-shot reading stayed at
+> 84. The daemon now reads it from every `0x43`. Original (wrong) notes kept below.
+
 
 After a session starts, `byte[2]` slowly rises. Rate: ~1 unit per ~1 minute.
 After ~12 minutes into a session at 100% battery: byte[2] = 97 (session

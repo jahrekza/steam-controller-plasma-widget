@@ -119,6 +119,7 @@ PlasmoidItem {
                 root.lastSeen    = (d.last_seen    !== undefined) ? d.last_seen    : ""
                 root.connection  = (d.connection   !== undefined) ? d.connection   : ""
                 root.docked      = (d.docked       !== undefined) ? d.docked       : false
+                root.checkDaemonVersion(d.daemon_version || "")
                 root.address     = (d.address      !== undefined) ? d.address      : ""
             } catch(e) {
                 root.connected = false
@@ -144,10 +145,25 @@ PlasmoidItem {
         function run(cmd) { connectSource(cmd) }
     }
 
+    readonly property string startDaemon: "setsid -f python3 \"" + daemonPath + "\" >/dev/null 2>&1"
+
     Timer {
         // (re)start daemon on load and every 5 min in case it died
         interval: 300000; running: true; repeat: true; triggeredOnStart: true
-        onTriggered: shell.run("setsid -f python3 \"" + root.daemonPath + "\" >/dev/null 2>&1")
+        onTriggered: shell.run(root.startDaemon)
+    }
+
+    // After an update (KDE Store, install.sh) the daemon of the previous version
+    // keeps running and its lock file stops the new one from starting, so the
+    // widget replaces it. At most once a minute, in case something keeps failing.
+    property double lastDaemonRestart: 0
+    function checkDaemonVersion(running) {
+        const mine = Plasmoid.metaData.version
+        if (!mine || running === mine || Date.now() - lastDaemonRestart < 60000)
+            return
+        lastDaemonRestart = Date.now()
+        shell.run("kill \"$(cat \"${XDG_RUNTIME_DIR:-/tmp}/sc-battery-daemon.lock\")\" 2>/dev/null; sleep 1; "
+                  + startDaemon)
     }
 
     Timer {

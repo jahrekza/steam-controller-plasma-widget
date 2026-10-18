@@ -68,7 +68,8 @@ cd steam-controller-plasma-widget
 ```
 
 Either way the widget is self-contained: it launches the bundled daemon itself
-(single instance, guarded by a lock file) and restarts it if it dies. No
+(single instance, guarded by a lock file), restarts it if it dies, and replaces
+it after an update if the running one is from an older version. No
 autostart entry or separate service needed. `setsid` (util-linux) and
 `python3` must be on `PATH`.
 
@@ -93,11 +94,9 @@ If you installed v0.1, also remove its standalone daemon:
 
 ## How it works, in short
 
-- Report ID `0x43` (a rare, event-driven HID report) has a byte that equals
-  the battery percentage at the moment the controller connects/wakes up,
-  then slowly drifts upward as a session-uptime counter (~1 unit/minute).
-  The daemon captures that byte from the *first* `0x43` report of each
-  connection, which gives an accurate one-shot battery reading.
+- Report ID `0x43` (sent every ~3.5 s) carries the battery percentage in
+  byte[2]; the daemon reads it from every report, so the % follows the battery
+  live. (Older versions read it only once per connection.)
 - Every `0x43` also carries a charging flag (byte[1]: 1 = on battery,
   2 = charging) — in all modes, including a cable that only charges while the
   pad stays on Bluetooth.
@@ -124,6 +123,11 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **0.3.8** (2026-10-18) — the battery % is now live: read from every `0x43`
+  report (~every 3.5 s) instead of once per connection, so it drops while you
+  play (an hour-long session used to stay stuck at the starting value). After an
+  update the widget replaces a daemon still running from the previous version,
+  so fixes take effect without logging out.
 - **0.3.7** (2026-10-18) — can live in the system tray (Configure System Tray →
   Entries → Steam Controller Battery). Panel/tray icon now matches the size of its
   neighbours and sits right next to the percentage.

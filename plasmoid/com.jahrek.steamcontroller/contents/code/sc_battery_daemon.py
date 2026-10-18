@@ -2,9 +2,9 @@
 """
 Steam Controller 2 battery daemon for the Plasma widget.
 
-Reads raw HID reports from /dev/hidraw*, captures battery % from the first
-0x43 report after each connection (byte[2]) and the charging flag from every
-0x43 (byte[1]: 1 = on battery, 2 = charging), and writes a JSON state file
+Reads raw HID reports from /dev/hidraw*, takes the battery % (byte[2]) and the
+charging flag (byte[1]: 1 = on battery, 2 = charging) from every 0x43 report
+(~every 3.5 s), and writes a JSON state file
 the widget polls. Launched by the widget itself; a lock file guarantees a
 single instance. Only needs Python 3 stdlib.
 """
@@ -22,12 +22,26 @@ RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"
 STATE_FILE  = os.path.join(RUNTIME_DIR, "sc-battery.json")
 LOCK_FILE   = os.path.join(RUNTIME_DIR, "sc-battery-daemon.lock")
 
+
+def plasmoid_version():
+    """Version of the plasmoid this daemon was shipped in (its metadata.json)."""
+    try:
+        meta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "metadata.json")
+        with open(meta) as f:
+            return json.load(f)["KPlugin"]["Version"]
+    except (OSError, ValueError, KeyError):
+        return ""
+
+
+# Lets the widget spot a daemon left running from an older version after an
+# update (the lock file keeps a new one from starting) and restart it.
+DAEMON_VERSION = plasmoid_version()
+
 # Is the pad on the puck's charging dock? Silence alone can't tell (an idle pad
 # that switched itself off is silent too), but the puck can: asked with command
 # 0xB4 (link state), its dock interface (the one without OUTPUT reports) answers
 # 2 while a pad sits on it, 1 otherwise -- whether the pad is awake or not.
 SILENCE_DISCONNECT = 2      # s without reports -> pad is off (awake it streams ~250 reports/s)
-SILENCE_NEW_SESSION = 120   # s without reports -> next 0x43 is a fresh session value
 WRITE_INTERVAL = 5          # s between state file writes
 
 
@@ -186,7 +200,6 @@ class State:
         self.connection = ""
         self.address = ""
         self.docked = False         # on the puck's charging dock
-        self.session_b2 = None
         self._last_write = 0
         self._last_dump = None
         self.load()
@@ -210,6 +223,7 @@ class State:
             "connection": self.connection,
             "address": self.address,
             "docked": self.docked,
+            "daemon_version": DAEMON_VERSION,
             "updated_at": datetime.now().isoformat(timespec="seconds"),
         }
         key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"], d["docked"])
@@ -230,6 +244,7 @@ def run():
     bt_polled = 0
     dock = DockCache()
     charge_flag = None
+    bt_battery = False
 
     while True:
         dev, present = find_device()
@@ -245,12 +260,7 @@ def run():
                 st.charging = present == "usb"
                 st.connection = present
             st.address = ""
-            # A short dropout keeps the session's battery reading; a long one
-            # means the next 0x43 starts a fresh session.
-            silent_since = silent_since or time.time()
-            if time.time() - silent_since >= SILENCE_NEW_SESSION:
-                st.session_b2 = None
-                st.provisional = True
+            st.provisional = True    # battery_pct is now the last known value
             st.write()
             time.sleep(1)
             continue
@@ -261,6 +271,7 @@ def run():
             bt_polled = 0
             dock.reset()
             charge_flag = None
+            bt_battery = False      # BlueZ answered: it wins over 0x43 on Bluetooth
         except OSError:
             time.sleep(1)
             continue
@@ -281,10 +292,10 @@ def run():
                 if st.connection == "bluetooth" and time.time() - bt_polled >= 30:
                     bt_polled = time.time()
                     pct = bluez_battery(st.address)
-                    if pct is not None:
+                    bt_battery = pct is not None
+                    if bt_battery:
                         st.battery_pct = pct
                         st.provisional = False
-                        st.session_b2 = -1   # don't let the 0x43 heuristic override it
                 silent_since = None
                 st.connected = True
                 # The dock charges the pad whatever link it uses (puck radio or Bluetooth)
@@ -297,16 +308,16 @@ def run():
                     st.charging = st.docked or st.connection == "usb"
                 st.last_seen = datetime.now().strftime("%H:%M")
 
-                if data and data[0] == 0x43 and len(data) >= 3 and st.session_b2 is None:
-                    st.session_b2 = data[2]
-                    st.battery_pct = max(0, min(100, data[2]))
+                # byte[2] is the live battery %. (Old notes called it a rising "session
+                # timer" -- that was the pad charging, before the flag in byte[1] was known.)
+                if data and data[0] == 0x43 and len(data) >= 3 and data[2] <= 100 and not bt_battery:
+                    st.battery_pct = data[2]
                     st.provisional = False
                 st.write()
         except OSError:
             st.connected = False
             st.charging = False
             st.docked = False
-            st.session_b2 = None
             st.provisional = True
             st.write()
         finally:
