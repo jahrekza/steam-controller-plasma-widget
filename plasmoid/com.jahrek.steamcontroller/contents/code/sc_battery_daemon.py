@@ -12,7 +12,8 @@ import os, sys, json, time, select, fcntl, struct, signal, subprocess
 from datetime import datetime
 
 SC_VID = 0x28de
-RECEIVER_PIDS = (0x1304, 0x1305)  # standalone puck, receiver built into the Steam Machine
+INTERNAL_PUCK_PID = 0x1305        # receiver built into the Steam Machine
+RECEIVER_PIDS = (0x1304, INTERNAL_PUCK_PID)  # standalone puck, Steam Machine
 SC_PIDS = RECEIVER_PIDS + (0x1302, 0x1303)  # + controller on a USB-C cable, Bluetooth LE
 HIDIOCGRAWINFO = 0x80084803
 HIDIOCSFEATURE_64 = (3 << 30) | (64 << 16) | (ord("H") << 8) | 0x06
@@ -79,6 +80,18 @@ def hid_info(dev):
     if pid in RECEIVER_PIDS or "puck" in name.lower():
         return "receiver", ""
     return "usb", ""
+
+
+def hid_pid(dev):
+    """USB/BT product ID of a hidraw node, from its sysfs uevent (0 if unknown)."""
+    try:
+        with open(f"/sys/class/hidraw/{os.path.basename(dev)}/device/uevent") as f:
+            for line in f:
+                if line.startswith("HID_ID="):
+                    return int(line.strip().split(":")[2], 16)
+    except (OSError, IndexError, ValueError):
+        pass
+    return 0
 
 
 def bluez_battery(address):
@@ -203,6 +216,7 @@ class State:
         self.connection = ""
         self.address = ""
         self.docked = False         # on the puck's charging dock
+        self.internal = False       # linked through the Steam Machine's built-in receiver
         self._last_write = 0
         self._last_dump = None
         self.load()
@@ -226,10 +240,11 @@ class State:
             "connection": self.connection,
             "address": self.address,
             "docked": self.docked,
+            "internal": self.internal,
             "daemon_version": DAEMON_VERSION,
             "updated_at": datetime.now().isoformat(timespec="seconds"),
         }
-        key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"], d["docked"])
+        key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"], d["docked"], d["internal"])
         if not force and key == self._last_dump and now - self._last_write < WRITE_INTERVAL:
             return
         tmp = STATE_FILE + ".tmp"
@@ -255,6 +270,7 @@ def run():
             # Silent puck: ask it whether the pad is on the dock (charging) or off.
             # No node at all = receiver unplugged / nothing to talk to.
             st.connected = False
+            st.internal = False
             st.docked = present == "receiver" and dock.get()
             if present == "receiver":
                 st.charging = st.docked
@@ -271,6 +287,7 @@ def run():
         try:
             fd = os.open(dev, os.O_RDONLY)
             st.connection, st.address = hid_info(dev)
+            st.internal = hid_pid(dev) == INTERNAL_PUCK_PID
             bt_polled = 0
             dock.reset()
             charge_flag = None

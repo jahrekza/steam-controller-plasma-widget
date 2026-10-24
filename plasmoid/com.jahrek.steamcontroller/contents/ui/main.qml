@@ -13,6 +13,7 @@ PlasmoidItem {
     property bool   connected:   false
     property bool   charging:    false      // dock, USB-C cable or charger (flag from the pad itself)
     property bool   docked:      false      // on the puck's charging dock
+    property bool   internalPuck: false     // via the Steam Machine's built-in receiver
     property bool   provisional: true       // batteryPct is the last known value, not read this session
     property string lastSeen:    ""
     property string connection:  ""         // "receiver" (puck) | "usb" (USB-C cable) | "bluetooth"
@@ -55,6 +56,7 @@ PlasmoidItem {
     readonly property url glyph:        Qt.resolvedUrl("../images/steam-controller-symbolic.svg")
     readonly property url bolt:         Qt.resolvedUrl("../images/bolt.svg")
     readonly property url btLogo:       Qt.resolvedUrl("../images/bluetooth.svg")
+    readonly property url steamMachine: Qt.resolvedUrl("../images/steam-machine.svg")
 
     // Breathing opacity shared by everything that pulses (1 when not pulsing)
     property real pulse: 1
@@ -70,7 +72,7 @@ PlasmoidItem {
 
     function statusText() {
         switch (mode) {
-        case "ok":       return i18n("Connected")
+        case "ok":       return internalPuck ? i18n("Connected · internal puck") : i18n("Connected")
         case "low":      return i18n("Low — plug in")
         case "charging": return docked                ? i18n("Charging · on puck")
                               : connection === "usb" ? i18n("Charging · USB-C")
@@ -83,7 +85,9 @@ PlasmoidItem {
         switch (connection) {
         case "bluetooth": return i18n("Bluetooth")
         case "usb":       return i18n("USB-C cable")
-        case "receiver":  return connected ? i18n("Wireless (puck)") : docked ? i18n("Docked on puck") : "—"
+        case "receiver":  return !connected ? (docked ? i18n("Docked on puck") : "—")
+                               : internalPuck ? i18n("Internal puck (Steam Machine)")
+                               : i18n("Wireless (puck)")
         }
         return "—"
     }
@@ -119,6 +123,7 @@ PlasmoidItem {
                 root.lastSeen    = (d.last_seen    !== undefined) ? d.last_seen    : ""
                 root.connection  = (d.connection   !== undefined) ? d.connection   : ""
                 root.docked      = (d.docked       !== undefined) ? d.docked       : false
+                root.internalPuck = d.internal === true
                 root.checkDaemonVersion(d.daemon_version || "")
                 root.address     = (d.address      !== undefined) ? d.address      : ""
             } catch(e) {

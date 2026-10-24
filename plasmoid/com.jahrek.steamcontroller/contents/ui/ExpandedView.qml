@@ -119,6 +119,14 @@ ColumnLayout {
         RowLayout {
             spacing: 4
             Kirigami.Icon {
+                visible: root.connected && root.internalPuck
+                implicitWidth: 14; implicitHeight: 14
+                roundToIconSize: false
+                source: root.steamMachine
+                isMask: true
+                color: Kirigami.Theme.textColor
+            }
+            Kirigami.Icon {
                 visible: root.connection === "bluetooth"
                 implicitWidth: 14; implicitHeight: 14
                 source: root.btLogo

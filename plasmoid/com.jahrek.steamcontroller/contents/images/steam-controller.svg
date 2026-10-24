@@ -1,23 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 84" width="120" height="84">
-<path d="M10 18 C10 8 18 3.5 28 3.5 C38 3.5 45 7.5 60 7.5 C75 7.5 82 3.5 92 3.5 C102 3.5 110 8 110 18 C112 30 116 46 116 60 C117 74 112 81 104 81 C97 81 93 77 90 72 L88 70 H32 L30 72 C27 77 23 81 16 81 C8 81 3 74 4 60 C4 46 8 30 10 18 Z" fill="#2c3035" stroke="#4a5058" stroke-width="1.4"></path>
-<path d="M13.5 11 C16 5.5 22 3 30 3 C34 3 37 3.6 39.5 4.6" fill="none" stroke="#50565e" stroke-width="2.6" stroke-linecap="round"></path>
-<path d="M106.5 11 C104 5.5 98 3 90 3 C86 3 83 3.6 80.5 4.6" fill="none" stroke="#50565e" stroke-width="2.6" stroke-linecap="round"></path>
-<path d="M8 37 C26 33.5 94 33.5 112 37" fill="none" stroke="#4a5058" stroke-width="0.8"></path>
-<rect x="26" y="40" width="29" height="25" rx="5" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></rect>
-<rect x="65" y="40" width="29" height="25" rx="5" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></rect>
-<circle cx="43" cy="27" r="8" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></circle>
-<circle cx="43" cy="27" r="4.6" fill="#3a3f45"></circle>
-<circle cx="77" cy="27" r="8" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></circle>
-<circle cx="77" cy="27" r="4.6" fill="#3a3f45"></circle>
-<rect x="18.5" y="13" width="5.5" height="13" rx="1.4" fill="#1c1e21"></rect>
-<rect x="14.75" y="16.75" width="13" height="5.5" rx="1.4" fill="#1c1e21"></rect>
-<circle cx="100" cy="13" r="3" fill="#50565e"></circle>
-<circle cx="94" cy="19" r="3" fill="#50565e"></circle>
-<circle cx="106" cy="19" r="3" fill="#50565e"></circle>
-<circle cx="100" cy="25" r="3" fill="#50565e"></circle>
-<circle cx="60" cy="17" r="4.4" fill="#1c1e21" stroke="#4a5058" stroke-width="1"></circle>
-<rect x="33" y="10.5" width="8" height="3.4" rx="1.7" fill="#50565e"></rect>
-<rect x="79" y="10.5" width="8" height="3.4" rx="1.7" fill="#50565e"></rect>
-<rect x="56" y="51" width="8" height="3.6" rx="1.8" fill="#50565e"></rect>
-<circle cx="60" cy="8.5" r="1" fill="#fcfcfc"></circle>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="120" height="90">
+<!-- Controller illustration, outline style. Drawn from scratch (proportions after a
+     reference picked by the author), not Valve artwork. -->
+<g fill="#666d75">
+  <!-- bumpers -->
+  <path d="M20 8 C21 3.6 23.4 2 27.7 2 C32 2 34.4 3.6 35.4 8 Z"/>
+  <path d="M100 8 C99 3.6 96.6 2 92.3 2 C88 2 85.6 3.6 84.6 8 Z"/>
+</g>
+<path d="M27 6.7 L93 6.7 C100 6.7 103.5 9.5 105.5 16 C109 27 113.5 45 115.4 60 C116.8 72 115.5 81 109 85.2 C104 88.3 97.5 87 95 83 C93 79.5 91.8 74.5 90 71 C89 69 88 67.6 86 67.6 L34 67.6 C32 67.6 31 69 30 71 C28.2 74.5 27 79.5 25 83 C22.5 87 16 88.3 11 85.2 C4.5 81 3.2 72 4.6 60 C6.5 45 11 27 14.5 16 C16.5 9.5 20 6.7 27 6.7 Z" fill="#2c3035" stroke="#666d75" stroke-width="4.6" stroke-linejoin="round"/>
+<g fill="none" stroke="#666d75" stroke-width="4.4">
+  <!-- trackpads -->
+  <rect x="26.6" y="38.2" width="21.2" height="20.8" rx="4.5" transform="rotate(-6 37.2 48.6)"/>
+  <rect x="72.2" y="38.2" width="21.2" height="20.8" rx="4.5" transform="rotate(6 82.8 48.6)"/>
+</g>
+<g fill="#666d75">
+  <!-- d-pad -->
+  <rect x="19.05" y="19.05" width="14.1" height="4.9" rx="0.8"/>
+  <rect x="23.95" y="14.45" width="4.3" height="14.1" rx="0.8"/>
+  <!-- sticks, centre button -->
+  <circle cx="44.3" cy="26.9" r="5.7"/>
+  <circle cx="75.7" cy="26.9" r="5.7"/>
+  <circle cx="60" cy="19.6" r="3.8"/>
+  <!-- face buttons -->
+  <circle cx="92.6" cy="15.1" r="3"/>
+  <circle cx="87.2" cy="21.5" r="3"/>
+  <circle cx="98.2" cy="21.5" r="3"/>
+  <circle cx="92.6" cy="27.2" r="3"/>
+  <!-- bar between the trackpads -->
+  <rect x="55.4" y="48.6" width="9.2" height="3.2" rx="1.6"/>
+</g>
 </svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<!-- Front of a small cube PC: body, a split above the bottom strip, two ports, power button.
+     Drawn from scratch after a sketch by the author, not Valve artwork. -->
+<path fill="#fcfcfc" fill-rule="evenodd" d="M2.7 2 h18.6 a0.7 0.7 0 0 1 0.7 0.7 v18.6 a0.7 0.7 0 0 1 -0.7 0.7 h-18.6 a0.7 0.7 0 0 1 -0.7 -0.7 v-18.6 a0.7 0.7 0 0 1 0.7 -0.7 Z
+ M2 16.8 h20 v1.4 h-20 Z
+ M3.8 19.4 h2.6 v1.4 h-2.6 Z
+ M7.6 19.4 h2.6 v1.4 h-2.6 Z
+ M19.6 20.1 m-1.15 0 a1.15 1.15 0 1 0 2.3 0 a1.15 1.15 0 1 0 -2.3 0 Z"/>
+</svg>

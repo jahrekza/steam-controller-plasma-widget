@@ -123,6 +123,10 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **0.3.10** (2026-10-24) — new outline-style controller illustration; the battery
+  no longer sits against the card's right edge (content is centred). On a Steam
+  Machine the card says "via internal puck" and shows a small Steam Machine
+  drawing next to the battery; the popup says "Internal puck (Steam Machine)".
 - **0.3.9** (2026-10-24) — supports the receiver built into the Steam Machine
   (`28de:1305`), which wasn't recognised before. Receivers are now identified by
   USB ID, not just by name. Thanks to [u/Yurij89](https://www.reddit.com/user/Yurij89/)

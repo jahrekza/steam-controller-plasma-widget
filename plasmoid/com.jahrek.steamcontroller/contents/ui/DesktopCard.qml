@@ -41,19 +41,21 @@ Item {
     }
 
     RowLayout {
+        id: contentRow
+        // centred group: controller column, 22 px gap, battery
         anchors {
-            fill: parent
-            leftMargin: 20; rightMargin: 18
+            top: parent.top; bottom: parent.bottom
+            horizontalCenter: parent.horizontalCenter
             topMargin: 18; bottomMargin: 16
         }
         spacing: 22
         opacity: card.off ? 0.45 : 1
 
-        Item { Layout.fillWidth: true }
-
-        // Left column — does not stretch
+        // Left column — does not stretch (nested layouts fill the width by default,
+        // which pushed the battery against the card's right edge)
         ColumnLayout {
             Layout.fillHeight: true
+            Layout.fillWidth: false
             Layout.preferredWidth: 132
             spacing: 0
 
@@ -113,16 +115,26 @@ Item {
                     opacity: root.pulse
                 }
                 PC3.Label {
-                    text: root.statusText()
+                    // "· internal puck" doesn't fit next to the battery: it gets its own line below
+                    text: root.mode === "ok" && root.internalPuck ? i18n("Connected") : root.statusText()
                     font.pixelSize: 12
                     color: card.off ? Kirigami.Theme.disabledTextColor : root.stateColor
                 }
+            }
+
+            PC3.Label {
+                visible: root.connected && root.internalPuck
+                text: i18n("via internal puck")
+                font.pixelSize: 11
+                color: Kirigami.Theme.disabledTextColor
             }
         }
 
         // Right column — vertical battery filling the card height
         ColumnLayout {
+            id: batteryColumn
             Layout.fillHeight: true
+            Layout.fillWidth: false
             Layout.preferredWidth: 58
             spacing: 3
 
@@ -169,6 +181,20 @@ Item {
             }
         }
 
-        Item { Layout.fillWidth: true }
+    }
+
+    // Steam Machine (cube with its light bar, ports and power button) in the free
+    // corner next to the battery, when linked through the built-in receiver
+    Kirigami.Icon {
+        visible: root.connected && root.internalPuck
+        width: 36; height: 36
+        // just left of the battery, bottom-aligned with the status lines
+        x: contentRow.x + batteryColumn.x - width - 10
+        y: contentRow.y + contentRow.height - height
+        roundToIconSize: false
+        source: root.steamMachine
+        isMask: true
+        color: Kirigami.Theme.textColor
+        opacity: card.off ? 0.45 : 0.9
     }
 }
