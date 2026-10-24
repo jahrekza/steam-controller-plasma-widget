@@ -12,7 +12,8 @@ import os, sys, json, time, select, fcntl, struct, signal, subprocess
 from datetime import datetime
 
 SC_VID = 0x28de
-SC_PIDS = (0x1304, 0x1302, 0x1303)  # wireless receiver ("puck"), USB-C cable, Bluetooth LE
+RECEIVER_PIDS = (0x1304, 0x1305)  # standalone puck, receiver built into the Steam Machine
+SC_PIDS = RECEIVER_PIDS + (0x1302, 0x1303)  # + controller on a USB-C cable, Bluetooth LE
 HIDIOCGRAWINFO = 0x80084803
 HIDIOCSFEATURE_64 = (3 << 30) | (64 << 16) | (ord("H") << 8) | 0x06
 HIDIOCGFEATURE_65 = (3 << 30) | (65 << 16) | (ord("H") << 8) | 0x07
@@ -58,7 +59,7 @@ def single_instance():
 
 def hid_info(dev):
     """(connection, bluetooth MAC or "") from the hidraw node's sysfs uevent."""
-    name, bus, uniq = "", "", ""
+    name, bus, pid, uniq = "", "", 0, ""
     try:
         with open(f"/sys/class/hidraw/{os.path.basename(dev)}/device/uevent") as f:
             for line in f:
@@ -66,14 +67,16 @@ def hid_info(dev):
                 if k == "HID_NAME":
                     name = v
                 elif k == "HID_ID":
-                    bus = v.split(":")[0]
+                    parts = v.split(":")
+                    bus = parts[0]
+                    pid = int(parts[2], 16) if len(parts) == 3 else 0
                 elif k == "HID_UNIQ":
                     uniq = v
     except OSError:
         pass
     if bus == "0005":
         return "bluetooth", uniq
-    if "puck" in name.lower():
+    if pid in RECEIVER_PIDS or "puck" in name.lower():
         return "receiver", ""
     return "usb", ""
 

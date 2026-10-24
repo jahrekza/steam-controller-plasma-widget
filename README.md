@@ -123,6 +123,9 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **0.3.9** (2026-10-24) — supports the receiver built into the Steam Machine
+  (`28de:1305`), which wasn't recognised before. Receivers are now identified by
+  USB ID, not just by name.
 - **0.3.8** (2026-10-18) — the battery % is now live: read from every `0x43`
   report (~every 3.5 s) instead of once per connection, so it drops while you
   play (an hour-long session used to stay stuck at the starting value). After an

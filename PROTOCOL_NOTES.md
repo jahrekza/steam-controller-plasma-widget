@@ -493,6 +493,10 @@ Data collected in `sc_logs/`:
       streams the same reports as over the puck: `0x42` (~250/s) and a rare `0x43`
       whose byte[2] held the battery % (0x4b → ~75–78%). The daemon matches both PIDs
       and reports `connection: "usb"` + `charging: true` for the cable.
+- [x] **Steam Machine built-in receiver.** Reported 2026-10-24 by a user on
+      SteamOS 3.9.5 / Plasma 6.7.3: it enumerates as `28de:1305` "Valve Software
+      Steam Controller Puck" (4 hidraw nodes, i.e. no dock interface). The daemon
+      treats it like the standalone puck. Not tested here (no Steam Machine).
 - [x] **Bluetooth mode.** Tested 2026-10-18: the pad is a BLE HID device named
       "Steam Ctrl (BT) <serial>" with a rotating random address; once paired it
       shows up as `28de:1303` on bus `0005`. It exposes the standard **Battery
