@@ -5,7 +5,7 @@ connection status of the Steam Controller 2 ("Triton", released May 2026) on
 Linux — reverse-engineered from its raw HID protocol, since the Linux kernel's
 `hid-steam` driver doesn't support this controller yet (see below).
 
-![status](https://img.shields.io/badge/status-working%20prototype-yellow)
+![status](https://img.shields.io/badge/version-1.0.0-brightgreen)
 
 ![Widget states](screenshots/gallery-states.png)
 
@@ -41,9 +41,17 @@ several dead ends that were ruled out, are in [PROTOCOL_NOTES.md](PROTOCOL_NOTES
 
 ## Status
 
-This is a **working prototype** running on the author's own machine (Bazzite
-Linux / KDE Plasma 6.7), not a polished, widely-tested release. Expect rough
-edges. Tested only with one controller unit on one system.
+**1.0** — feature-complete for one controller: live battery, charging state,
+connection mode (puck, Steam Machine, Bluetooth, USB-C) and puck signal strength.
+In daily use on the author's machine (Bazzite / KDE Plasma 6.7) and installed by
+KDE Store users.
+
+Worth knowing:
+- Tested with one controller unit on one system. The Steam Machine's built-in
+  receiver is supported from a user report but not tested here.
+- The protocol is reverse-engineered; a controller firmware update could change it.
+- Only one controller is shown at a time. Several pads (the puck has four slots)
+  are planned — reports from anyone with two controllers are very welcome.
 
 ## Requirements
 
@@ -125,6 +133,8 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **1.0.0** (2026-10-24) — first stable release; same features as 0.3.11. The
+  widget does everything it set out to do for a single controller.
 - **0.3.11** (2026-10-24) — signal strength for the puck (also the Steam
   Machine's): bars, bars + dBm or dBm only, on the card and optionally in the
   panel/tray. The card scales with its size. An icon next to the battery shows
