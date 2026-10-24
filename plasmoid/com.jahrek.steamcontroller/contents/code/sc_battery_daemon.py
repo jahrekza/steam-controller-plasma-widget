@@ -372,7 +372,40 @@ def run():
         time.sleep(1)
 
 
+# Rumble (output report 0x80, layout from SDL's SDL_hidapi_steam_triton.c):
+# report id, type, intensity u16, left speed u16, left gain s8, right speed u16,
+# right gain s8. The pad stops on its own after ~50 ms, so it is resent every 40 ms.
+RUMBLE = struct.Struct("<BBHHbHb")
+# Easter egg: a scream-shaped buzz (speed, seconds) -- quick rise, hold, fade
+BUZZ_PATTERN = [(30000, 0.08), (55000, 0.12), (65535, 0.45), (45000, 0.15), (25000, 0.15)]
+
+
+def buzz():
+    """Rumble whichever controller node is live (puck slot, Bluetooth or USB)."""
+    dev, _ = find_device()
+    if not dev:
+        return 1
+    try:
+        fd = os.open(dev, os.O_WRONLY)
+    except OSError:
+        return 1
+    try:
+        for speed, secs in BUZZ_PATTERN:
+            end = time.time() + secs
+            while time.time() < end:
+                os.write(fd, RUMBLE.pack(0x80, 0, 0, speed, 0, speed, 0))
+                time.sleep(0.04)
+        os.write(fd, RUMBLE.pack(0x80, 0, 0, 0, 0, 0, 0))
+    except OSError:
+        return 1
+    finally:
+        os.close(fd)
+    return 0
+
+
 if __name__ == "__main__":
+    if sys.argv[1:] == ["--buzz"]:
+        sys.exit(buzz())
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(0))
     _lock = single_instance()
     try:

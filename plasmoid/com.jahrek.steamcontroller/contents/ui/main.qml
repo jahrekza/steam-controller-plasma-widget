@@ -195,6 +195,22 @@ PlasmoidItem {
         onTriggered: runner.poll()
     }
 
+    // ── Easter egg: double-click the controller ──────────────────────────
+    // The pad rumbles and a sound plays: your own file in
+    // ~/.local/share/steam-controller-battery/easter-egg.* (mp3/ogg/wav/flac),
+    // otherwise one shipped in the package's sounds/ folder, if any.
+    property int easterEggTick: 0
+    readonly property string soundsDir: Qt.resolvedUrl("../sounds").toString().replace(/^file:\/\//, "")
+    function easterEgg() {
+        if (!connected)
+            return
+        easterEggTick++
+        shell.run("python3 \"" + daemonPath + "\" --buzz >/dev/null 2>&1 & "
+                  + "for f in \"${XDG_DATA_HOME:-$HOME/.local/share}/steam-controller-battery/easter-egg.\"* "
+                  + "\"" + soundsDir + "/easter-egg.\"*; do "
+                  + "[ -f \"$f\" ] && { pw-play \"$f\" 2>/dev/null || paplay \"$f\" 2>/dev/null; break; }; done")
+    }
+
     function disconnect() {
         if (/^[0-9A-Fa-f:]{17}$/.test(address))
             shell.run("bluetoothctl disconnect " + address)

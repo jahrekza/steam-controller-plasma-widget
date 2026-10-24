@@ -5,7 +5,7 @@ connection status of the Steam Controller 2 ("Triton", released May 2026) on
 Linux — reverse-engineered from its raw HID protocol, since the Linux kernel's
 `hid-steam` driver doesn't support this controller yet (see below).
 
-![status](https://img.shields.io/badge/version-1.0.0-brightgreen)
+![status](https://img.shields.io/badge/version-1.0.1-brightgreen)
 
 ![Widget states](screenshots/gallery-states.png)
 
@@ -142,6 +142,12 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **1.0.1** (2026-10-24) — a small easter egg: double-click the controller
+  (on the card or in the popup) while it's connected. It uses the pad's rumble
+  (output report `0x80`, layout from SDL) and a sound — the Wilhelm scream, cut from
+  the original session released as CC0 on Freesound (see `contents/sounds/README.md`).
+  Put your own `easter-egg.mp3/ogg/wav/flac` in `~/.local/share/steam-controller-battery/`
+  to replace it.
 - **1.0.0** (2026-10-24) — first stable release; same features as 0.3.11. The
   widget does everything it set out to do for a single controller.
 - **0.3.11** (2026-10-24) — signal strength for the puck (also the Steam
