@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<!-- The controller's puck seen from above: body, USB-C cable, the pill with three charging pins.
+     Drawn from scratch after photos by the author, not Valve artwork. -->
+<path fill="none" stroke="#fcfcfc" stroke-width="2" stroke-linecap="round" d="M12 7.8 C12 4.6 9 4.2 6.5 3.2 C4.5 2.4 3.4 1.8 2.6 1.2"/>
+<rect fill="#fcfcfc" x="9.6" y="7.2" width="4.8" height="4.8" rx="1"/>
+<path fill="#fcfcfc" fill-rule="evenodd" d="M2.6 11.6 h18.800000000000004 a2.2 2.2 0 0 1 2.2 2.2 v6.800000000000001 a2.2 2.2 0 0 1 -2.2 2.2 h-18.800000000000004 a2.2 2.2 0 0 1 -2.2 -2.2 v-6.800000000000001 a2.2 2.2 0 0 1 2.2 -2.2 Z M8.35 13.6 h7.30 a1.25 1.25 0 0 1 0 2.5 h-7.30 a1.25 1.25 0 0 1 0 -2.5 Z M9.50 14.85 m-0.55 0 a0.55 0.55 0 1 0 1.1 0 a0.55 0.55 0 1 0 -1.1 0 Z M12.00 14.85 m-0.55 0 a0.55 0.55 0 1 0 1.1 0 a0.55 0.55 0 1 0 -1.1 0 Z M14.50 14.85 m-0.55 0 a0.55 0.55 0 1 0 1.1 0 a0.55 0.55 0 1 0 -1.1 0 Z"/>
+</svg>

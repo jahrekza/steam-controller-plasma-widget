@@ -11,7 +11,8 @@ MouseArea {
 
     readonly property bool vertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     readonly property bool showText: !vertical && root.known && root.mode !== "disconnected"
-    readonly property color tint: root.mode === "low" ? root.colorLow : Kirigami.Theme.textColor
+    // controller glyph: the colour picked in the settings (theme text colour by default), red when low
+    readonly property color tint: root.mode === "low" ? root.colorLow : root.artColor
 
     Layout.minimumWidth: vertical ? 0 : row.implicitWidth
     Layout.preferredWidth: Layout.minimumWidth
@@ -80,7 +81,14 @@ MouseArea {
             visible: compact.showText
             text: root.pctText()
             font.features: { "tnum": 1 }
-            color: compact.tint
+            color: root.mode === "low" ? root.colorLow : Kirigami.Theme.textColor
+        }
+        SignalIndicator {
+            visible: root.showSignalTray && root.signalLevel > 0 && !compact.vertical
+            Layout.alignment: Qt.AlignVCenter
+            barsHeight: Math.round(glyph.h * 0.75)
+            pixelSize: Kirigami.Theme.defaultFont.pixelSize
+            spacing: 4
         }
     }
 }

@@ -295,10 +295,27 @@ These 16 bytes are constant throughout a session and likely for the
 device's entire lifetime. Could be a unique device identifier, factory
 calibration data, or a Bluetooth key.
 
-### `0x7b byte[9]`
+### `0x7b byte[9]` — signal strength (confirmed 2026-10-24)
 
-Stays in the 216-224 range regardless of battery or activity. Likely: RF
-signal strength or connection quality (higher = better).
+Signed dBm of the pad <-> receiver link. Range test through a house
+(log: `sc_logs/sc_range_20261024.txt`):
+
+| Where | byte[9] (dBm) | 0x42 reports/s |
+|---|---|---|
+| at the puck | -20 (seems to be the ceiling) | 264 |
+| 1-2 m | -45 ... -52 | 264 |
+| ~5 m | -61 ... -66 | 255-259 |
+| downstairs living room | -65 ... -71 | 250-258 |
+| far end of the house | -72 ... -84 | 233-257 |
+
+Back at the puck it returned to -20. 0 = no reading. The pad also sends 0x7b
+more often (3-5/s instead of 2/s) when the link is weak. The widget averages
+the last 6 readings; bars: >= -55 four, >= -65 three, >= -75 two, else one.
+
+Over **Bluetooth** there is no 0x7b and no other byte follows distance (range
+test the same day: 0x45 bytes 30-45 and 0x43 byte[13] stayed constant until the
+link dropped at ~5 m). BlueZ only exposes a connected device's RSSI to root
+(`btmgmt conn-info` -> Permission Denied), so there is no signal value for BT.
 
 ### Controller on the charging dock (puck)
 

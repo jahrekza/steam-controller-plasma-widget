@@ -9,6 +9,7 @@ the widget polls. Launched by the widget itself; a lock file guarantees a
 single instance. Only needs Python 3 stdlib.
 """
 import os, sys, json, time, select, fcntl, struct, signal, subprocess
+from collections import deque
 from datetime import datetime
 
 SC_VID = 0x28de
@@ -18,6 +19,8 @@ SC_PIDS = RECEIVER_PIDS + (0x1302, 0x1303)  # + controller on a USB-C cable, Blu
 HIDIOCGRAWINFO = 0x80084803
 HIDIOCSFEATURE_64 = (3 << 30) | (64 << 16) | (ord("H") << 8) | 0x06
 HIDIOCGFEATURE_65 = (3 << 30) | (65 << 16) | (ord("H") << 8) | 0x07
+SIGNAL_WINDOW = 6           # 0x7b readings averaged for the signal strength (~2-3 s)
+SIGNAL_STALE = 10           # s without a reading -> no signal value (e.g. Bluetooth has none)
 DOCK_POLL = 3               # s between "is the pad on the dock?" queries
 
 RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"
@@ -217,6 +220,7 @@ class State:
         self.address = ""
         self.docked = False         # on the puck's charging dock
         self.internal = False       # linked through the Steam Machine's built-in receiver
+        self.signal = None          # pad <-> receiver signal strength, dBm (receiver links only)
         self._last_write = 0
         self._last_dump = None
         self.load()
@@ -241,10 +245,11 @@ class State:
             "address": self.address,
             "docked": self.docked,
             "internal": self.internal,
+            "signal_dbm": self.signal,
             "daemon_version": DAEMON_VERSION,
             "updated_at": datetime.now().isoformat(timespec="seconds"),
         }
-        key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"], d["docked"], d["internal"])
+        key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"], d["docked"], d["internal"], d["signal_dbm"])
         if not force and key == self._last_dump and now - self._last_write < WRITE_INTERVAL:
             return
         tmp = STATE_FILE + ".tmp"
@@ -263,6 +268,8 @@ def run():
     dock = DockCache()
     charge_flag = None
     bt_battery = False
+    rssi = deque(maxlen=SIGNAL_WINDOW)
+    rssi_at = 0
 
     while True:
         dev, present = find_device()
@@ -271,6 +278,7 @@ def run():
             # No node at all = receiver unplugged / nothing to talk to.
             st.connected = False
             st.internal = False
+            st.signal = None
             st.docked = present == "receiver" and dock.get()
             if present == "receiver":
                 st.charging = st.docked
@@ -292,6 +300,8 @@ def run():
             dock.reset()
             charge_flag = None
             bt_battery = False      # BlueZ answered: it wins over 0x43 on Bluetooth
+            rssi.clear()
+            st.signal = None
         except OSError:
             time.sleep(1)
             continue
@@ -328,6 +338,19 @@ def run():
                     st.charging = st.docked or st.connection == "usb"
                 st.last_seen = datetime.now().strftime("%H:%M")
 
+                # 0x7b byte[9] = signal strength between pad and receiver, signed dBm
+                # (range test 2026-10-24: -20 at the puck ... about -80 at the far end
+                # of the house). 0 = no reading. Not sent over Bluetooth.
+                if data and data[0] == 0x7b and len(data) >= 10 and data[9]:
+                    dbm = data[9] - 256 if data[9] > 127 else data[9]
+                    if -110 <= dbm <= -5:
+                        rssi.append(dbm)
+                        rssi_at = time.time()
+                if rssi and time.time() - rssi_at < SIGNAL_STALE:
+                    st.signal = round(sum(rssi) / len(rssi))
+                else:
+                    st.signal = None
+
                 # byte[2] is the live battery %. (Old notes called it a rising "session
                 # timer" -- that was the pad charging, before the flag in byte[1] was known.)
                 if data and data[0] == 0x43 and len(data) >= 3 and data[2] <= 100 and not bt_battery:
@@ -338,6 +361,7 @@ def run():
             st.connected = False
             st.charging = False
             st.docked = False
+            st.signal = None
             st.provisional = True
             st.write()
         finally:

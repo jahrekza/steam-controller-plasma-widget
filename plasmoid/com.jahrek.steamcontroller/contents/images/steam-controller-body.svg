@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="120" height="90">
+<!-- Controller illustration, outline style. Drawn from scratch (proportions after a
+     reference picked by the author), not Valve artwork. -->
+<!-- body fill only; the line art is a separate, recolourable layer -->
+<path d="M27 6.7 L93 6.7 C100 6.7 103.5 9.5 105.5 16 C109 27 113.5 45 115.4 60 C116.8 72 115.5 81 109 85.2 C104 88.3 97.5 87 95 83 C93 79.5 91.8 74.5 90 71 C89 69 88 67.6 86 67.6 L34 67.6 C32 67.6 31 69 30 71 C28.2 74.5 27 79.5 25 83 C22.5 87 16 88.3 11 85.2 C4.5 81 3.2 72 4.6 60 C6.5 45 11 27 14.5 16 C16.5 9.5 20 6.7 27 6.7 Z" fill="#2c3035"/>
+</svg>

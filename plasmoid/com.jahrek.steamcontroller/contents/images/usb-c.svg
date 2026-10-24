@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<!-- USB-C port seen from the front. Drawn from scratch. -->
+<path fill="#fcfcfc" fill-rule="evenodd" d="M7 7 h10 a5 5 0 0 1 0 10 h-10 a5 5 0 0 1 0 -10 Z M7.6 9.2 h8.8 a2.8 2.8 0 0 1 0 5.6 h-8.8 a2.8 2.8 0 0 1 0 -5.6 Z"/>
+<rect fill="#fcfcfc" x="8.6" y="11.3" width="6.8" height="1.4" rx="0.7"/>
+</svg>

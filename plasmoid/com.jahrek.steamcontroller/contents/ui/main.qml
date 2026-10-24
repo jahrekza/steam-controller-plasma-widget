@@ -14,6 +14,7 @@ PlasmoidItem {
     property bool   charging:    false      // dock, USB-C cable or charger (flag from the pad itself)
     property bool   docked:      false      // on the puck's charging dock
     property bool   internalPuck: false     // via the Steam Machine's built-in receiver
+    property var    signalDbm:   null       // pad <-> receiver signal strength (receiver links only)
     property bool   provisional: true       // batteryPct is the last known value, not read this session
     property string lastSeen:    ""
     property string connection:  ""         // "receiver" (puck) | "usb" (USB-C cable) | "bluetooth"
@@ -30,6 +31,17 @@ PlasmoidItem {
 
     readonly property bool onBluetooth: connected && connection === "bluetooth"
 
+    // Signal strength as 1-4 bars (0 = no reading), thresholds from the range test
+    readonly property int signalLevel: !connected || signalDbm === null ? 0
+                                     : signalDbm >= -55 ? 4 : signalDbm >= -65 ? 3
+                                     : signalDbm >= -75 ? 2 : 1
+    readonly property bool showSignalCard: Plasmoid.configuration.showSignalCard
+    readonly property bool showSignalTray: Plasmoid.configuration.showSignalTray
+    readonly property int  signalStyle: Plasmoid.configuration.signalStyle   // 0 bars, 1 bars + dBm, 2 dBm
+    function signalText() {
+        return [i18n("No signal"), i18n("Weak"), i18n("Fair"), i18n("Good"), i18n("Excellent")][signalLevel]
+    }
+
     readonly property bool isDesktop: Plasmoid.formFactor === PlasmaCore.Types.Planar
                                    || Plasmoid.formFactor === PlasmaCore.Types.MediaCenter
 
@@ -42,6 +54,9 @@ PlasmoidItem {
     readonly property color colorLow:       "#ed4c4c"   // ≤ threshold and not charging
     readonly property color colorOutline:   "#5a6068"
     readonly property color colorTrack:     "#3a3f45"
+    // Controller illustration: the theme's text colour unless one is picked in the settings
+    readonly property color artColor: Plasmoid.configuration.illustrationColor !== ""
+                                      ? Plasmoid.configuration.illustrationColor : Kirigami.Theme.textColor
     readonly property bool pulsing: mode === "charging"
     readonly property color stateColor: mode === "low"          ? colorLow
                                       : mode === "disconnected" ? colorOutline
@@ -52,11 +67,12 @@ PlasmoidItem {
     // Bolt drawn on top of the battery fill: dark on a white fill, white otherwise
     readonly property color boltOnFill: Qt.colorEqual(stateColor, colorWireless) ? "#23262a" : "#fcfcfc"
 
-    readonly property url illustration: Qt.resolvedUrl("../images/steam-controller.svg")
     readonly property url glyph:        Qt.resolvedUrl("../images/steam-controller-symbolic.svg")
     readonly property url bolt:         Qt.resolvedUrl("../images/bolt.svg")
     readonly property url btLogo:       Qt.resolvedUrl("../images/bluetooth.svg")
     readonly property url steamMachine: Qt.resolvedUrl("../images/steam-machine.svg")
+    readonly property url puckIcon:     Qt.resolvedUrl("../images/puck.svg")
+    readonly property url usbC:         Qt.resolvedUrl("../images/usb-c.svg")
 
     // Breathing opacity shared by everything that pulses (1 when not pulsing)
     property real pulse: 1
@@ -100,7 +116,8 @@ PlasmoidItem {
                    : PlasmaCore.Types.ActiveStatus
 
     toolTipMainText: i18n("Steam Controller")
-    toolTipSubText: known && mode !== "disconnected" ? pctText() + " · " + statusText() : statusText()
+    toolTipSubText: (known && mode !== "disconnected" ? pctText() + " · " + statusText() : statusText())
+                    + (signalLevel > 0 ? " · " + i18n("Signal: %1", signalText()) : "")
 
     compactRepresentation: CompactIcon {}
     fullRepresentation: isDesktop ? desktopCard : expandedView
@@ -124,6 +141,7 @@ PlasmoidItem {
                 root.connection  = (d.connection   !== undefined) ? d.connection   : ""
                 root.docked      = (d.docked       !== undefined) ? d.docked       : false
                 root.internalPuck = d.internal === true
+                root.signalDbm   = (typeof d.signal_dbm === "number") ? d.signal_dbm : null
                 root.checkDaemonVersion(d.daemon_version || "")
                 root.address     = (d.address      !== undefined) ? d.address      : ""
             } catch(e) {

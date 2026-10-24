@@ -42,16 +42,12 @@ ColumnLayout {
         }
     }
 
-    Image {
+    ControllerArt {
         Layout.alignment: Qt.AlignHCenter
         Layout.topMargin: 8
         Layout.bottomMargin: 4
-        Layout.preferredWidth: 240
+        Layout.preferredWidth: 224     // 120:90
         Layout.preferredHeight: 168
-        source: root.illustration
-        sourceSize: Qt.size(240, 168)
-        fillMode: Image.PreserveAspectFit
-        smooth: true
         opacity: root.mode === "disconnected" ? 0.45 : 1
     }
 
@@ -134,6 +130,24 @@ ColumnLayout {
                 color: root.colorBluetooth
             }
             PC3.Label { text: root.connectionText(); font.pixelSize: 13 }
+        }
+
+        PC3.Label {
+            visible: root.signalLevel > 0
+            text: i18n("Signal"); color: popup.secondary; font.pixelSize: 13
+        }
+        RowLayout {
+            visible: root.signalLevel > 0
+            spacing: 6
+            SignalBars {
+                Layout.alignment: Qt.AlignVCenter
+                level: root.signalLevel
+                color: root.signalLevel === 1 ? root.colorLow : Kirigami.Theme.textColor
+            }
+            PC3.Label {
+                text: i18n("%1 (%2 dBm)", root.signalText(), root.signalDbm)
+                font.pixelSize: 13
+            }
         }
 
         PC3.Label { text: i18n("Low battery warning"); color: popup.secondary; font.pixelSize: 13 }

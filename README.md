@@ -102,6 +102,8 @@ If you installed v0.1, also remove its standalone daemon:
   pad stays on Bluetooth.
 - Over Bluetooth the pad exposes a standard Battery Service, so the battery %
   there is live and exact (read from BlueZ).
+- Signal strength (puck only) comes from byte[9] of report `0x7b`, a signed
+  dBm value; over Bluetooth the pad sends no such value.
 - Whether a silent pad is on the puck's dock or switched off is asked from the
   puck itself (command `0xB4` on its dock interface), every 3 s.
 - The daemon writes `$XDG_RUNTIME_DIR/sc-battery.json` (atomic rename) the
@@ -123,6 +125,12 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **0.3.11** (2026-10-24) — signal strength for the puck (also the Steam
+  Machine's): bars, bars + dBm or dBm only, on the card and optionally in the
+  panel/tray. The card scales with its size. An icon next to the battery shows
+  the link: puck, Steam Machine, Bluetooth or USB-C. Controller colour can be set
+  in the settings (default: the theme's text colour) and also tints the tray
+  icon; thinner outline.
 - **0.3.10** (2026-10-24) — new outline-style controller illustration; the battery
   no longer sits against the card's right edge (content is centred). On a Steam
   Machine the card says "via internal puck" and shows a small Steam Machine
