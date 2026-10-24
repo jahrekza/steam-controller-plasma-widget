@@ -9,6 +9,15 @@ Linux — reverse-engineered from its raw HID protocol, since the Linux kernel's
 
 ![Widget states](screenshots/gallery-states.png)
 
+<details>
+<summary>More screenshots — charging and signal strength</summary>
+
+![Charging, like the controller's LED](screenshots/gallery-charging.png)
+
+![Puck signal strength](screenshots/gallery-signal.png)
+
+</details>
+
 The widget mirrors the controller's own LED: **colour = how it's connected**
 (white = puck, blue = Bluetooth, green = USB-C cable), **pulsing = charging**,
 orange = switched off on the puck's dock, red = low battery.
@@ -179,6 +188,11 @@ two dead-end hypotheses that were ruled out with real data.
   the widget; v0.1 from the KDE Store was missing it entirely and never showed a
   reading. State file moved to `$XDG_RUNTIME_DIR`. Poll interval 30s → 10s.
 - **0.1** (2026-08-12) — initial release.
+
+## Thanks
+
+- [u/Yurij89](https://www.reddit.com/user/Yurij89/) — tested on the Steam Machine
+  and sent the details that made its built-in receiver work (0.3.9).
 
 ## Contributing
 
