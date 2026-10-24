@@ -492,12 +492,6 @@ Data collected in `sc_logs/`:
       u16, right gain s8. Written with a plain `write()` to the live hidraw node
       (the puck slot here). The pad stops after ~50 ms, so it has to be resent every
       ~40 ms. Tested 2026-10-24 through the puck: works with Steam running.
-- [x] **Rumble.** Output report `0x80`, 10 bytes (from SDL's
-      `SDL_hidapi_steam_triton.c` / `controller_structs.h`, packed little-endian):
-      report id, type u8, intensity u16, left speed u16, left gain s8, right speed
-      u16, right gain s8. Written with a plain `write()` to the live hidraw node
-      (the puck slot here). The pad stops after ~50 ms, so it has to be resent every
-      ~40 ms. Tested 2026-10-24 through the puck: works with Steam running.
 - [x] **Charging flag in 0x43.** Found 2026-10-18: byte[1] of every `0x43`
   report is the charging state — `01` on battery, `02` charging — in all three
   modes (puck, Bluetooth, USB-C). It catches cases nothing else can see, e.g. a
