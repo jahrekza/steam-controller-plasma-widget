@@ -142,6 +142,12 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **1.1.0** (2026-10-24) — a small easter egg: double-click the controller
+  (on the card or in the popup) while it's connected. It uses the pad's rumble
+  (output report `0x80`, layout from SDL) and a sound — the Wilhelm scream, cut from
+  the original session released as CC0 on Freesound (see `contents/sounds/README.md`).
+  Put your own `easter-egg.mp3/ogg/wav/flac` in `~/.local/share/steam-controller-battery/`
+  to replace it.
 - **1.0.1** (2026-10-24) — a small easter egg: double-click the controller
   (on the card or in the popup) while it's connected. It uses the pad's rumble
   (output report `0x80`, layout from SDL) and a sound — the Wilhelm scream, cut from
