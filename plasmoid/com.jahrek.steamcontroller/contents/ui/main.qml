@@ -18,7 +18,6 @@ PlasmoidItem {
     property bool   provisional: true       // batteryPct is the last known value, not read this session
     property string lastSeen:    ""
     property string connection:  ""         // "receiver" (puck) | "usb" (USB-C cable) | "bluetooth"
-    property string address:     ""         // Bluetooth MAC, if any
 
     // ── Derived state ────────────────────────────────────────────────────
     readonly property bool known: batteryPct >= 0
@@ -73,6 +72,7 @@ PlasmoidItem {
     readonly property url steamMachine: Qt.resolvedUrl("../images/steam-machine.svg")
     readonly property url puckIcon:     Qt.resolvedUrl("../images/puck.svg")
     readonly property url usbC:         Qt.resolvedUrl("../images/usb-c.svg")
+    readonly property url clockIcon:    Qt.resolvedUrl("../images/clock.svg")
 
     // Breathing opacity shared by everything that pulses (1 when not pulsing)
     property real pulse: 1
@@ -108,7 +108,14 @@ PlasmoidItem {
         return "—"
     }
 
-    preferredRepresentation: isDesktop ? fullRepresentation : compactRepresentation
+    // On the desktop: the card. Elsewhere leave it unset — the system tray only opens
+    // an applet's popup when preferredRepresentation is null — and make the switch
+    // sizes unreachable, so a panel (however thick) always shows the icon + popup.
+    // Plasma applies the switch sizes on the desktop too, so they must stay 0 there,
+    // or the card turns into the icon.
+    preferredRepresentation: isDesktop ? fullRepresentation : null
+    switchWidth: isDesktop ? 0 : Kirigami.Units.gridUnit * 1000
+    switchHeight: isDesktop ? 0 : Kirigami.Units.gridUnit * 1000
     Plasmoid.backgroundHints: isDesktop ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
     Plasmoid.icon: "input-gamepad"
     Plasmoid.status: mode === "low" ? PlasmaCore.Types.NeedsAttentionStatus
@@ -116,8 +123,13 @@ PlasmoidItem {
                    : PlasmaCore.Types.ActiveStatus
 
     toolTipMainText: i18n("Steam Controller")
+    // Signal in the tooltip follows the panel/tray setting and its style
+    readonly property string signalTooltip: !showSignalTray || signalLevel === 0 ? ""
+        : signalStyle === 0 ? i18n("Signal: %1", signalText())
+        : signalStyle === 1 ? i18n("Signal: %1 (%2 dBm)", signalText(), signalDbm)
+        : i18n("Signal: %1 dBm", signalDbm)
     toolTipSubText: (known && mode !== "disconnected" ? pctText() + " · " + statusText() : statusText())
-                    + (signalLevel > 0 ? " · " + i18n("Signal: %1", signalText()) : "")
+                    + (signalTooltip !== "" ? " · " + signalTooltip : "")
 
     compactRepresentation: CompactIcon {}
     fullRepresentation: isDesktop ? desktopCard : expandedView
@@ -143,7 +155,6 @@ PlasmoidItem {
                 root.internalPuck = d.internal === true
                 root.signalDbm   = (typeof d.signal_dbm === "number") ? d.signal_dbm : null
                 root.checkDaemonVersion(d.daemon_version || "")
-                root.address     = (d.address      !== undefined) ? d.address      : ""
             } catch(e) {
                 root.connected = false
                 root.batteryPct = -1
@@ -159,7 +170,7 @@ PlasmoidItem {
     // It holds a lock file, so re-launching it is a no-op when already running.
     readonly property string daemonPath: Qt.resolvedUrl("../code/sc_battery_daemon.py").toString().replace(/^file:\/\//, "")
 
-    // Fire-and-forget shell commands (daemon launch, notifications, Bluetooth disconnect).
+    // Fire-and-forget shell commands (daemon launch, notifications, easter egg).
     P5Support.DataSource {
         id: shell
         engine: "executable"
@@ -209,11 +220,6 @@ PlasmoidItem {
                   + "for f in \"${XDG_DATA_HOME:-$HOME/.local/share}/steam-controller-battery/easter-egg.\"* "
                   + "\"" + soundsDir + "/easter-egg.\"*; do "
                   + "[ -f \"$f\" ] && { pw-play \"$f\" 2>/dev/null || paplay \"$f\" 2>/dev/null; break; }; done")
-    }
-
-    function disconnect() {
-        if (/^[0-9A-Fa-f:]{17}$/.test(address))
-            shell.run("bluetoothctl disconnect " + address)
     }
 
     // ── Low battery notification (once per drop below the threshold) ────

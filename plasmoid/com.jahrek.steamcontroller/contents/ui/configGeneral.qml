@@ -61,7 +61,7 @@ KCM.SimpleKCM {
         }
         QQC2.CheckBox {
             id: showSignalTray
-            text: i18n("Show in the panel / system tray, next to the percentage")
+            text: i18n("Show in the panel / system tray")
         }
         QQC2.ComboBox {
             id: signalStyle
@@ -69,7 +69,7 @@ KCM.SimpleKCM {
             model: [i18n("Bars"), i18n("Bars and dBm"), i18n("dBm only")]
         }
         QQC2.Label {
-            text: i18n("Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading.")
+            text: i18n("Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon.")
             font: Kirigami.Theme.smallFont
             opacity: 0.7
             wrapMode: Text.Wrap

@@ -5,7 +5,7 @@ connection status of the Steam Controller 2 ("Triton", released May 2026) on
 Linux — reverse-engineered from its raw HID protocol, since the Linux kernel's
 `hid-steam` driver doesn't support this controller yet (see below).
 
-![status](https://img.shields.io/badge/version-1.1.0-brightgreen)
+![status](https://img.shields.io/badge/version-1.2.0-brightgreen)
 
 ![Widget states](screenshots/gallery-states.png)
 
@@ -142,6 +142,13 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **1.2.0** (2026-10-25) — the popup from the panel/tray icon is now the same card
+  as on the desktop (icons and colours instead of a text table) and scales with the
+  popup. Fixed: the popup never opened from the system tray (since 0.3). In the tray
+  the icon now fits its cell (tiny signal meter on the icon; % and dBm in the
+  tooltip, following the settings). A last-known battery % is shown dimmed with a
+  small clock. Link icons line up with the text; Steam Machine drawing a bit larger.
+  The Bluetooth "Disconnect" button is gone with the old popup.
 - **1.1.0** (2026-10-24) — a small easter egg: double-click the controller
   (on the card or in the popup) while it's connected. It uses the pad's rumble
   (output report `0x80`, layout from SDL) and a sound — the Wilhelm scream, cut from

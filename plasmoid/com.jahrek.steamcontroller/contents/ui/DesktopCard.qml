@@ -10,19 +10,28 @@ Item {
     id: card
 
     readonly property bool off: root.mode === "disconnected"
-    // scale factor: 1 at the base size, grows with the card (never shrinks below 1)
-    readonly property real s: Math.max(1, Math.min(width / 254, height / 208))
+    // Embedded in the panel/tray popup: no card background of its own, and it may
+    // shrink a little to fit a narrow popup
+    property bool embedded: false
+    // the Steam Machine drawing has room to be a bit bigger than the other link icons
+    property real steamMachineSize: 53
+    // The % is the last known value, not a live reading (pad off on the dock, or not
+    // read yet this session): shown dimmed, with a small clock next to it
+    readonly property bool stale: root.known && !card.off && root.provisional
+    // scale factor: 1 at the base size, grows with the card (on the desktop it never shrinks below 1)
+    readonly property real s: Math.max(embedded ? 0.8 : 1, Math.min(width / 254, height / 208))
 
-    Layout.minimumWidth: 254
-    Layout.minimumHeight: 196
-    Layout.preferredWidth: 254
-    Layout.preferredHeight: 208
+    implicitWidth: 254
+    implicitHeight: 208
+    Layout.minimumWidth: embedded ? 204 : 254
+    Layout.minimumHeight: embedded ? 166 : 196
 
     Kirigami.Theme.colorSet: Kirigami.Theme.Window
     Kirigami.Theme.inherit: false
 
     // Background: solid border when live, dashed + faded when disconnected
     Rectangle {
+        visible: !card.embedded
         anchors.fill: parent
         radius: 16 * card.s
         color: Qt.alpha(Kirigami.Theme.backgroundColor, card.off ? 0.6 : 0.92)
@@ -31,7 +40,7 @@ Item {
     }
     Shape {
         anchors.fill: parent
-        visible: card.off
+        visible: card.off && !card.embedded
         preferredRendererType: Shape.CurveRenderer
         ShapePath {
             strokeColor: "#3a3f45"
@@ -57,6 +66,7 @@ Item {
         // Left column — does not stretch (nested layouts fill the width by default,
         // which pushed the battery against the card's right edge)
         ColumnLayout {
+            id: leftColumn
             Layout.fillHeight: true
             Layout.fillWidth: false
             Layout.preferredWidth: 132 * card.s
@@ -74,6 +84,7 @@ Item {
                 PC3.Label {
                     id: number
                     text: root.known && !card.off ? root.batteryPct : "—"
+                    opacity: card.stale ? 0.55 : 1
                     font.pixelSize: 30 * card.s
                     font.weight: Font.DemiBold
                     font.features: { "tnum": 1 }
@@ -81,16 +92,34 @@ Item {
                     color: root.mode === "low" ? root.colorLow : Kirigami.Theme.textColor
                 }
                 PC3.Label {
+                    id: pctSign
                     visible: root.known && !card.off
                     anchors.baseline: number.baseline
+                    opacity: number.opacity
                     text: "%"
                     font.pixelSize: 16 * card.s
                     font.weight: Font.Medium
                     color: root.mode === "low" ? root.colorLow : Kirigami.Theme.disabledTextColor
                 }
+                // last known value: a small clock, a little apart from the "%"
+                Item {
+                    visible: card.stale
+                    anchors.bottom: number.baseline
+                    width: clock.width + 4 * card.s; height: clock.height
+                    Kirigami.Icon {
+                        id: clock
+                        anchors.right: parent.right
+                        implicitWidth: 13 * card.s; implicitHeight: implicitWidth
+                        roundToIconSize: false
+                        source: root.clockIcon
+                        isMask: true
+                        color: Kirigami.Theme.disabledTextColor
+                    }
+                }
             }
 
             RowLayout {
+                id: statusRow
                 Layout.topMargin: 2 * card.s
                 spacing: (root.mode === "charging" ? 4 : 6) * card.s
 
@@ -117,6 +146,7 @@ Item {
                     opacity: root.pulse
                 }
                 PC3.Label {
+                    id: statusLabel
                     // the icon next to the battery already shows the link (puck, Steam Machine,
                     // Bluetooth, USB-C), so the card keeps the status short and clear of it
                     text: root.mode === "ok"       ? i18n("Connected")
@@ -128,6 +158,7 @@ Item {
             }
 
             PC3.Label {
+                id: viaLabel
                 visible: root.connected && root.internalPuck
                 text: i18n("via internal puck")
                 font.pixelSize: 11 * card.s
@@ -136,6 +167,7 @@ Item {
 
             // own line, so it never runs into the Steam Machine drawing next to the battery
             SignalIndicator {
+                id: signalLine
                 visible: root.showSignalCard && root.signalLevel > 0
                 Layout.topMargin: 3 * card.s
                 barsHeight: 12 * card.s
@@ -204,10 +236,16 @@ Item {
     // (built-in receiver), standalone puck (also when docked on it), Bluetooth or USB-C
     Kirigami.Icon {
         visible: root.connected || (root.connection === "receiver" && root.docked)
-        width: 50 * card.s; height: width
-        // just left of the battery, bottom-aligned with the status lines
+        width: (root.connected && root.internalPuck ? card.steamMachineSize : 50) * card.s; height: width
+        // just left of the battery; the drawing's foot (its SVGs leave 2/24 empty below)
+        // stands on the baseline of the last text line: the "dBm", "via internal puck"
+        // or the status
         x: contentRow.x + batteryColumn.x - width - 10 * card.s
-        y: contentRow.y + contentRow.height - height
+        y: contentRow.y + leftColumn.y
+           + (signalLine.visible ? signalLine.y + signalLine.lineBottom
+              : viaLabel.visible ? viaLabel.y + viaLabel.baselineOffset
+              : statusRow.y + statusLabel.y + statusLabel.baselineOffset)
+           - height * 22 / 24
         roundToIconSize: false
         source: root.connection === "bluetooth" ? root.btLogo
               : root.connection === "usb"       ? root.usbC
