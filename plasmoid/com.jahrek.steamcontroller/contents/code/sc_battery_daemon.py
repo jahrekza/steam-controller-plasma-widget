@@ -3,7 +3,8 @@
 Steam Controller 2 battery daemon for the Plasma widget.
 
 Reads raw HID reports from /dev/hidraw*, takes the battery % (byte[2]) and the
-charging flag (byte[1]: 1 = on battery, 2 = charging) from every 0x43 report
+charge state (byte[1]: 1 = on battery, 2 = charging, 3 = checking the charger,
+4 = fully charged; names from SDL's TritonBatteryStatus_t) from every 0x43 report
 (~every 3.5 s), and writes a JSON state file
 the widget polls. Launched by the widget itself; a lock file guarantees a
 single instance. Only needs Python 3 stdlib.
@@ -25,6 +26,14 @@ DOCK_POLL = 3               # s between "is the pad on the dock?" queries
 
 RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"
 STATE_FILE  = os.path.join(RUNTIME_DIR, "sc-battery.json")
+# Battery history for the tooltip graph: survives reboots, last 24 h, a point per 5 min
+STATE_DIR = os.path.join(os.environ.get("XDG_STATE_HOME") or os.path.expanduser("~/.local/state"),
+                         "steam-controller-battery")
+HISTORY_FILE = os.path.join(STATE_DIR, "history.json")
+HISTORY_STEP = 300          # s between history points (plus one on every charge/link change)
+HISTORY_SPAN = 24 * 3600
+ETA_MIN_SPAN = 300          # s of readings, and...
+ETA_MIN_DELTA = 2           # ...% of change, before a time estimate is given
 LOCK_FILE   = os.path.join(RUNTIME_DIR, "sc-battery-daemon.lock")
 
 
@@ -214,6 +223,7 @@ class State:
         self.battery_pct = -1
         self.connected = False
         self.charging = False
+        self.charged = False        # on power and full: the pad itself says charging is done
         self.provisional = True
         self.last_seen = ""
         self.connection = ""
@@ -221,6 +231,11 @@ class State:
         self.docked = False         # on the puck's charging dock
         self.internal = False       # linked through the Steam Machine's built-in receiver
         self.signal = None          # pad <-> receiver signal strength, dBm (receiver links only)
+        self.eta_min = None         # minutes until empty (discharging) or full (charging)
+        self._seg = []              # (time, %) since the charging state / link last changed
+        self._seg_key = None
+        self.history = load_history()
+        self._hist_key = None
         self._last_write = 0
         self._last_dump = None
         self.load()
@@ -233,12 +248,43 @@ class State:
         except Exception:
             pass
 
+    def track(self, now):
+        """Feed the time estimate and the history with the current reading."""
+        live = self.connected and not self.provisional and self.battery_pct >= 0
+        key = (self.charging, self.connection) if live else None
+        if key != self._seg_key:
+            self._seg, self._seg_key = [], key
+        self.eta_min = None
+        if live:
+            if not self._seg or self._seg[-1][1] != self.battery_pct:
+                self._seg.append((now, self.battery_pct))
+            t0, p0 = self._seg[0]
+            dt, dp = (now - t0) / 60, self.battery_pct - p0
+            if now - t0 >= ETA_MIN_SPAN and abs(dp) >= ETA_MIN_DELTA:
+                rate = dp / dt                               # % per minute
+                if not self.charging and rate < 0:
+                    self.eta_min = round(self.battery_pct / -rate)
+                elif self.charging and rate > 0:
+                    self.eta_min = round((100 - self.battery_pct) / rate)
+                if self.eta_min is not None and self.eta_min > 24 * 60:
+                    self.eta_min = None
+            # history: a point every HISTORY_STEP, and whenever charging/link changes
+            hkey = (self.charging, self.connection)
+            if (not self.history or now - self.history[-1][0] >= HISTORY_STEP
+                    or hkey != self._hist_key):
+                self._hist_key = hkey
+                self.history.append([int(now), self.battery_pct, 1 if self.charging else 0])
+                self.history = [h for h in self.history if now - h[0] <= HISTORY_SPAN]
+                save_history(self.history)
+
     def write(self, force=False):
         now = time.time()
+        self.track(now)
         d = {
             "battery_pct": self.battery_pct,
             "connected": self.connected,
             "charging": self.charging,
+            "charged": self.charged,
             "provisional": self.provisional,
             "last_seen": self.last_seen,
             "connection": self.connection,
@@ -246,10 +292,11 @@ class State:
             "docked": self.docked,
             "internal": self.internal,
             "signal_dbm": self.signal,
+            "eta_min": self.eta_min,
             "daemon_version": DAEMON_VERSION,
             "updated_at": datetime.now().isoformat(timespec="seconds"),
         }
-        key = (d["battery_pct"], d["connected"], d["charging"], d["provisional"], d["connection"], d["docked"], d["internal"], d["signal_dbm"])
+        key = (d["battery_pct"], d["connected"], d["charging"], d["charged"], d["provisional"], d["connection"], d["docked"], d["internal"], d["signal_dbm"], d["eta_min"])
         if not force and key == self._last_dump and now - self._last_write < WRITE_INTERVAL:
             return
         tmp = STATE_FILE + ".tmp"
@@ -258,6 +305,27 @@ class State:
         os.replace(tmp, STATE_FILE)  # atomic, widget never sees a partial file
         self._last_write = now
         self._last_dump = key
+
+
+def load_history():
+    try:
+        with open(HISTORY_FILE) as f:
+            h = json.load(f)
+        cutoff = time.time() - HISTORY_SPAN
+        return [x for x in h if isinstance(x, list) and len(x) == 3 and x[0] >= cutoff]
+    except (OSError, ValueError):
+        return []
+
+
+def save_history(history):
+    try:
+        os.makedirs(STATE_DIR, exist_ok=True)
+        tmp = HISTORY_FILE + ".tmp"
+        with open(tmp, "w") as f:
+            json.dump(history, f)
+        os.replace(tmp, HISTORY_FILE)
+    except OSError:
+        pass
 
 
 def run():
@@ -280,6 +348,7 @@ def run():
             st.internal = False
             st.signal = None
             st.docked = present == "receiver" and dock.get()
+            st.charged = False       # unknown without reports
             if present == "receiver":
                 st.charging = st.docked
                 st.connection = "receiver" if st.docked else ""
@@ -299,6 +368,7 @@ def run():
             bt_polled = 0
             dock.reset()
             charge_flag = None
+            st.charged = False
             bt_battery = False      # BlueZ answered: it wins over 0x43 on Bluetooth
             rssi.clear()
             st.signal = None
@@ -330,10 +400,12 @@ def run():
                 st.connected = True
                 # The dock charges the pad whatever link it uses (puck radio or Bluetooth)
                 st.docked = st.connection != "usb" and dock.get()
-                if data and data[0] == 0x43 and len(data) >= 2 and data[1] in (1, 2):
-                    charge_flag = data[1] == 2   # dock, or a USB-C cable/charger in any mode
+                if data and data[0] == 0x43 and len(data) >= 2 and data[1] in (1, 2, 3, 4):
+                    charge_flag = data[1]        # dock, or a USB-C cable/charger in any mode
                 if charge_flag is not None:
-                    st.charging = charge_flag or st.docked
+                    # 4 = done: still on power, but no longer charging
+                    st.charging = charge_flag != 1 or st.docked
+                    st.charged = charge_flag == 4
                 else:
                     st.charging = st.docked or st.connection == "usb"
                 st.last_seen = datetime.now().strftime("%H:%M")
@@ -360,6 +432,7 @@ def run():
         except OSError:
             st.connected = False
             st.charging = False
+            st.charged = False
             st.docked = False
             st.signal = None
             st.provisional = True
@@ -380,8 +453,47 @@ RUMBLE = struct.Struct("<BBHHbHb")
 BUZZ_PATTERN = [(30000, 0.08), (55000, 0.12), (65535, 0.45), (45000, 0.15), (25000, 0.15)]
 
 
-def buzz():
-    """Rumble whichever controller node is live (puck slot, Bluetooth or USB)."""
+# "Find controller": short strong pulses for a few seconds
+FIND_PATTERN = [(65535, 0.3), (0, 0.2)] * 6
+
+
+# Find controller can also play a tune on the haptic actuators (the pad has no speaker,
+# but they are audible). Output report 0x83 from SDL's MsgHapticLfoTone: id, side, gain
+# dB, frequency Hz, duration ms, LFO Hz, LFO depth. Gain and LFO picked by ear on the pad;
+# the notes sit around 1.3 kHz, where the actuators are loudest.
+TONE = struct.Struct("<BBbHHHB")
+TONE_GAIN, TONE_LFO, TONE_DEPTH = 60, 31, 20
+C6, E6, F6, G6, A6 = 1047, 1319, 1397, 1568, 1760
+MELODIES = {   # (Hz, ms), 0 Hz = rest
+    "ticktock": [(E6, 40), (0, 460), (C6, 40), (0, 460)] * 3,
+    "bird":     [(G6, 50), (A6, 50), (G6, 50), (0, 150)] * 3,
+    "ringing":  ([(E6, 40), (G6, 40)] * 10 + [(0, 400)]) * 2,
+    "sos":      [(E6, 100), (0, 100)] * 3 + [(0, 200)] + [(E6, 300), (0, 100)] * 3 + [(0, 200)]
+                + [(E6, 100), (0, 100)] * 3,
+    "alarm":    [(E6, 120), (G6, 120)] * 4,
+}
+
+
+def play_melody(fd, notes):
+    """Plays the tune on both actuators; returns when it has finished."""
+    for freq, ms in notes:
+        if freq:
+            for side in (0, 1):
+                os.write(fd, TONE.pack(0x83, side, TONE_GAIN, freq, ms, TONE_LFO, TONE_DEPTH))
+        time.sleep(ms / 1000 + 0.04)
+
+
+def rumble_for(fd, speed, secs):
+    end = time.time() + secs
+    while time.time() < end:
+        os.write(fd, RUMBLE.pack(0x80, 0, 0, speed, 0, speed, 0))
+        time.sleep(0.04)
+
+
+def buzz(pattern=None, melody=None, rounds=3, burst=True):
+    """Rumble whichever controller node is live (puck slot, Bluetooth or USB);
+    with a melody, alternate the tune and a rumble burst three times instead
+    (--melody: the tune once, without rumble, to preview it in the settings)."""
     dev, _ = find_device()
     if not dev:
         return 1
@@ -390,11 +502,16 @@ def buzz():
     except OSError:
         return 1
     try:
-        for speed, secs in BUZZ_PATTERN:
-            end = time.time() + secs
-            while time.time() < end:
-                os.write(fd, RUMBLE.pack(0x80, 0, 0, speed, 0, speed, 0))
-                time.sleep(0.04)
+        if melody:
+            for _ in range(rounds):
+                play_melody(fd, melody)
+                if burst:
+                    rumble_for(fd, 65535, 0.8)
+                    os.write(fd, RUMBLE.pack(0x80, 0, 0, 0, 0, 0, 0))
+                    time.sleep(0.4)
+        else:
+            for speed, secs in (pattern or BUZZ_PATTERN):
+                rumble_for(fd, speed, secs)
         os.write(fd, RUMBLE.pack(0x80, 0, 0, 0, 0, 0, 0))
     except OSError:
         return 1
@@ -406,6 +523,10 @@ def buzz():
 if __name__ == "__main__":
     if sys.argv[1:] == ["--buzz"]:
         sys.exit(buzz())
+    if sys.argv[1:2] == ["--melody"] and len(sys.argv) == 3 and sys.argv[2] in MELODIES:
+        sys.exit(buzz(melody=MELODIES[sys.argv[2]], rounds=1, burst=False))
+    if sys.argv[1:2] == ["--find"]:     # --find [MELODY]
+        sys.exit(buzz(FIND_PATTERN, MELODIES.get(sys.argv[2]) if len(sys.argv) > 2 else None))
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(0))
     _lock = single_instance()
     try:

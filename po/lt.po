@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Pasirinktinė"
+
+msgid "Controller LED (default)"
+msgstr "Valdiklio šviesos diodas (numatyta)"
+
+msgid "Monochrome"
+msgstr "Vienspalvė"
+
+msgid "Warm"
+msgstr "Šilta"
+
+msgid "Night"
+msgstr "Naktis"
+
+msgid "Low battery warning:"
+msgstr "Įspėjimas apie senkančią bateriją:"
+
+msgid "Notify when:"
+msgstr "Pranešti, kai:"
+
+msgid "the battery drops below the warning level"
+msgstr "baterija nukrenta žemiau įspėjimo lygio"
+
+msgid "the battery is fully charged"
+msgstr "baterija visiškai įkrauta"
+
+msgid "the signal gets weak (puck)"
+msgstr "signalas silpnėja (puck)"
+
+msgid "the controller disconnects"
+msgstr "valdiklis atsijungia"
+
+msgid "Appearance"
+msgstr "Išvaizda"
+
+msgid "Preset:"
+msgstr "Rinkinys:"
+
+msgid "Apply"
+msgstr "Taikyti"
+
+msgid "Reset appearance to defaults"
+msgstr "Atkurti numatytąją išvaizdą"
+
+msgid "Card background:"
+msgstr "Kortelės fonas:"
+
+msgid "Dark"
+msgstr "Tamsus"
+
+msgid "Glass"
+msgstr "Stiklas"
+
+msgid "None (shadow only)"
+msgstr "Nėra (tik šešėlis)"
+
+msgid "Background colour:"
+msgstr "Fono spalva:"
+
+msgid "Glass colour:"
+msgstr "Stiklo spalva:"
+
+msgid "Background opacity:"
+msgstr "Fono neskaidrumas:"
+
+msgid "Percentage opacity:"
+msgstr "Procentų neskaidrumas:"
+
+msgid "Controller outline:"
+msgstr "Valdiklio kontūras:"
+
+msgid "Controller fill:"
+msgstr "Valdiklio užpildas:"
+
+msgid "Text and icons:"
+msgstr "Tekstas ir piktogramos:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Tekstas ir piktogramos: %, būsena, signalas, ryšio piktograma ir baterijos kontūras. Baterijos užpildas ir būsenos žymė išlaiko valdiklio šviesos diodo spalvas, o senkanti baterija / silpnas signalas lieka raudoni. Nepažymėta: numatytoji išvaizda."
+
+msgid "Status colours"
+msgstr "Būsenos spalvos"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C kabelis:"
+
+msgid "Off, on the dock:"
+msgstr "Išjungtas, doke:"
+
+msgid "Low battery:"
+msgstr "Senkanti baterija:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Nepažymėta: paties valdiklio šviesos diodo spalvos."
+
+msgid "Signal strength:"
+msgstr "Signalo stiprumas:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Rodyti valdiklyje (darbalaukio kortelė)"
+
+msgid "Show in the panel / system tray"
+msgstr "Rodyti skydelyje / sistemos dėkle"
+
+msgid "Show as:"
+msgstr "Rodyti kaip:"
+
+msgid "Bars"
+msgstr "Stulpeliai"
+
+msgid "Bars and dBm"
+msgstr "Stulpeliai ir dBm"
+
+msgid "dBm only"
+msgstr "Tik dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Tik belaidžiam puck (taip pat įmontuotam Steam Machine). Per Bluetooth ar kabelį signalas nematuojamas. Sistemos dėkle kiekvienas elementas gauna mažą fiksuotą kvadratą, todėl ten tai mažas indikatorius ant piktogramos; % ir dBm yra patarime. Padėtas tiesiai skydelyje valdiklis rodo juos šalia piktogramos."
+
+msgid "Connected"
+msgstr "Prijungta"
+
+msgid "Charging"
+msgstr "Įkraunama"
+
+msgid "via internal puck"
+msgstr "per įmontuotą puck"
+
+msgid "No signal"
+msgstr "Nėra signalo"
+
+msgid "Weak"
+msgstr "Silpnas"
+
+msgid "Fair"
+msgstr "Vidutinis"
+
+msgid "Good"
+msgstr "Geras"
+
+msgid "Excellent"
+msgstr "Puikus"
+
+msgid "%1 min"
+msgstr "%1 min"
+
+msgid "%1 h"
+msgstr "%1 val."
+
+msgid "%1 h %2 min"
+msgstr "%1 val. %2 min"
+
+msgid "Connected · internal puck"
+msgstr "Prijungta · įmontuotas puck"
+
+msgid "Low — plug in"
+msgstr "Senka baterija — prijunkite"
+
+msgid "Charging · on puck"
+msgstr "Įkraunama · puck"
+
+msgid "Charging · USB-C"
+msgstr "Įkraunama · USB-C"
+
+msgid "Charging · cable"
+msgstr "Įkraunama · kabelis"
+
+msgid "Disconnected"
+msgstr "Atjungta"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C kabelis"
+
+msgid "Docked on puck"
+msgstr "Puck doke"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Įmontuotas puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Belaidžiu ryšiu (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signalas: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signalas: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signalas: %1 dBm"
+
+msgid "full in %1"
+msgstr "pilna po %1"
+
+msgid "%1 left"
+msgstr "liko %1"
+
+msgid "Find controller"
+msgstr "Rasti valdiklį"
+
+msgid "Steam Controller battery low"
+msgstr "Steam Controller baterija senka"
+
+msgid "%1% left — plug it in"
+msgstr "Liko %1% — prijunkite"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller įkrautas"
+
+msgid "The battery is full."
+msgstr "Baterija pilna."
+
+msgid "Weak controller signal"
+msgstr "Silpnas valdiklio signalas"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Valdiklis toli nuo imtuvo ir gali atsijungti."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller atjungtas"
+
+msgid "The controller is no longer connected."
+msgstr "Valdiklis nebeprijungtas."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 val."
+
+msgid "−%1 min"
+msgstr "−%1 min"
+
+msgid "now"
+msgstr "dabar"
+
+msgid "Connected · internal chongle"
+msgstr "Prijungta · įmontuotas chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Prijungta · įmontuotas dongle"
+
+msgid "Charging · on chongle"
+msgstr "Įkraunama · chongle"
+
+msgid "Charging · on dongle"
+msgstr "Įkraunama · dongle"
+
+msgid "Docked on chongle"
+msgstr "Chongle doke"
+
+msgid "Docked on dongle"
+msgstr "Dongle doke"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Įmontuotas chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Įmontuotas dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Belaidžiu ryšiu (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Belaidžiu ryšiu (dongle)"
+
+msgid "via internal chongle"
+msgstr "per įmontuotą chongle"
+
+msgid "via internal dongle"
+msgstr "per įmontuotą dongle"
+
+msgid "Names"
+msgstr "Pavadinimai"
+
+msgid "Puck name:"
+msgstr "Puck pavadinimas:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Vadinti Steam Machine „GabeCube“"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: vidinis puck pavadinimas Valve. Dongle: taip jį vadina daug žaidėjų. GabeCube: gerbėjų Steam Machine pravardė."
+
+msgid "Language:"
+msgstr "Kalba:"
+
+msgid "System language"
+msgstr "Sistemos kalba"
+
+msgid "Charged"
+msgstr "Įkrauta"
+
+msgid "Fully charged"
+msgstr "Visiškai įkrauta"
+
+msgid "Find controller sound:"
+msgstr "Valdiklio paieškos garsas:"
+
+msgid "Vibration only"
+msgstr "Tik vibracija"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Paukštelis"
+
+msgid "Ringing"
+msgstr "Skambutis"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Greitas aliarmas"
+
+msgid "Play"
+msgstr "Groti"
+
+msgid "via puck"
+msgstr "per puck"
+
+msgid "via chongle"
+msgstr "per chongle"
+
+msgid "via dongle"
+msgstr "per dongle"
+
+msgid "via Bluetooth"
+msgstr "per Bluetooth"
+
+msgid "via USB-C"
+msgstr "per USB-C"
+
+msgid "Details:"
+msgstr "Išsamiau:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Rodyti, kaip prijungtas arba kraunamas (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Sistemos dėklas:"
+
+msgid "Show an icon in the system tray"
+msgstr "Rodyti piktogramą sistemos dėkle"
+
+msgid "Settings:"
+msgstr "Nustatymai:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Naudoti šiuos nustatymus darbalaukyje ir dėkle"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Abu veikia iškart. Kopijavimas: viskas iš šio puslapio pereina į kiekvieną valdiklio kopiją — darbalaukio kortelę ir dėklo piktogramą."
+
+msgid "Connected · internal gizmo"
+msgstr "Prijungta · įmontuotas muiliukas"
+
+msgid "Charging · on the gizmo"
+msgstr "Įkraunama · ant muiliuko"
+
+msgid "Docked on the gizmo"
+msgstr "Muiliuko doke"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Įmontuotas muiliukas (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Belaidžiu ryšiu (muiliukas)"
+
+msgid "via the internal gizmo"
+msgstr "per įmontuotą muiliuką"
+
+msgid "via the gizmo"
+msgstr "per muiliuką"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Prijungta · įmontuotas kaip-jį-ten"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Įkraunama · kaip-jį-ten"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Kaip-jį-ten doke"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Įmontuotas kaip-jį-ten (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Belaidžiu ryšiu (kaip-jį-ten)"
+
+msgid "via the internal whatchamacallit"
+msgstr "per įmontuotą kaip-jį-ten"
+
+msgid "via the whatchamacallit"
+msgstr "per kaip-jį-ten"
+
+msgid "Gizmo"
+msgstr "Muiliukas"
+
+msgid "Whatchamacallit"
+msgstr "Kaip-jį-ten"
+

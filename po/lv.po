@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Pielāgots"
+
+msgid "Controller LED (default)"
+msgstr "Kontroliera gaismas diode (noklusējums)"
+
+msgid "Monochrome"
+msgstr "Vienkrāsains"
+
+msgid "Warm"
+msgstr "Silts"
+
+msgid "Night"
+msgstr "Nakts"
+
+msgid "Low battery warning:"
+msgstr "Brīdinājums par zemu akumulatora līmeni:"
+
+msgid "Notify when:"
+msgstr "Paziņot, kad:"
+
+msgid "the battery drops below the warning level"
+msgstr "akumulators nokrītas zem brīdinājuma līmeņa"
+
+msgid "the battery is fully charged"
+msgstr "akumulators ir pilnībā uzlādēts"
+
+msgid "the signal gets weak (puck)"
+msgstr "signāls kļūst vājš (puck)"
+
+msgid "the controller disconnects"
+msgstr "kontrolieris atvienojas"
+
+msgid "Appearance"
+msgstr "Izskats"
+
+msgid "Preset:"
+msgstr "Iestatījums:"
+
+msgid "Apply"
+msgstr "Lietot"
+
+msgid "Reset appearance to defaults"
+msgstr "Atjaunot noklusējuma izskatu"
+
+msgid "Card background:"
+msgstr "Kartes fons:"
+
+msgid "Dark"
+msgstr "Tumšs"
+
+msgid "Glass"
+msgstr "Stikls"
+
+msgid "None (shadow only)"
+msgstr "Nav (tikai ēna)"
+
+msgid "Background colour:"
+msgstr "Fona krāsa:"
+
+msgid "Glass colour:"
+msgstr "Stikla krāsa:"
+
+msgid "Background opacity:"
+msgstr "Fona necaurredzamība:"
+
+msgid "Percentage opacity:"
+msgstr "Procentu necaurredzamība:"
+
+msgid "Controller outline:"
+msgstr "Kontroliera kontūra:"
+
+msgid "Controller fill:"
+msgstr "Kontroliera aizpildījums:"
+
+msgid "Text and icons:"
+msgstr "Teksts un ikonas:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Teksts un ikonas: %, stāvoklis, signāls, savienojuma ikona un akumulatora kontūra. Akumulatora aizpildījums un stāvokļa zīme saglabā kontroliera gaismas diodes krāsas, bet zems akumulators / vājš signāls paliek sarkani. Neatzīmēts: noklusējuma izskats."
+
+msgid "Status colours"
+msgstr "Stāvokļa krāsas"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C kabelis:"
+
+msgid "Off, on the dock:"
+msgstr "Izslēgts, dokā:"
+
+msgid "Low battery:"
+msgstr "Zems akumulators:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Neatzīmēts: paša kontroliera gaismas diodes krāsas."
+
+msgid "Signal strength:"
+msgstr "Signāla stiprums:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Rādīt logrīkā (darbvirsmas karte)"
+
+msgid "Show in the panel / system tray"
+msgstr "Rādīt panelī / sistēmas teknē"
+
+msgid "Show as:"
+msgstr "Rādīt kā:"
+
+msgid "Bars"
+msgstr "Stabiņi"
+
+msgid "Bars and dBm"
+msgstr "Stabiņi un dBm"
+
+msgid "dBm only"
+msgstr "Tikai dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Tikai bezvadu puck (arī Steam Machine iebūvētajam). Caur Bluetooth vai kabeli signāls netiek mērīts. Sistēmas teknē katrs vienums saņem mazu fiksētu kvadrātu, tāpēc tur tas ir mazs rādītājs uz ikonas; % un dBm ir rīka padomā. Novietots tieši panelī, logrīks tos rāda blakus ikonai."
+
+msgid "Connected"
+msgstr "Savienots"
+
+msgid "Charging"
+msgstr "Uzlādējas"
+
+msgid "via internal puck"
+msgstr "caur iebūvēto puck"
+
+msgid "No signal"
+msgstr "Nav signāla"
+
+msgid "Weak"
+msgstr "Vājš"
+
+msgid "Fair"
+msgstr "Vidējs"
+
+msgid "Good"
+msgstr "Labs"
+
+msgid "Excellent"
+msgstr "Izcils"
+
+msgid "%1 min"
+msgstr "%1 min."
+
+msgid "%1 h"
+msgstr "%1 st."
+
+msgid "%1 h %2 min"
+msgstr "%1 st. %2 min."
+
+msgid "Connected · internal puck"
+msgstr "Savienots · iebūvētais puck"
+
+msgid "Low — plug in"
+msgstr "Zems akumulators — pievienojiet"
+
+msgid "Charging · on puck"
+msgstr "Uzlādējas · puck"
+
+msgid "Charging · USB-C"
+msgstr "Uzlādējas · USB-C"
+
+msgid "Charging · cable"
+msgstr "Uzlādējas · kabelis"
+
+msgid "Disconnected"
+msgstr "Atvienots"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C kabelis"
+
+msgid "Docked on puck"
+msgstr "Puck dokā"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Iebūvētais puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Bezvadu (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signāls: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signāls: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signāls: %1 dBm"
+
+msgid "full in %1"
+msgstr "pilns pēc %1"
+
+msgid "%1 left"
+msgstr "atlicis %1"
+
+msgid "Find controller"
+msgstr "Atrast kontrolieri"
+
+msgid "Steam Controller battery low"
+msgstr "Zems Steam Controller akumulators"
+
+msgid "%1% left — plug it in"
+msgstr "Atlicis %1% — pievienojiet"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller uzlādēts"
+
+msgid "The battery is full."
+msgstr "Akumulators ir pilns."
+
+msgid "Weak controller signal"
+msgstr "Vājš kontroliera signāls"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Kontrolieris ir tālu no uztvērēja un var atvienoties."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller atvienots"
+
+msgid "The controller is no longer connected."
+msgstr "Kontrolieris vairs nav savienots."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 st."
+
+msgid "−%1 min"
+msgstr "−%1 min."
+
+msgid "now"
+msgstr "tagad"
+
+msgid "Connected · internal chongle"
+msgstr "Savienots · iebūvētais chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Savienots · iebūvētais dongle"
+
+msgid "Charging · on chongle"
+msgstr "Uzlādējas · chongle"
+
+msgid "Charging · on dongle"
+msgstr "Uzlādējas · dongle"
+
+msgid "Docked on chongle"
+msgstr "Chongle dokā"
+
+msgid "Docked on dongle"
+msgstr "Dongle dokā"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Iebūvētais chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Iebūvētais dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Bezvadu (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Bezvadu (dongle)"
+
+msgid "via internal chongle"
+msgstr "caur iebūvēto chongle"
+
+msgid "via internal dongle"
+msgstr "caur iebūvēto dongle"
+
+msgid "Names"
+msgstr "Nosaukumi"
+
+msgid "Puck name:"
+msgstr "Puck nosaukums:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Saukt Steam Machine par „GabeCube“"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: puck iekšējais nosaukums Valve. Dongle: tā to sauc daudzi spēlētāji. GabeCube: fanu iesauka Steam Machine."
+
+msgid "Language:"
+msgstr "Valoda:"
+
+msgid "System language"
+msgstr "Sistēmas valoda"
+
+msgid "Charged"
+msgstr "Uzlādēts"
+
+msgid "Fully charged"
+msgstr "Pilnībā uzlādēts"
+
+msgid "Find controller sound:"
+msgstr "Skaņa, meklējot kontrolieri:"
+
+msgid "Vibration only"
+msgstr "Tikai vibrācija"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Putniņš"
+
+msgid "Ringing"
+msgstr "Zvanīšana"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Ātrs trauksmes signāls"
+
+msgid "Play"
+msgstr "Atskaņot"
+
+msgid "via puck"
+msgstr "caur puck"
+
+msgid "via chongle"
+msgstr "caur chongle"
+
+msgid "via dongle"
+msgstr "caur dongle"
+
+msgid "via Bluetooth"
+msgstr "caur Bluetooth"
+
+msgid "via USB-C"
+msgstr "caur USB-C"
+
+msgid "Details:"
+msgstr "Detaļas:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Rādīt, kā tas ir savienots vai uzlādējas (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Sistēmas tekne:"
+
+msgid "Show an icon in the system tray"
+msgstr "Rādīt ikonu sistēmas teknē"
+
+msgid "Settings:"
+msgstr "Iestatījumi:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Izmantot šos iestatījumus darbvirsmā un teknē"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Abi darbojas uzreiz. Kopēšana: viss šajā lapā nonāk katrā logrīka kopijā — darbvirsmas kartē un teknes ikonā."
+
+msgid "Connected · internal gizmo"
+msgstr "Savienots · iebūvētais ziepju gabaliņš"
+
+msgid "Charging · on the gizmo"
+msgstr "Uzlādējas · uz ziepju gabaliņa"
+
+msgid "Docked on the gizmo"
+msgstr "Ziepju gabaliņa dokā"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Iebūvētais ziepju gabaliņš (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Bezvadu (ziepju gabaliņš)"
+
+msgid "via the internal gizmo"
+msgstr "caur iebūvēto ziepju gabaliņu"
+
+msgid "via the gizmo"
+msgstr "caur ziepju gabaliņu"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Savienots · iebūvētais kā-to-sauc"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Uzlādējas · kā-to-sauc"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Kā-to-sauc dokā"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Iebūvētais kā-to-sauc (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Bezvadu (kā-to-sauc)"
+
+msgid "via the internal whatchamacallit"
+msgstr "caur iebūvēto kā-to-sauc"
+
+msgid "via the whatchamacallit"
+msgstr "caur kā-to-sauc"
+
+msgid "Gizmo"
+msgstr "Ziepju gabaliņš"
+
+msgid "Whatchamacallit"
+msgstr "Kā-to-sauc"
+

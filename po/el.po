@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Προσαρμοσμένο"
+
+msgid "Controller LED (default)"
+msgstr "LED χειριστηρίου (προεπιλογή)"
+
+msgid "Monochrome"
+msgstr "Μονόχρωμο"
+
+msgid "Warm"
+msgstr "Ζεστό"
+
+msgid "Night"
+msgstr "Νύχτα"
+
+msgid "Low battery warning:"
+msgstr "Προειδοποίηση χαμηλής μπαταρίας:"
+
+msgid "Notify when:"
+msgstr "Ειδοποίηση όταν:"
+
+msgid "the battery drops below the warning level"
+msgstr "η μπαταρία πέσει κάτω από το επίπεδο προειδοποίησης"
+
+msgid "the battery is fully charged"
+msgstr "η μπαταρία φορτιστεί πλήρως"
+
+msgid "the signal gets weak (puck)"
+msgstr "το σήμα εξασθενήσει (puck)"
+
+msgid "the controller disconnects"
+msgstr "το χειριστήριο αποσυνδεθεί"
+
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+msgid "Preset:"
+msgstr "Προκαθορισμένο:"
+
+msgid "Apply"
+msgstr "Εφαρμογή"
+
+msgid "Reset appearance to defaults"
+msgstr "Επαναφορά προεπιλεγμένης εμφάνισης"
+
+msgid "Card background:"
+msgstr "Φόντο κάρτας:"
+
+msgid "Dark"
+msgstr "Σκούρο"
+
+msgid "Glass"
+msgstr "Γυαλί"
+
+msgid "None (shadow only)"
+msgstr "Κανένα (μόνο σκιά)"
+
+msgid "Background colour:"
+msgstr "Χρώμα φόντου:"
+
+msgid "Glass colour:"
+msgstr "Χρώμα γυαλιού:"
+
+msgid "Background opacity:"
+msgstr "Αδιαφάνεια φόντου:"
+
+msgid "Percentage opacity:"
+msgstr "Αδιαφάνεια ποσοστού:"
+
+msgid "Controller outline:"
+msgstr "Περίγραμμα χειριστηρίου:"
+
+msgid "Controller fill:"
+msgstr "Γέμισμα χειριστηρίου:"
+
+msgid "Text and icons:"
+msgstr "Κείμενο και εικονίδια:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Κείμενο και εικονίδια: το %, η κατάσταση, το σήμα, το εικονίδιο σύνδεσης και το περίγραμμα της μπαταρίας. Το γέμισμα της μπαταρίας και η ένδειξη κατάστασης κρατούν τα χρώματα του LED του χειριστηρίου, ενώ η χαμηλή μπαταρία / το ασθενές σήμα μένουν κόκκινα. Χωρίς επιλογή: προεπιλεγμένη εμφάνιση."
+
+msgid "Status colours"
+msgstr "Χρώματα κατάστασης"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "Καλώδιο USB-C:"
+
+msgid "Off, on the dock:"
+msgstr "Σβηστό, στη βάση:"
+
+msgid "Low battery:"
+msgstr "Χαμηλή μπαταρία:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Χωρίς επιλογή: τα χρώματα του LED του ίδιου του χειριστηρίου."
+
+msgid "Signal strength:"
+msgstr "Ισχύς σήματος:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Εμφάνιση στο γραφικό στοιχείο (κάρτα επιφάνειας εργασίας)"
+
+msgid "Show in the panel / system tray"
+msgstr "Εμφάνιση στον πίνακα / στο πλαίσιο συστήματος"
+
+msgid "Show as:"
+msgstr "Εμφάνιση ως:"
+
+msgid "Bars"
+msgstr "Μπάρες"
+
+msgid "Bars and dBm"
+msgstr "Μπάρες και dBm"
+
+msgid "dBm only"
+msgstr "Μόνο dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Μόνο για το ασύρματο puck (και το ενσωματωμένο του Steam Machine). Μέσω Bluetooth ή καλωδίου δεν υπάρχει μέτρηση σήματος. Στο πλαίσιο συστήματος κάθε στοιχείο έχει ένα μικρό σταθερό τετράγωνο, οπότε εκεί είναι ένας μικρός δείκτης στο εικονίδιο· το % και τα dBm βρίσκονται στη συμβουλή. Τοποθετημένο απευθείας σε πίνακα, το γραφικό στοιχείο τα δείχνει δίπλα στο εικονίδιο."
+
+msgid "Connected"
+msgstr "Συνδεδεμένο"
+
+msgid "Charging"
+msgstr "Φόρτιση"
+
+msgid "via internal puck"
+msgstr "μέσω ενσωματωμένου puck"
+
+msgid "No signal"
+msgstr "Χωρίς σήμα"
+
+msgid "Weak"
+msgstr "Ασθενές"
+
+msgid "Fair"
+msgstr "Μέτριο"
+
+msgid "Good"
+msgstr "Καλό"
+
+msgid "Excellent"
+msgstr "Εξαιρετικό"
+
+msgid "%1 min"
+msgstr "%1 λεπ."
+
+msgid "%1 h"
+msgstr "%1 ώρ."
+
+msgid "%1 h %2 min"
+msgstr "%1 ώρ. %2 λεπ."
+
+msgid "Connected · internal puck"
+msgstr "Συνδεδεμένο · ενσωματωμένο puck"
+
+msgid "Low — plug in"
+msgstr "Χαμηλή μπαταρία — συνδέστε"
+
+msgid "Charging · on puck"
+msgstr "Φόρτιση · στο puck"
+
+msgid "Charging · USB-C"
+msgstr "Φόρτιση · USB-C"
+
+msgid "Charging · cable"
+msgstr "Φόρτιση · καλώδιο"
+
+msgid "Disconnected"
+msgstr "Αποσυνδεδεμένο"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "Καλώδιο USB-C"
+
+msgid "Docked on puck"
+msgstr "Στη βάση του puck"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Ενσωματωμένο puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Ασύρματα (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Σήμα: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Σήμα: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Σήμα: %1 dBm"
+
+msgid "full in %1"
+msgstr "πλήρης σε %1"
+
+msgid "%1 left"
+msgstr "απομένουν %1"
+
+msgid "Find controller"
+msgstr "Εύρεση χειριστηρίου"
+
+msgid "Steam Controller battery low"
+msgstr "Χαμηλή μπαταρία Steam Controller"
+
+msgid "%1% left — plug it in"
+msgstr "Απομένει %1% — συνδέστε το"
+
+msgid "Steam Controller charged"
+msgstr "Το Steam Controller φορτίστηκε"
+
+msgid "The battery is full."
+msgstr "Η μπαταρία είναι πλήρης."
+
+msgid "Weak controller signal"
+msgstr "Ασθενές σήμα χειριστηρίου"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Το χειριστήριο είναι μακριά από τον δέκτη και μπορεί να αποσυνδεθεί."
+
+msgid "Steam Controller disconnected"
+msgstr "Το Steam Controller αποσυνδέθηκε"
+
+msgid "The controller is no longer connected."
+msgstr "Το χειριστήριο δεν είναι πλέον συνδεδεμένο."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 ώρ."
+
+msgid "−%1 min"
+msgstr "−%1 λεπ."
+
+msgid "now"
+msgstr "τώρα"
+
+msgid "Connected · internal chongle"
+msgstr "Συνδεδεμένο · ενσωματωμένο chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Συνδεδεμένο · ενσωματωμένο dongle"
+
+msgid "Charging · on chongle"
+msgstr "Φόρτιση · στο chongle"
+
+msgid "Charging · on dongle"
+msgstr "Φόρτιση · στο dongle"
+
+msgid "Docked on chongle"
+msgstr "Στη βάση του chongle"
+
+msgid "Docked on dongle"
+msgstr "Στη βάση του dongle"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Ενσωματωμένο chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Ενσωματωμένο dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Ασύρματα (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Ασύρματα (dongle)"
+
+msgid "via internal chongle"
+msgstr "μέσω ενσωματωμένου chongle"
+
+msgid "via internal dongle"
+msgstr "μέσω ενσωματωμένου dongle"
+
+msgid "Names"
+msgstr "Ονόματα"
+
+msgid "Puck name:"
+msgstr "Όνομα του puck:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Να λέγεται το Steam Machine «GabeCube»"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: το εσωτερικό όνομα του puck στη Valve. Dongle: έτσι το λένε πολλοί παίκτες. GabeCube: το παρατσούκλι που έδωσαν οι θαυμαστές στο Steam Machine."
+
+msgid "Language:"
+msgstr "Γλώσσα:"
+
+msgid "System language"
+msgstr "Γλώσσα συστήματος"
+
+msgid "Charged"
+msgstr "Φορτίστηκε"
+
+msgid "Fully charged"
+msgstr "Πλήρως φορτισμένο"
+
+msgid "Find controller sound:"
+msgstr "Ήχος κατά την αναζήτηση:"
+
+msgid "Vibration only"
+msgstr "Μόνο δόνηση"
+
+msgid "Tick-tock"
+msgstr "Τικ-τακ"
+
+msgid "Little bird"
+msgstr "Πουλάκι"
+
+msgid "Ringing"
+msgstr "Κουδούνισμα"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Γρήγορος συναγερμός"
+
+msgid "Play"
+msgstr "Αναπαραγωγή"
+
+msgid "via puck"
+msgstr "μέσω puck"
+
+msgid "via chongle"
+msgstr "μέσω chongle"
+
+msgid "via dongle"
+msgstr "μέσω dongle"
+
+msgid "via Bluetooth"
+msgstr "μέσω Bluetooth"
+
+msgid "via USB-C"
+msgstr "μέσω USB-C"
+
+msgid "Details:"
+msgstr "Λεπτομέρειες:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Εμφάνιση του τρόπου σύνδεσης ή φόρτισης (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Πλαίσιο συστήματος:"
+
+msgid "Show an icon in the system tray"
+msgstr "Εμφάνιση εικονιδίου στο πλαίσιο συστήματος"
+
+msgid "Settings:"
+msgstr "Ρυθμίσεις:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Χρήση αυτών των ρυθμίσεων στην επιφάνεια εργασίας και στο πλαίσιο"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Ισχύουν αμέσως. Η αντιγραφή: όλα όσα είναι σε αυτή τη σελίδα πηγαίνουν σε κάθε αντίγραφο του γραφικού στοιχείου, την κάρτα και το εικονίδιο στο πλαίσιο."
+
+msgid "Connected · internal gizmo"
+msgstr "Συνδεδεμένο · ενσωματωμένο σαπουνάκι"
+
+msgid "Charging · on the gizmo"
+msgstr "Φόρτιση · στο σαπουνάκι"
+
+msgid "Docked on the gizmo"
+msgstr "Στη βάση του σαπουνιού"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Ενσωματωμένο σαπουνάκι (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Ασύρματα (σαπουνάκι)"
+
+msgid "via the internal gizmo"
+msgstr "μέσω ενσωματωμένου σαπουνιού"
+
+msgid "via the gizmo"
+msgstr "μέσω του σαπουνιού"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Συνδεδεμένο · ενσωματωμένο πώς-το-λένε"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Φόρτιση · στο πώς-το-λένε"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Στη βάση του πώς-το-λένε"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Ενσωματωμένο πώς-το-λένε (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Ασύρματα (πώς-το-λένε)"
+
+msgid "via the internal whatchamacallit"
+msgstr "μέσω του ενσωματωμένου πώς-το-λένε"
+
+msgid "via the whatchamacallit"
+msgstr "μέσω του πώς-το-λένε"
+
+msgid "Gizmo"
+msgstr "Σαπουνάκι"
+
+msgid "Whatchamacallit"
+msgstr "Πώς-το-λένε"
+

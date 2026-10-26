@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Власний"
+
+msgid "Controller LED (default)"
+msgstr "Світлодіод контролера (типово)"
+
+msgid "Monochrome"
+msgstr "Монохромний"
+
+msgid "Warm"
+msgstr "Теплий"
+
+msgid "Night"
+msgstr "Нічний"
+
+msgid "Low battery warning:"
+msgstr "Попередження про низький заряд:"
+
+msgid "Notify when:"
+msgstr "Сповіщати, коли:"
+
+msgid "the battery drops below the warning level"
+msgstr "заряд падає нижче рівня попередження"
+
+msgid "the battery is fully charged"
+msgstr "батарею повністю заряджено"
+
+msgid "the signal gets weak (puck)"
+msgstr "сигнал слабшає (puck)"
+
+msgid "the controller disconnects"
+msgstr "контролер від'єднується"
+
+msgid "Appearance"
+msgstr "Вигляд"
+
+msgid "Preset:"
+msgstr "Набір:"
+
+msgid "Apply"
+msgstr "Застосувати"
+
+msgid "Reset appearance to defaults"
+msgstr "Відновити типовий вигляд"
+
+msgid "Card background:"
+msgstr "Тло картки:"
+
+msgid "Dark"
+msgstr "Темне"
+
+msgid "Glass"
+msgstr "Скло"
+
+msgid "None (shadow only)"
+msgstr "Немає (лише тінь)"
+
+msgid "Background colour:"
+msgstr "Колір тла:"
+
+msgid "Glass colour:"
+msgstr "Колір скла:"
+
+msgid "Background opacity:"
+msgstr "Непрозорість тла:"
+
+msgid "Percentage opacity:"
+msgstr "Непрозорість відсотка:"
+
+msgid "Controller outline:"
+msgstr "Контур контролера:"
+
+msgid "Controller fill:"
+msgstr "Заливка контролера:"
+
+msgid "Text and icons:"
+msgstr "Текст і піктограми:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Текст і піктограми: %, стан, сигнал, піктограма з'єднання і контур батареї. Заливка батареї та позначка стану зберігають кольори світлодіода контролера, а низький заряд / слабкий сигнал лишаються червоними. Не позначено: типовий вигляд."
+
+msgid "Status colours"
+msgstr "Кольори стану"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "Кабель USB-C:"
+
+msgid "Off, on the dock:"
+msgstr "Вимкнений, у доку:"
+
+msgid "Low battery:"
+msgstr "Низький заряд:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Не позначено: кольори світлодіода самого контролера."
+
+msgid "Signal strength:"
+msgstr "Сила сигналу:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Показувати у віджеті (картка на стільниці)"
+
+msgid "Show in the panel / system tray"
+msgstr "Показувати на панелі / в системному лотку"
+
+msgid "Show as:"
+msgstr "Показувати як:"
+
+msgid "Bars"
+msgstr "Смужки"
+
+msgid "Bars and dBm"
+msgstr "Смужки і dBm"
+
+msgid "dBm only"
+msgstr "Лише dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Лише для бездротового puck (також вбудованого у Steam Machine). Через Bluetooth або кабель сигнал не вимірюється. У системному лотку кожен елемент має малий фіксований квадрат, тож там це маленький індикатор на піктограмі; % і dBm — у підказці. Розміщений безпосередньо на панелі віджет показує їх поруч із піктограмою."
+
+msgid "Connected"
+msgstr "З'єднано"
+
+msgid "Charging"
+msgstr "Заряджання"
+
+msgid "via internal puck"
+msgstr "через вбудований puck"
+
+msgid "No signal"
+msgstr "Немає сигналу"
+
+msgid "Weak"
+msgstr "Слабкий"
+
+msgid "Fair"
+msgstr "Середній"
+
+msgid "Good"
+msgstr "Добрий"
+
+msgid "Excellent"
+msgstr "Відмінний"
+
+msgid "%1 min"
+msgstr "%1 хв"
+
+msgid "%1 h"
+msgstr "%1 год"
+
+msgid "%1 h %2 min"
+msgstr "%1 год %2 хв"
+
+msgid "Connected · internal puck"
+msgstr "З'єднано · вбудований puck"
+
+msgid "Low — plug in"
+msgstr "Низький заряд — під'єднайте"
+
+msgid "Charging · on puck"
+msgstr "Заряджання · на puck"
+
+msgid "Charging · USB-C"
+msgstr "Заряджання · USB-C"
+
+msgid "Charging · cable"
+msgstr "Заряджання · кабель"
+
+msgid "Disconnected"
+msgstr "Від'єднано"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "Кабель USB-C"
+
+msgid "Docked on puck"
+msgstr "У доку puck"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Вбудований puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Бездротово (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Сигнал: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Сигнал: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Сигнал: %1 dBm"
+
+msgid "full in %1"
+msgstr "повний через %1"
+
+msgid "%1 left"
+msgstr "лишилося %1"
+
+msgid "Find controller"
+msgstr "Знайти контролер"
+
+msgid "Steam Controller battery low"
+msgstr "Низький заряд Steam Controller"
+
+msgid "%1% left — plug it in"
+msgstr "Лишилося %1% — під'єднайте"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller заряджено"
+
+msgid "The battery is full."
+msgstr "Батарея повна."
+
+msgid "Weak controller signal"
+msgstr "Слабкий сигнал контролера"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Контролер далеко від приймача і може від'єднатися."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller від'єднано"
+
+msgid "The controller is no longer connected."
+msgstr "Контролер більше не з'єднаний."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 год"
+
+msgid "−%1 min"
+msgstr "−%1 хв"
+
+msgid "now"
+msgstr "зараз"
+
+msgid "Connected · internal chongle"
+msgstr "З'єднано · вбудований chongle"
+
+msgid "Connected · internal dongle"
+msgstr "З'єднано · вбудований донгл"
+
+msgid "Charging · on chongle"
+msgstr "Заряджання · на chongle"
+
+msgid "Charging · on dongle"
+msgstr "Заряджання · на донглі"
+
+msgid "Docked on chongle"
+msgstr "У доку chongle"
+
+msgid "Docked on dongle"
+msgstr "У доку донгла"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Вбудований chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Вбудований донгл (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Бездротово (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Бездротово (донгл)"
+
+msgid "via internal chongle"
+msgstr "через вбудований chongle"
+
+msgid "via internal dongle"
+msgstr "через вбудований донгл"
+
+msgid "Names"
+msgstr "Назви"
+
+msgid "Puck name:"
+msgstr "Назва puck:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Донгл"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Називати Steam Machine «GabeCube»"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: внутрішня назва puck у Valve. Донгл: так його називає багато гравців. GabeCube: прізвисько, яке фанати дали Steam Machine."
+
+msgid "Language:"
+msgstr "Мова:"
+
+msgid "System language"
+msgstr "Мова системи"
+
+msgid "Charged"
+msgstr "Заряджено"
+
+msgid "Fully charged"
+msgstr "Повністю заряджено"
+
+msgid "Find controller sound:"
+msgstr "Звук під час пошуку контролера:"
+
+msgid "Vibration only"
+msgstr "Лише вібрація"
+
+msgid "Tick-tock"
+msgstr "Тік-так"
+
+msgid "Little bird"
+msgstr "Пташка"
+
+msgid "Ringing"
+msgstr "Дзвінок"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Швидка тривога"
+
+msgid "Play"
+msgstr "Відтворити"
+
+msgid "via puck"
+msgstr "через puck"
+
+msgid "via chongle"
+msgstr "через chongle"
+
+msgid "via dongle"
+msgstr "через донгл"
+
+msgid "via Bluetooth"
+msgstr "через Bluetooth"
+
+msgid "via USB-C"
+msgstr "через USB-C"
+
+msgid "Details:"
+msgstr "Подробиці:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Показувати, як підключено або заряджається (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Системний лоток:"
+
+msgid "Show an icon in the system tray"
+msgstr "Показувати піктограму в системному лотку"
+
+msgid "Settings:"
+msgstr "Налаштування:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Використати ці налаштування на стільниці й у лотку"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Обидва діють одразу. Копіювання: усе з цієї сторінки потрапляє до кожної копії віджета — картки на стільниці й піктограми в лотку."
+
+msgid "Connected · internal gizmo"
+msgstr "З'єднано · вбудоване мильце"
+
+msgid "Charging · on the gizmo"
+msgstr "Заряджання · на мильці"
+
+msgid "Docked on the gizmo"
+msgstr "У доку мильця"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Вбудоване мильце (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Бездротово (мильце)"
+
+msgid "via the internal gizmo"
+msgstr "через вбудоване мильце"
+
+msgid "via the gizmo"
+msgstr "через мильце"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "З'єднано · вбудований як-його-там"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Заряджання · на як-його-там"
+
+msgid "Docked on the whatchamacallit"
+msgstr "У доку як-його-там"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Вбудований як-його-там (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Бездротово (як-його-там)"
+
+msgid "via the internal whatchamacallit"
+msgstr "через вбудований як-його-там"
+
+msgid "via the whatchamacallit"
+msgstr "через як-його-там"
+
+msgid "Gizmo"
+msgstr "Мильце"
+
+msgid "Whatchamacallit"
+msgstr "Як-його-там"
+

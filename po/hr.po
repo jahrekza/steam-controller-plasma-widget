@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Prilagođeno"
+
+msgid "Controller LED (default)"
+msgstr "LED kontrolera (zadano)"
+
+msgid "Monochrome"
+msgstr "Jednobojno"
+
+msgid "Warm"
+msgstr "Toplo"
+
+msgid "Night"
+msgstr "Noć"
+
+msgid "Low battery warning:"
+msgstr "Upozorenje o niskoj bateriji:"
+
+msgid "Notify when:"
+msgstr "Obavijesti kada:"
+
+msgid "the battery drops below the warning level"
+msgstr "baterija padne ispod razine upozorenja"
+
+msgid "the battery is fully charged"
+msgstr "je baterija potpuno napunjena"
+
+msgid "the signal gets weak (puck)"
+msgstr "signal oslabi (puck)"
+
+msgid "the controller disconnects"
+msgstr "se kontroler odspoji"
+
+msgid "Appearance"
+msgstr "Izgled"
+
+msgid "Preset:"
+msgstr "Predložak:"
+
+msgid "Apply"
+msgstr "Primijeni"
+
+msgid "Reset appearance to defaults"
+msgstr "Vrati zadani izgled"
+
+msgid "Card background:"
+msgstr "Pozadina kartice:"
+
+msgid "Dark"
+msgstr "Tamna"
+
+msgid "Glass"
+msgstr "Staklo"
+
+msgid "None (shadow only)"
+msgstr "Bez pozadine (samo sjena)"
+
+msgid "Background colour:"
+msgstr "Boja pozadine:"
+
+msgid "Glass colour:"
+msgstr "Boja stakla:"
+
+msgid "Background opacity:"
+msgstr "Neprozirnost pozadine:"
+
+msgid "Percentage opacity:"
+msgstr "Neprozirnost postotka:"
+
+msgid "Controller outline:"
+msgstr "Obris kontrolera:"
+
+msgid "Controller fill:"
+msgstr "Ispuna kontrolera:"
+
+msgid "Text and icons:"
+msgstr "Tekst i ikone:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Tekst i ikone: %, stanje, signal, ikona veze i obris baterije. Ispuna baterije i oznaka stanja zadržavaju boje LED-a kontrolera, a niska baterija / slab signal ostaju crveni. Neoznačeno: zadani izgled."
+
+msgid "Status colours"
+msgstr "Boje stanja"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C kabel:"
+
+msgid "Off, on the dock:"
+msgstr "Isključen, na postolju:"
+
+msgid "Low battery:"
+msgstr "Niska baterija:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Neoznačeno: boje LED-a samog kontrolera."
+
+msgid "Signal strength:"
+msgstr "Jačina signala:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Prikaži na widgetu (kartica na radnoj površini)"
+
+msgid "Show in the panel / system tray"
+msgstr "Prikaži na ploči / u sistemskoj traci"
+
+msgid "Show as:"
+msgstr "Prikaži kao:"
+
+msgid "Bars"
+msgstr "Crtice"
+
+msgid "Bars and dBm"
+msgstr "Crtice i dBm"
+
+msgid "dBm only"
+msgstr "Samo dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Samo za bežični puck (i onaj u Steam Machineu). Preko Bluetootha ili kabela nema očitanja signala. U sistemskoj traci svaka stavka ima mali fiksni kvadrat, pa je tamo mali pokazivač na ikoni; % i dBm su u opisu alata. Postavljen izravno na ploču, widget ih prikazuje pokraj ikone."
+
+msgid "Connected"
+msgstr "Povezan"
+
+msgid "Charging"
+msgstr "Puni se"
+
+msgid "via internal puck"
+msgstr "preko ugrađenog pucka"
+
+msgid "No signal"
+msgstr "Nema signala"
+
+msgid "Weak"
+msgstr "Slab"
+
+msgid "Fair"
+msgstr "Osrednji"
+
+msgid "Good"
+msgstr "Dobar"
+
+msgid "Excellent"
+msgstr "Izvrstan"
+
+msgid "%1 min"
+msgstr "%1 min"
+
+msgid "%1 h"
+msgstr "%1 h"
+
+msgid "%1 h %2 min"
+msgstr "%1 h %2 min"
+
+msgid "Connected · internal puck"
+msgstr "Povezan · ugrađeni puck"
+
+msgid "Low — plug in"
+msgstr "Niska baterija — priključite"
+
+msgid "Charging · on puck"
+msgstr "Puni se · na pucku"
+
+msgid "Charging · USB-C"
+msgstr "Puni se · USB-C"
+
+msgid "Charging · cable"
+msgstr "Puni se · kabel"
+
+msgid "Disconnected"
+msgstr "Odspojen"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C kabel"
+
+msgid "Docked on puck"
+msgstr "Na postolju pucka"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Ugrađeni puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Bežično (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signal: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signal: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signal: %1 dBm"
+
+msgid "full in %1"
+msgstr "pun za %1"
+
+msgid "%1 left"
+msgstr "preostalo %1"
+
+msgid "Find controller"
+msgstr "Pronađi kontroler"
+
+msgid "Steam Controller battery low"
+msgstr "Niska baterija Steam Controllera"
+
+msgid "%1% left — plug it in"
+msgstr "Preostalo %1% — priključite ga"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller napunjen"
+
+msgid "The battery is full."
+msgstr "Baterija je puna."
+
+msgid "Weak controller signal"
+msgstr "Slab signal kontrolera"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Kontroler je daleko od prijemnika i mogao bi se odspojiti."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller odspojen"
+
+msgid "The controller is no longer connected."
+msgstr "Kontroler više nije povezan."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 h"
+
+msgid "−%1 min"
+msgstr "−%1 min"
+
+msgid "now"
+msgstr "sada"
+
+msgid "Connected · internal chongle"
+msgstr "Povezan · ugrađeni chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Povezan · ugrađeni dongle"
+
+msgid "Charging · on chongle"
+msgstr "Puni se · na chongleu"
+
+msgid "Charging · on dongle"
+msgstr "Puni se · na dongleu"
+
+msgid "Docked on chongle"
+msgstr "Na postolju chonglea"
+
+msgid "Docked on dongle"
+msgstr "Na postolju donglea"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Ugrađeni chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Ugrađeni dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Bežično (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Bežično (dongle)"
+
+msgid "via internal chongle"
+msgstr "preko ugrađenog chonglea"
+
+msgid "via internal dongle"
+msgstr "preko ugrađenog donglea"
+
+msgid "Names"
+msgstr "Nazivi"
+
+msgid "Puck name:"
+msgstr "Naziv pucka:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Steam Machine zovi „GabeCube”"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: interni naziv pucka u Valveu. Dongle: tako ga zovu mnogi igrači. GabeCube: nadimak koji su fanovi dali Steam Machineu."
+
+msgid "Language:"
+msgstr "Jezik:"
+
+msgid "System language"
+msgstr "Jezik sustava"
+
+msgid "Charged"
+msgstr "Napunjen"
+
+msgid "Fully charged"
+msgstr "Potpuno napunjen"
+
+msgid "Find controller sound:"
+msgstr "Zvuk pri traženju kontrolera:"
+
+msgid "Vibration only"
+msgstr "Samo vibracija"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Ptičica"
+
+msgid "Ringing"
+msgstr "Zvonjava"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Brzi alarm"
+
+msgid "Play"
+msgstr "Reproduciraj"
+
+msgid "via puck"
+msgstr "preko pucka"
+
+msgid "via chongle"
+msgstr "preko chonglea"
+
+msgid "via dongle"
+msgstr "preko donglea"
+
+msgid "via Bluetooth"
+msgstr "preko Bluetootha"
+
+msgid "via USB-C"
+msgstr "preko USB-C-a"
+
+msgid "Details:"
+msgstr "Detalji:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Prikaži kako je povezan ili kako se puni (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Sistemska traka:"
+
+msgid "Show an icon in the system tray"
+msgstr "Prikaži ikonu u sistemskoj traci"
+
+msgid "Settings:"
+msgstr "Postavke:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Koristi ove postavke na radnoj površini i u traci"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Oboje djeluje odmah. Kopiranje: sve s ove stranice ide u svaku kopiju widgeta, karticu na radnoj površini i ikonu u traci."
+
+msgid "Connected · internal gizmo"
+msgstr "Povezan · ugrađeni sapunčić"
+
+msgid "Charging · on the gizmo"
+msgstr "Puni se · na sapunčiću"
+
+msgid "Docked on the gizmo"
+msgstr "Na postolju sapunčića"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Ugrađeni sapunčić (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Bežično (sapunčić)"
+
+msgid "via the internal gizmo"
+msgstr "preko ugrađenog sapunčića"
+
+msgid "via the gizmo"
+msgstr "preko sapunčića"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Povezan · ugrađeno ono nešto"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Puni se · na onom nečem"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Na postolju onog nečeg"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Ugrađeno ono nešto (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Bežično (ono nešto)"
+
+msgid "via the internal whatchamacallit"
+msgstr "preko ugrađenog onog nečeg"
+
+msgid "via the whatchamacallit"
+msgstr "preko onog nečeg"
+
+msgid "Gizmo"
+msgstr "Sapunčić"
+
+msgid "Whatchamacallit"
+msgstr "Ono nešto"
+

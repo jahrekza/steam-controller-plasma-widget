@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Eigene"
+
+msgid "Controller LED (default)"
+msgstr "Controller-LED (Standard)"
+
+msgid "Monochrome"
+msgstr "Monochrom"
+
+msgid "Warm"
+msgstr "Warm"
+
+msgid "Night"
+msgstr "Nacht"
+
+msgid "Low battery warning:"
+msgstr "Warnung bei niedrigem Akku:"
+
+msgid "Notify when:"
+msgstr "Benachrichtigen, wenn:"
+
+msgid "the battery drops below the warning level"
+msgstr "der Akku unter die Warnstufe fällt"
+
+msgid "the battery is fully charged"
+msgstr "der Akku voll geladen ist"
+
+msgid "the signal gets weak (puck)"
+msgstr "das Signal schwach wird (Puck)"
+
+msgid "the controller disconnects"
+msgstr "der Controller die Verbindung trennt"
+
+msgid "Appearance"
+msgstr "Erscheinungsbild"
+
+msgid "Preset:"
+msgstr "Vorlage:"
+
+msgid "Apply"
+msgstr "Anwenden"
+
+msgid "Reset appearance to defaults"
+msgstr "Erscheinungsbild zurücksetzen"
+
+msgid "Card background:"
+msgstr "Kartenhintergrund:"
+
+msgid "Dark"
+msgstr "Dunkel"
+
+msgid "Glass"
+msgstr "Glas"
+
+msgid "None (shadow only)"
+msgstr "Keiner (nur Schatten)"
+
+msgid "Background colour:"
+msgstr "Hintergrundfarbe:"
+
+msgid "Glass colour:"
+msgstr "Glasfarbe:"
+
+msgid "Background opacity:"
+msgstr "Hintergrund-Deckkraft:"
+
+msgid "Percentage opacity:"
+msgstr "Deckkraft der Prozentanzeige:"
+
+msgid "Controller outline:"
+msgstr "Controller-Umriss:"
+
+msgid "Controller fill:"
+msgstr "Controller-Füllung:"
+
+msgid "Text and icons:"
+msgstr "Text und Symbole:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Text und Symbole: %, Status, Signal, Verbindungssymbol und Akkuumriss. Akkufüllung und Statusmarkierung behalten die LED-Farben des Controllers, niedriger Akku und schwaches Signal bleiben rot. Nicht angehakt: Standardaussehen."
+
+msgid "Status colours"
+msgstr "Statusfarben"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C-Kabel:"
+
+msgid "Off, on the dock:"
+msgstr "Aus, im Dock:"
+
+msgid "Low battery:"
+msgstr "Niedriger Akku:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Nicht angehakt: die Farben der LED des Controllers."
+
+msgid "Signal strength:"
+msgstr "Signalstärke:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Im Widget anzeigen (Desktop-Karte)"
+
+msgid "Show in the panel / system tray"
+msgstr "In der Leiste / im Systemabschnitt anzeigen"
+
+msgid "Show as:"
+msgstr "Anzeigen als:"
+
+msgid "Bars"
+msgstr "Balken"
+
+msgid "Bars and dBm"
+msgstr "Balken und dBm"
+
+msgid "dBm only"
+msgstr "Nur dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Nur für den kabellosen Puck (auch den der Steam Machine). Über Bluetooth oder Kabel gibt es keinen Signalwert. Im Systemabschnitt hat jeder Eintrag ein kleines festes Quadrat, daher dort eine kleine Anzeige am Symbol; % und dBm stehen im Tooltip. Direkt in einer Leiste zeigt das Widget sie neben dem Symbol."
+
+msgid "Connected"
+msgstr "Verbunden"
+
+msgid "Charging"
+msgstr "Lädt"
+
+msgid "via internal puck"
+msgstr "über internen Puck"
+
+msgid "No signal"
+msgstr "Kein Signal"
+
+msgid "Weak"
+msgstr "Schwach"
+
+msgid "Fair"
+msgstr "Mittel"
+
+msgid "Good"
+msgstr "Gut"
+
+msgid "Excellent"
+msgstr "Ausgezeichnet"
+
+msgid "%1 min"
+msgstr "%1 Min."
+
+msgid "%1 h"
+msgstr "%1 Std."
+
+msgid "%1 h %2 min"
+msgstr "%1 Std. %2 Min."
+
+msgid "Connected · internal puck"
+msgstr "Verbunden · interner Puck"
+
+msgid "Low — plug in"
+msgstr "Akku schwach — anschließen"
+
+msgid "Charging · on puck"
+msgstr "Lädt · im Puck"
+
+msgid "Charging · USB-C"
+msgstr "Lädt · USB-C"
+
+msgid "Charging · cable"
+msgstr "Lädt · Kabel"
+
+msgid "Disconnected"
+msgstr "Getrennt"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C-Kabel"
+
+msgid "Docked on puck"
+msgstr "Im Puck-Dock"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Interner Puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Kabellos (Puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signal: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signal: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signal: %1 dBm"
+
+msgid "full in %1"
+msgstr "voll in %1"
+
+msgid "%1 left"
+msgstr "noch %1"
+
+msgid "Find controller"
+msgstr "Controller finden"
+
+msgid "Steam Controller battery low"
+msgstr "Akku des Steam Controllers schwach"
+
+msgid "%1% left — plug it in"
+msgstr "Noch %1% — bitte anschließen"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller geladen"
+
+msgid "The battery is full."
+msgstr "Der Akku ist voll."
+
+msgid "Weak controller signal"
+msgstr "Schwaches Controller-Signal"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Der Controller ist weit vom Empfänger entfernt und könnte die Verbindung verlieren."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller getrennt"
+
+msgid "The controller is no longer connected."
+msgstr "Der Controller ist nicht mehr verbunden."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 Std."
+
+msgid "−%1 min"
+msgstr "−%1 Min."
+
+msgid "now"
+msgstr "jetzt"
+
+msgid "Connected · internal chongle"
+msgstr "Verbunden · interner Chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Verbunden · interner Dongle"
+
+msgid "Charging · on chongle"
+msgstr "Lädt · im Chongle"
+
+msgid "Charging · on dongle"
+msgstr "Lädt · im Dongle"
+
+msgid "Docked on chongle"
+msgstr "Im Chongle-Dock"
+
+msgid "Docked on dongle"
+msgstr "Im Dongle-Dock"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Interner Chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Interner Dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Kabellos (Chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Kabellos (Dongle)"
+
+msgid "via internal chongle"
+msgstr "über internen Chongle"
+
+msgid "via internal dongle"
+msgstr "über internen Dongle"
+
+msgid "Names"
+msgstr "Namen"
+
+msgid "Puck name:"
+msgstr "Name des Pucks:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Steam Machine „GabeCube“ nennen"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: So hieß der Puck intern bei Valve. Dongle: So nennen ihn viele Spieler. GabeCube: der Spitzname der Fans für die Steam Machine."
+
+msgid "Language:"
+msgstr "Sprache:"
+
+msgid "System language"
+msgstr "Systemsprache"
+
+msgid "Charged"
+msgstr "Geladen"
+
+msgid "Fully charged"
+msgstr "Vollständig geladen"
+
+msgid "Find controller sound:"
+msgstr "Ton beim Suchen:"
+
+msgid "Vibration only"
+msgstr "Nur Vibration"
+
+msgid "Tick-tock"
+msgstr "Tick-Tack"
+
+msgid "Little bird"
+msgstr "Vögelchen"
+
+msgid "Ringing"
+msgstr "Klingeln"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Schneller Alarm"
+
+msgid "Play"
+msgstr "Abspielen"
+
+msgid "via puck"
+msgstr "über den Puck"
+
+msgid "via chongle"
+msgstr "über den Chongle"
+
+msgid "via dongle"
+msgstr "über den Dongle"
+
+msgid "via Bluetooth"
+msgstr "über Bluetooth"
+
+msgid "via USB-C"
+msgstr "über USB-C"
+
+msgid "Details:"
+msgstr "Details:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Anzeigen, wie er verbunden ist oder lädt (über Puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Systemabschnitt:"
+
+msgid "Show an icon in the system tray"
+msgstr "Symbol im Systemabschnitt anzeigen"
+
+msgid "Settings:"
+msgstr "Einstellungen:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Diese Einstellungen auf der Arbeitsfläche und im Systemabschnitt verwenden"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Beides wirkt sofort. Kopieren: alles auf dieser Seite geht an jede Kopie des Widgets — die Karte auf der Arbeitsfläche und das Symbol im Systemabschnitt."
+
+msgid "Connected · internal gizmo"
+msgstr "Verbunden · internes Seifchen"
+
+msgid "Charging · on the gizmo"
+msgstr "Lädt · auf dem Seifchen"
+
+msgid "Docked on the gizmo"
+msgstr "Im Seifchen-Dock"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Internes Seifchen (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Kabellos (Seifchen)"
+
+msgid "via the internal gizmo"
+msgstr "über internes Seifchen"
+
+msgid "via the gizmo"
+msgstr "über das Seifchen"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Verbunden · internes Dingens"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Lädt · im Dingens"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Im Dingens-Dock"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Internes Dingens (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Kabellos (Dingens)"
+
+msgid "via the internal whatchamacallit"
+msgstr "über internes Dingens"
+
+msgid "via the whatchamacallit"
+msgstr "über das Dingens"
+
+msgid "Gizmo"
+msgstr "Seifchen"
+
+msgid "Whatchamacallit"
+msgstr "Dingens"
+

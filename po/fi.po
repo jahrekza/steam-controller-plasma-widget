@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Mukautettu"
+
+msgid "Controller LED (default)"
+msgstr "Ohjaimen LED (oletus)"
+
+msgid "Monochrome"
+msgstr "Yksivärinen"
+
+msgid "Warm"
+msgstr "Lämmin"
+
+msgid "Night"
+msgstr "Yö"
+
+msgid "Low battery warning:"
+msgstr "Varoitus akun vähyydestä:"
+
+msgid "Notify when:"
+msgstr "Ilmoita, kun:"
+
+msgid "the battery drops below the warning level"
+msgstr "akku laskee varoitustason alle"
+
+msgid "the battery is fully charged"
+msgstr "akku on täynnä"
+
+msgid "the signal gets weak (puck)"
+msgstr "signaali heikkenee (puck)"
+
+msgid "the controller disconnects"
+msgstr "ohjaimen yhteys katkeaa"
+
+msgid "Appearance"
+msgstr "Ulkoasu"
+
+msgid "Preset:"
+msgstr "Esiasetus:"
+
+msgid "Apply"
+msgstr "Käytä"
+
+msgid "Reset appearance to defaults"
+msgstr "Palauta oletusulkoasu"
+
+msgid "Card background:"
+msgstr "Kortin tausta:"
+
+msgid "Dark"
+msgstr "Tumma"
+
+msgid "Glass"
+msgstr "Lasi"
+
+msgid "None (shadow only)"
+msgstr "Ei taustaa (vain varjo)"
+
+msgid "Background colour:"
+msgstr "Taustaväri:"
+
+msgid "Glass colour:"
+msgstr "Lasin väri:"
+
+msgid "Background opacity:"
+msgstr "Taustan peittävyys:"
+
+msgid "Percentage opacity:"
+msgstr "Prosenttiluvun peittävyys:"
+
+msgid "Controller outline:"
+msgstr "Ohjaimen ääriviiva:"
+
+msgid "Controller fill:"
+msgstr "Ohjaimen täyttö:"
+
+msgid "Text and icons:"
+msgstr "Teksti ja kuvakkeet:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Teksti ja kuvakkeet: %, tila, signaali, yhteyskuvake ja akun ääriviiva. Akun täyttö ja tilamerkki säilyttävät ohjaimen LED-värit, ja vähäinen akku / heikko signaali pysyvät punaisina. Ei valittu: oletusulkoasu."
+
+msgid "Status colours"
+msgstr "Tilavärit"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C-kaapeli:"
+
+msgid "Off, on the dock:"
+msgstr "Pois päältä, telakassa:"
+
+msgid "Low battery:"
+msgstr "Akku vähissä:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Ei valittu: ohjaimen oman LEDin värit."
+
+msgid "Signal strength:"
+msgstr "Signaalin voimakkuus:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Näytä sovelmassa (työpöytäkortti)"
+
+msgid "Show in the panel / system tray"
+msgstr "Näytä paneelissa / ilmoitusalueella"
+
+msgid "Show as:"
+msgstr "Näytä muodossa:"
+
+msgid "Bars"
+msgstr "Palkit"
+
+msgid "Bars and dBm"
+msgstr "Palkit ja dBm"
+
+msgid "dBm only"
+msgstr "Vain dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Vain langattomalle puckille (myös Steam Machinen sisäiselle). Bluetoothin tai kaapelin kautta signaalia ei mitata. Ilmoitusalueella jokainen kohde saa pienen kiinteän neliön, joten siellä se on pieni mittari kuvakkeessa; % ja dBm ovat työkaluvihjeessä. Suoraan paneeliin sijoitettuna sovelma näyttää ne kuvakkeen vieressä."
+
+msgid "Connected"
+msgstr "Yhdistetty"
+
+msgid "Charging"
+msgstr "Latautuu"
+
+msgid "via internal puck"
+msgstr "sisäisen puckin kautta"
+
+msgid "No signal"
+msgstr "Ei signaalia"
+
+msgid "Weak"
+msgstr "Heikko"
+
+msgid "Fair"
+msgstr "Kohtalainen"
+
+msgid "Good"
+msgstr "Hyvä"
+
+msgid "Excellent"
+msgstr "Erinomainen"
+
+msgid "%1 min"
+msgstr "%1 min"
+
+msgid "%1 h"
+msgstr "%1 h"
+
+msgid "%1 h %2 min"
+msgstr "%1 h %2 min"
+
+msgid "Connected · internal puck"
+msgstr "Yhdistetty · sisäinen puck"
+
+msgid "Low — plug in"
+msgstr "Akku vähissä — kytke"
+
+msgid "Charging · on puck"
+msgstr "Latautuu · puckissa"
+
+msgid "Charging · USB-C"
+msgstr "Latautuu · USB-C"
+
+msgid "Charging · cable"
+msgstr "Latautuu · kaapeli"
+
+msgid "Disconnected"
+msgstr "Yhteys katkaistu"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C-kaapeli"
+
+msgid "Docked on puck"
+msgstr "Puckin telakassa"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Sisäinen puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Langaton (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signaali: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signaali: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signaali: %1 dBm"
+
+msgid "full in %1"
+msgstr "täynnä %1 kuluttua"
+
+msgid "%1 left"
+msgstr "%1 jäljellä"
+
+msgid "Find controller"
+msgstr "Etsi ohjain"
+
+msgid "Steam Controller battery low"
+msgstr "Steam Controllerin akku vähissä"
+
+msgid "%1% left — plug it in"
+msgstr "%1 % jäljellä — kytke laturiin"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller ladattu"
+
+msgid "The battery is full."
+msgstr "Akku on täynnä."
+
+msgid "Weak controller signal"
+msgstr "Ohjaimen signaali heikko"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Ohjain on kaukana vastaanottimesta, ja yhteys voi katketa."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controllerin yhteys katkesi"
+
+msgid "The controller is no longer connected."
+msgstr "Ohjain ei ole enää yhdistetty."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 h"
+
+msgid "−%1 min"
+msgstr "−%1 min"
+
+msgid "now"
+msgstr "nyt"
+
+msgid "Connected · internal chongle"
+msgstr "Yhdistetty · sisäinen chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Yhdistetty · sisäinen dongle"
+
+msgid "Charging · on chongle"
+msgstr "Latautuu · chonglessa"
+
+msgid "Charging · on dongle"
+msgstr "Latautuu · donglessa"
+
+msgid "Docked on chongle"
+msgstr "Chonglen telakassa"
+
+msgid "Docked on dongle"
+msgstr "Donglen telakassa"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Sisäinen chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Sisäinen dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Langaton (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Langaton (dongle)"
+
+msgid "via internal chongle"
+msgstr "sisäisen chonglen kautta"
+
+msgid "via internal dongle"
+msgstr "sisäisen donglen kautta"
+
+msgid "Names"
+msgstr "Nimet"
+
+msgid "Puck name:"
+msgstr "Puckin nimi:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Kutsu Steam Machinea nimellä ”GabeCube”"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: puckin sisäinen nimi Valvella. Dongle: näin moni pelaaja sitä kutsuu. GabeCube: fanien lempinimi Steam Machinelle."
+
+msgid "Language:"
+msgstr "Kieli:"
+
+msgid "System language"
+msgstr "Järjestelmän kieli"
+
+msgid "Charged"
+msgstr "Ladattu"
+
+msgid "Fully charged"
+msgstr "Täyteen ladattu"
+
+msgid "Find controller sound:"
+msgstr "Ohjaimen etsintäääni:"
+
+msgid "Vibration only"
+msgstr "Vain värinä"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Lintunen"
+
+msgid "Ringing"
+msgstr "Soitto"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Nopea hälytys"
+
+msgid "Play"
+msgstr "Toista"
+
+msgid "via puck"
+msgstr "puckin kautta"
+
+msgid "via chongle"
+msgstr "chonglen kautta"
+
+msgid "via dongle"
+msgstr "donglen kautta"
+
+msgid "via Bluetooth"
+msgstr "Bluetoothin kautta"
+
+msgid "via USB-C"
+msgstr "USB-C:n kautta"
+
+msgid "Details:"
+msgstr "Tiedot:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Näytä, miten ohjain on yhdistetty tai latautuu (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Ilmoitusalue:"
+
+msgid "Show an icon in the system tray"
+msgstr "Näytä kuvake ilmoitusalueella"
+
+msgid "Settings:"
+msgstr "Asetukset:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Käytä näitä asetuksia työpöydällä ja ilmoitusalueella"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Molemmat tulevat voimaan heti. Kopiointi: kaikki tämän sivun asetukset menevät sovelman jokaiseen kopioon, työpöydän korttiin ja ilmoitusalueen kuvakkeeseen."
+
+msgid "Connected · internal gizmo"
+msgstr "Yhdistetty · sisäinen saippuapala"
+
+msgid "Charging · on the gizmo"
+msgstr "Latautuu · saippuapalalla"
+
+msgid "Docked on the gizmo"
+msgstr "Saippuapalan telakassa"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Sisäinen saippuapala (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Langaton (saippuapala)"
+
+msgid "via the internal gizmo"
+msgstr "sisäisen saippuapalan kautta"
+
+msgid "via the gizmo"
+msgstr "saippuapalan kautta"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Yhdistetty · sisäinen vempain"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Latautuu · vempaimessa"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Vempaimen telakassa"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Sisäinen vempain (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Langaton (vempain)"
+
+msgid "via the internal whatchamacallit"
+msgstr "sisäisen vempaimen kautta"
+
+msgid "via the whatchamacallit"
+msgstr "vempaimen kautta"
+
+msgid "Gizmo"
+msgstr "Saippuapala"
+
+msgid "Whatchamacallit"
+msgstr "Vempain"
+

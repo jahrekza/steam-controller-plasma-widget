@@ -317,6 +317,45 @@ test the same day: 0x45 bytes 30-45 and 0x43 byte[13] stayed constant until the
 link dropped at ~5 m). BlueZ only exposes a connected device's RSSI to root
 (`btmgmt conn-info` -> Permission Denied), so there is no signal value for BT.
 
+### `0x43` layout from SDL (2026-10-26)
+
+SDL's Steam Controller driver (`SDL_hidapi_steam_triton.c`, structs in
+`steam/controller_structs.h`) names this report `ID_TRITON_BATTERY_STATUS` and gives
+its layout (little endian):
+
+```
+[1]      ucChargeState    0 reset, 1 discharging, 2 charging, 3 validating the source, 4 charging done
+[2]      ucBatteryLevel   %
+[3-4]    sBatteryVoltage
+[5-6]    sSystemVoltage
+[7-8]    sInputVoltage
+[9-10]   sCurrent
+[11-12]  sInputCurrent
+[13-14]  sTemperature
+```
+
+So the "multiplexed sensors" of sections 4–5 are voltages, currents and the battery
+temperature (units not checked yet). The daemon uses [1] (incl. 4 = full, since
+1.4.0) and [2].
+
+### Haptic output reports (sound) — from SDL
+
+The pad has no speaker; its sounds come from the haptic actuators. SDL lists these
+output reports (sent with a plain `write()` to the controller's hidraw node):
+
+```
+0x80  rumble     type u8, intensity u16, left {speed u16, gain s8}, right {speed u16, gain s8}
+0x81  pulse      side u8, on_us u16, off_us u16, repeat u16
+0x82  command    side u8, command u8, gain_db s8
+0x83  LFO tone   side u8, gain_db s8, frequency u16, duration_ms u16, lfo_freq u16, lfo_depth u8
+0x84  log sweep  side u8, gain_db s8, duration_ms u16, start frequency u16, end frequency u16
+0x85  script     side u8, script_id u8, gain_db s8
+```
+
+Tested 2026-10-26: side 0 and 1 are the two actuators; tones are audible, loudest
+around 1.3 kHz (the actuators' resonance) and with high gain (the widget uses +60 dB,
+LFO 31 Hz, depth 20). Scripts 0–11 were accepted but their sounds weren't mapped.
+
 ### Controller on the charging dock (puck)
 
 When the controller is on the charging dock:
@@ -574,4 +613,8 @@ Data collected in `sc_logs/`:
             Breakthrough: byte[2] correlates with %! 4->4%, 44->44%, 97≈100%.
             Daemon rewritten around byte[2].
             Tests: JSON shows 97%, widget displays it correctly.
+
+2026-10-26  SDL's driver gives the 0x43 layout (charge state incl. "done",
+            voltages, current, temperature) and the haptic output reports;
+            tunes played on the actuators for "Find controller".
 ```

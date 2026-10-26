@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Shapes
+import QtQuick.Effects
 import org.kde.plasma.components as PC3
 import org.kde.kirigami as Kirigami
 
@@ -16,10 +17,22 @@ Item {
     // the Steam Machine drawing has room to be a bit bigger than the other link icons
     property real steamMachineSize: 53
     // The % is the last known value, not a live reading (pad off on the dock, or not
-    // read yet this session): shown dimmed, with a small clock next to it
+    // read yet this session): shown dimmer, with a small clock above it
     readonly property bool stale: root.known && !card.off && root.provisional
     // scale factor: 1 at the base size, grows with the card (on the desktop it never shrinks below 1)
     readonly property real s: Math.max(embedded ? 0.8 : 1, Math.min(width / 254, height / 208))
+    // A card stretched wider than 254:208 gives the extra width to the left column, so
+    // the battery and link icon move right and long texts get room (instead of the
+    // whole group just staying centred between wider side margins)
+    readonly property real extraWidth: Math.max(0, width - 254 * s)
+    // Width a text line in the left column may use: the full column, or, for a line that
+    // reaches down beside the link icon, only up to the icon (long translations, the ETA)
+    function roomFor(item) {
+        var bottom = contentRow.y + leftColumn.y + item.y + item.height
+        return linkIcon.visible && bottom > linkIcon.y + 2 * s
+             ? linkIcon.x - contentRow.x - leftColumn.x - 6 * s
+             : leftColumn.width
+    }
 
     implicitWidth: 254
     implicitHeight: 208
@@ -29,18 +42,33 @@ Item {
     Kirigami.Theme.colorSet: Kirigami.Theme.Window
     Kirigami.Theme.inherit: false
 
+    // Card background, from the settings: 0 dark, 1 glass (the wallpaper shows through),
+    // 2 none — the content sits on the wallpaper with a soft shadow for legibility
+    readonly property int bgStyle: embedded ? 0 : root.cardStyle
+    layer.enabled: bgStyle === 2
+    layer.effect: MultiEffect {
+        shadowEnabled: true
+        shadowColor: "#000000"
+        shadowOpacity: 0.9
+        shadowBlur: 0.6
+        shadowVerticalOffset: 2
+    }
+
     // Background: solid border when live, dashed + faded when disconnected
     Rectangle {
-        visible: !card.embedded
+        visible: !card.embedded && card.bgStyle !== 2
         anchors.fill: parent
         radius: 16 * card.s
-        color: Qt.alpha(Kirigami.Theme.backgroundColor, card.off ? 0.6 : 0.92)
+        readonly property real alphaLive: root.cardBgOpacity >= 0 ? root.cardBgOpacity / 100
+                                          : card.bgStyle === 1 ? 0.35 : 0.92
+        color: Qt.alpha(card.bgStyle === 1 ? root.cardGlassColor : root.cardBgColor,
+                        card.off ? alphaLive * 0.65 : alphaLive)
         border.width: card.off ? 0 : 1
-        border.color: "#383d43"
+        border.color: card.bgStyle === 1 ? Qt.rgba(1, 1, 1, 0.22) : "#383d43"
     }
     Shape {
         anchors.fill: parent
-        visible: card.off && !card.embedded
+        visible: card.off && !card.embedded && card.bgStyle !== 2
         preferredRendererType: Shape.CurveRenderer
         ShapePath {
             strokeColor: "#3a3f45"
@@ -69,54 +97,18 @@ Item {
             id: leftColumn
             Layout.fillHeight: true
             Layout.fillWidth: false
-            Layout.preferredWidth: 132 * card.s
+            Layout.preferredWidth: 132 * card.s + card.extraWidth
             spacing: 0
 
             ControllerArt {
-                Layout.alignment: Qt.AlignHCenter
+                // where it sat in the 132-wide column, also when the column grows
+                Layout.alignment: Qt.AlignLeft
+                Layout.leftMargin: 4.5 * card.s
                 Layout.preferredWidth: 123 * card.s     // 120:90
                 Layout.preferredHeight: 92 * card.s
             }
 
             Item { Layout.fillHeight: true }
-
-            Row {
-                PC3.Label {
-                    id: number
-                    text: root.known && !card.off ? root.batteryPct : "—"
-                    opacity: card.stale ? 0.55 : 1
-                    font.pixelSize: 30 * card.s
-                    font.weight: Font.DemiBold
-                    font.features: { "tnum": 1 }
-                    lineHeight: 1
-                    color: root.mode === "low" ? root.colorLow : Kirigami.Theme.textColor
-                }
-                PC3.Label {
-                    id: pctSign
-                    visible: root.known && !card.off
-                    anchors.baseline: number.baseline
-                    opacity: number.opacity
-                    text: "%"
-                    font.pixelSize: 16 * card.s
-                    font.weight: Font.Medium
-                    color: root.mode === "low" ? root.colorLow : Kirigami.Theme.disabledTextColor
-                }
-                // last known value: a small clock, a little apart from the "%"
-                Item {
-                    visible: card.stale
-                    anchors.bottom: number.baseline
-                    width: clock.width + 4 * card.s; height: clock.height
-                    Kirigami.Icon {
-                        id: clock
-                        anchors.right: parent.right
-                        implicitWidth: 13 * card.s; implicitHeight: implicitWidth
-                        roundToIconSize: false
-                        source: root.clockIcon
-                        isMask: true
-                        color: Kirigami.Theme.disabledTextColor
-                    }
-                }
-            }
 
             RowLayout {
                 id: statusRow
@@ -147,22 +139,35 @@ Item {
                 }
                 PC3.Label {
                     id: statusLabel
+                    Layout.maximumWidth: card.roomFor(statusRow) - x
+                    elide: Text.ElideRight
                     // the icon next to the battery already shows the link (puck, Steam Machine,
                     // Bluetooth, USB-C), so the card keeps the status short and clear of it
-                    text: root.mode === "ok"       ? i18n("Connected")
-                        : root.mode === "charging" ? i18n("Charging")
+                    text: root.mode === "ok"       ? root.tr("Connected")
+                        : root.mode === "charging" ? (root.charged ? root.tr("Charged") : root.tr("Charging"))
                         : root.statusText()
                     font.pixelSize: 12 * card.s
-                    color: card.off ? Kirigami.Theme.disabledTextColor : root.stateColor
+                    color: card.off ? Kirigami.Theme.disabledTextColor
+                         : root.mode === "low" ? root.colorLow
+                         : root.uiCustom ? root.uiColor : root.stateColor
                 }
             }
 
             PC3.Label {
                 id: viaLabel
-                visible: root.connected && root.internalPuck
-                text: i18n("via internal puck")
+                Layout.maximumWidth: card.roomFor(viaLabel)
+                elide: Text.ElideRight
+                // under the status (too long for one line in most languages): while charging
+                // where the power comes from (the dock or a cable), otherwise how it is connected
+                visible: root.showVia && (root.connected || root.mode === "charging")
+                text: root.mode === "charging" ? (root.docked ? root.pk(root.tr("via puck"), root.tr("via chongle"), root.tr("via dongle"), root.tr("via the gizmo"), root.tr("via the whatchamacallit"))
+                                                              : root.tr("via USB-C"))
+                    : root.connection === "bluetooth" ? root.tr("via Bluetooth")
+                    : root.connection === "usb"       ? root.tr("via USB-C")
+                    : root.internalPuck ? root.pk(root.tr("via internal puck"), root.tr("via internal chongle"), root.tr("via internal dongle"), root.tr("via the internal gizmo"), root.tr("via the internal whatchamacallit"))
+                    : root.pk(root.tr("via puck"), root.tr("via chongle"), root.tr("via dongle"), root.tr("via the gizmo"), root.tr("via the whatchamacallit"))
                 font.pixelSize: 11 * card.s
-                color: Kirigami.Theme.disabledTextColor
+                color: root.uiSecondary
             }
 
             // own line, so it never runs into the Steam Machine drawing next to the battery
@@ -174,6 +179,24 @@ Item {
                 barWidth: 3 * card.s
                 pixelSize: 12 * card.s
                 spacing: 6 * card.s
+            }
+            // time estimate: until empty, or until full while charging
+            RowLayout {
+                id: etaRow
+                visible: root.hasEta
+                Layout.topMargin: 2 * card.s
+                spacing: 4 * card.s
+                Kirigami.Icon { implicitWidth: 12 * card.s; implicitHeight: implicitWidth; roundToIconSize: false; source: root.hourglass; isMask: true; color: root.uiSecondary }
+                PC3.Label {
+                    id: etaLabel
+                    // "12 h 45 min" when it fits next to the link icon, else rounded to hours
+                    text: etaFull.width <= Layout.maximumWidth ? root.etaText(false) : root.etaText(true)
+                    Layout.maximumWidth: card.roomFor(etaRow) - x
+                    elide: Text.ElideRight
+                    font.pixelSize: 12 * card.s
+                    color: root.uiSecondary
+                    TextMetrics { id: etaFull; font: etaLabel.font; text: root.etaText(false) }
+                }
             }
         }
 
@@ -189,7 +212,7 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 implicitWidth: 22 * card.s; implicitHeight: 5 * card.s
                 topLeftRadius: 2 * card.s; topRightRadius: 2 * card.s
-                color: root.colorOutline
+                color: root.uiOutline
             }
 
             Rectangle {   // body
@@ -199,7 +222,7 @@ Item {
                 radius: 12 * card.s
                 color: "transparent"
                 border.width: 2 * card.s
-                border.color: root.colorOutline
+                border.color: root.uiOutline
 
                 Rectangle {
                     readonly property real inset: 5 * card.s
@@ -218,6 +241,38 @@ Item {
                     Behavior on color  { ColorAnimation  { duration: 400 } }
                 }
 
+                // the % at the bottom of the battery, see-through (opacity from the settings);
+                // on the fill, or just above it when the fill is too low to hold it
+                Column {
+                    id: pctBox
+                    visible: root.known && !card.off
+                    readonly property real fillTop: 5 * card.s + (body.height - 10 * card.s) * Math.max(0, Math.min(100, root.batteryPct)) / 100
+                    readonly property bool onFill: fillTop >= pctLabel.height + 14 * card.s
+                    readonly property color tone: onFill ? root.boltOnFill : root.mode === "low" ? root.colorLow : root.uiColor
+                    anchors { horizontalCenter: parent.horizontalCenter; bottom: parent.bottom
+                              bottomMargin: onFill ? 10 * card.s : fillTop + 4 * card.s }
+                    spacing: 1 * card.s
+                    opacity: (card.stale ? 0.6 : 1) * root.pctOpacity / 100
+                    Kirigami.Icon {
+                        visible: card.stale
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        implicitWidth: 11 * card.s; implicitHeight: implicitWidth
+                        roundToIconSize: false
+                        source: root.clockIcon
+                        isMask: true
+                        color: pctBox.tone
+                    }
+                    PC3.Label {
+                        id: pctLabel
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        text: root.batteryPct + "%"
+                        font.pixelSize: 17 * card.s
+                        font.weight: Font.DemiBold
+                        font.features: { "tnum": 1 }
+                        color: pctBox.tone
+                    }
+                }
+
                 Kirigami.Icon {
                     visible: root.mode === "charging"
                     anchors.centerIn: parent
@@ -232,26 +287,47 @@ Item {
 
     }
 
+    // Find controller: a crosshair in the top-left corner, shown while the mouse is over the card
+    HoverHandler { id: cardHover }
+    Kirigami.Icon {
+        id: findButton
+        visible: root.connected && (cardHover.hovered || findArea.pressed)
+        x: 8 * card.s; y: 8 * card.s
+        width: 16 * card.s; height: width
+        roundToIconSize: false
+        source: root.locateIcon
+        isMask: true
+        color: root.uiColor
+        opacity: findArea.containsMouse ? 1 : 0.6
+        MouseArea {
+            id: findArea
+            anchors.fill: parent
+            anchors.margins: -4 * card.s
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked: root.findController()
+        }
+        PC3.ToolTip.text: root.tr("Find controller")
+        PC3.ToolTip.visible: findArea.containsMouse
+        PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
+    }
+
     // How the pad is linked, in the free corner next to the battery: Steam Machine
     // (built-in receiver), standalone puck (also when docked on it), Bluetooth or USB-C
     Kirigami.Icon {
+        id: linkIcon
         visible: root.connected || (root.connection === "receiver" && root.docked)
         width: (root.connected && root.internalPuck ? card.steamMachineSize : 50) * card.s; height: width
-        // just left of the battery; the drawing's foot (its SVGs leave 2/24 empty below)
-        // stands on the baseline of the last text line: the "dBm", "via internal puck"
-        // or the status
+        // just left of the battery, the drawing's foot (its SVGs leave 2/24 empty below)
+        // level with the battery's bottom — the same place whatever text is shown
         x: contentRow.x + batteryColumn.x - width - 10 * card.s
-        y: contentRow.y + leftColumn.y
-           + (signalLine.visible ? signalLine.y + signalLine.lineBottom
-              : viaLabel.visible ? viaLabel.y + viaLabel.baselineOffset
-              : statusRow.y + statusLabel.y + statusLabel.baselineOffset)
-           - height * 22 / 24
+        y: contentRow.y + batteryColumn.y + body.y + body.height - height * 22 / 24
         roundToIconSize: false
         source: root.connection === "bluetooth" ? root.btLogo
               : root.connection === "usb"       ? root.usbC
               : root.internalPuck ? root.steamMachine : root.puckIcon
         isMask: true
-        color: Kirigami.Theme.textColor
+        color: root.uiColor
         opacity: card.off ? 0.45 : 0.9
     }
 }

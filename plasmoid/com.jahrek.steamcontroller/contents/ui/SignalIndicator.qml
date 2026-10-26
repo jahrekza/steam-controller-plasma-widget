@@ -10,7 +10,7 @@ RowLayout {
     property real barWidth: 2.5
     property int pixelSize: 11
 
-    readonly property color tone: root.signalLevel === 1 ? root.colorLow : Kirigami.Theme.textColor
+    readonly property color tone: root.signalLevel === 1 ? root.colorLow : root.uiColor
     // where the line "stands": the baseline of the dBm text, or the foot of the bars
     readonly property real lineBottom: dbm.visible ? dbm.y + dbm.baselineOffset : bars.y + bars.height
     visible: root.signalLevel > 0
@@ -29,9 +29,9 @@ RowLayout {
     PC3.Label {
         id: dbm
         visible: root.signalStyle !== 0
-        text: i18n("%1 dBm", root.signalDbm)
+        text: root.tr("%1 dBm", root.signalDbm)
         font.pixelSize: indicator.pixelSize
         font.features: { "tnum": 1 }
-        color: root.signalStyle === 2 ? indicator.tone : Kirigami.Theme.disabledTextColor
+        color: root.signalStyle === 2 || root.signalLevel === 1 ? indicator.tone : root.uiSecondary
     }
 }

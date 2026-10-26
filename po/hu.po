@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Egyéni"
+
+msgid "Controller LED (default)"
+msgstr "Kontroller LED (alapértelmezett)"
+
+msgid "Monochrome"
+msgstr "Egyszínű"
+
+msgid "Warm"
+msgstr "Meleg"
+
+msgid "Night"
+msgstr "Éjszaka"
+
+msgid "Low battery warning:"
+msgstr "Alacsony töltöttség figyelmeztetés:"
+
+msgid "Notify when:"
+msgstr "Értesítés, amikor:"
+
+msgid "the battery drops below the warning level"
+msgstr "az akkumulátor a figyelmeztetési szint alá esik"
+
+msgid "the battery is fully charged"
+msgstr "az akkumulátor teljesen feltöltődött"
+
+msgid "the signal gets weak (puck)"
+msgstr "a jel gyengül (puck)"
+
+msgid "the controller disconnects"
+msgstr "a kontroller lecsatlakozik"
+
+msgid "Appearance"
+msgstr "Megjelenés"
+
+msgid "Preset:"
+msgstr "Sablon:"
+
+msgid "Apply"
+msgstr "Alkalmaz"
+
+msgid "Reset appearance to defaults"
+msgstr "Alapértelmezett megjelenés visszaállítása"
+
+msgid "Card background:"
+msgstr "Kártya háttere:"
+
+msgid "Dark"
+msgstr "Sötét"
+
+msgid "Glass"
+msgstr "Üveg"
+
+msgid "None (shadow only)"
+msgstr "Nincs (csak árnyék)"
+
+msgid "Background colour:"
+msgstr "Háttérszín:"
+
+msgid "Glass colour:"
+msgstr "Üveg színe:"
+
+msgid "Background opacity:"
+msgstr "Háttér átlátszatlansága:"
+
+msgid "Percentage opacity:"
+msgstr "Százalék átlátszatlansága:"
+
+msgid "Controller outline:"
+msgstr "Kontroller körvonala:"
+
+msgid "Controller fill:"
+msgstr "Kontroller kitöltése:"
+
+msgid "Text and icons:"
+msgstr "Szöveg és ikonok:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Szöveg és ikonok: a %, az állapot, a jel, a kapcsolat ikonja és az akkumulátor körvonala. Az akkumulátor kitöltése és az állapotjel megtartja a kontroller LED-színeit, az alacsony töltöttség / gyenge jel piros marad. Nincs bejelölve: alapértelmezett megjelenés."
+
+msgid "Status colours"
+msgstr "Állapotszínek"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C kábel:"
+
+msgid "Off, on the dock:"
+msgstr "Kikapcsolva, a dokkon:"
+
+msgid "Low battery:"
+msgstr "Alacsony töltöttség:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Nincs bejelölve: maga a kontroller LED-jének színei."
+
+msgid "Signal strength:"
+msgstr "Jelerősség:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Megjelenítés a widgeten (asztali kártya)"
+
+msgid "Show in the panel / system tray"
+msgstr "Megjelenítés a panelen / rendszertálcán"
+
+msgid "Show as:"
+msgstr "Megjelenítés módja:"
+
+msgid "Bars"
+msgstr "Sávok"
+
+msgid "Bars and dBm"
+msgstr "Sávok és dBm"
+
+msgid "dBm only"
+msgstr "Csak dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Csak a vezeték nélküli puckhoz (a Steam Machine beépítettjéhez is). Bluetooth vagy kábel esetén nincs jelmérés. A rendszertálcán minden elem kis, rögzített négyzetet kap, ezért ott egy kis jelző látszik az ikonon; a % és a dBm az eszköztippben van. Közvetlenül a panelre helyezve a widget az ikon mellett mutatja őket."
+
+msgid "Connected"
+msgstr "Csatlakoztatva"
+
+msgid "Charging"
+msgstr "Töltés"
+
+msgid "via internal puck"
+msgstr "a beépített puckon keresztül"
+
+msgid "No signal"
+msgstr "Nincs jel"
+
+msgid "Weak"
+msgstr "Gyenge"
+
+msgid "Fair"
+msgstr "Közepes"
+
+msgid "Good"
+msgstr "Jó"
+
+msgid "Excellent"
+msgstr "Kiváló"
+
+msgid "%1 min"
+msgstr "%1 perc"
+
+msgid "%1 h"
+msgstr "%1 óra"
+
+msgid "%1 h %2 min"
+msgstr "%1 óra %2 perc"
+
+msgid "Connected · internal puck"
+msgstr "Csatlakoztatva · beépített puck"
+
+msgid "Low — plug in"
+msgstr "Alacsony töltöttség — csatlakoztasd"
+
+msgid "Charging · on puck"
+msgstr "Töltés · a puckon"
+
+msgid "Charging · USB-C"
+msgstr "Töltés · USB-C"
+
+msgid "Charging · cable"
+msgstr "Töltés · kábel"
+
+msgid "Disconnected"
+msgstr "Leválasztva"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C kábel"
+
+msgid "Docked on puck"
+msgstr "A puck dokkján"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Beépített puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Vezeték nélkül (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Jel: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Jel: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Jel: %1 dBm"
+
+msgid "full in %1"
+msgstr "teljes %1 múlva"
+
+msgid "%1 left"
+msgstr "még %1"
+
+msgid "Find controller"
+msgstr "Kontroller keresése"
+
+msgid "Steam Controller battery low"
+msgstr "A Steam Controller töltöttsége alacsony"
+
+msgid "%1% left — plug it in"
+msgstr "%1% maradt — csatlakoztasd"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller feltöltve"
+
+msgid "The battery is full."
+msgstr "Az akkumulátor tele van."
+
+msgid "Weak controller signal"
+msgstr "Gyenge kontrollerjel"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "A kontroller messze van a vevőtől, és lecsatlakozhat."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller leválasztva"
+
+msgid "The controller is no longer connected."
+msgstr "A kontroller már nincs csatlakoztatva."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 óra"
+
+msgid "−%1 min"
+msgstr "−%1 perc"
+
+msgid "now"
+msgstr "most"
+
+msgid "Connected · internal chongle"
+msgstr "Csatlakoztatva · beépített chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Csatlakoztatva · beépített dongle"
+
+msgid "Charging · on chongle"
+msgstr "Töltés · a chongle-on"
+
+msgid "Charging · on dongle"
+msgstr "Töltés · a dongle-on"
+
+msgid "Docked on chongle"
+msgstr "A chongle dokkján"
+
+msgid "Docked on dongle"
+msgstr "A dongle dokkján"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Beépített chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Beépített dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Vezeték nélkül (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Vezeték nélkül (dongle)"
+
+msgid "via internal chongle"
+msgstr "a beépített chongle-on keresztül"
+
+msgid "via internal dongle"
+msgstr "a beépített dongle-on keresztül"
+
+msgid "Names"
+msgstr "Nevek"
+
+msgid "Puck name:"
+msgstr "A puck neve:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "A Steam Machine neve legyen „GabeCube”"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: a puck belső neve a Valve-nál. Dongle: sok játékos így hívja. GabeCube: a rajongók beceneve a Steam Machine-re."
+
+msgid "Language:"
+msgstr "Nyelv:"
+
+msgid "System language"
+msgstr "Rendszer nyelve"
+
+msgid "Charged"
+msgstr "Feltöltve"
+
+msgid "Fully charged"
+msgstr "Teljesen feltöltve"
+
+msgid "Find controller sound:"
+msgstr "Hang a kontroller keresésekor:"
+
+msgid "Vibration only"
+msgstr "Csak rezgés"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Madárka"
+
+msgid "Ringing"
+msgstr "Csörgés"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Gyors riasztás"
+
+msgid "Play"
+msgstr "Lejátszás"
+
+msgid "via puck"
+msgstr "a puckon keresztül"
+
+msgid "via chongle"
+msgstr "a chongle-on keresztül"
+
+msgid "via dongle"
+msgstr "a dongle-on keresztül"
+
+msgid "via Bluetooth"
+msgstr "Bluetooth-on keresztül"
+
+msgid "via USB-C"
+msgstr "USB-C-n keresztül"
+
+msgid "Details:"
+msgstr "Részletek:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Mutassa, hogyan csatlakozik vagy töltődik (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Rendszertálca:"
+
+msgid "Show an icon in the system tray"
+msgstr "Ikon megjelenítése a rendszertálcán"
+
+msgid "Settings:"
+msgstr "Beállítások:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Ezek a beállítások legyenek az asztalon és a tálcán is"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Mindkettő azonnal érvényes. A másolás: ennek az oldalnak minden beállítása a widget minden példányára kerül, az asztali kártyára és a tálcaikonra."
+
+msgid "Connected · internal gizmo"
+msgstr "Csatlakoztatva · beépített szappan"
+
+msgid "Charging · on the gizmo"
+msgstr "Töltés · a szappanon"
+
+msgid "Docked on the gizmo"
+msgstr "A szappan dokkján"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Beépített szappan (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Vezeték nélkül (szappan)"
+
+msgid "via the internal gizmo"
+msgstr "a beépített szappanon keresztül"
+
+msgid "via the gizmo"
+msgstr "a szappanon keresztül"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Csatlakoztatva · beépített hogyishívják"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Töltés · a hogyishívjákon"
+
+msgid "Docked on the whatchamacallit"
+msgstr "A hogyishívják dokkján"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Beépített hogyishívják (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Vezeték nélkül (hogyishívják)"
+
+msgid "via the internal whatchamacallit"
+msgstr "a beépített hogyishívjákon keresztül"
+
+msgid "via the whatchamacallit"
+msgstr "a hogyishívjákon keresztül"
+
+msgid "Gizmo"
+msgstr "Szappan"
+
+msgid "Whatchamacallit"
+msgstr "Hogyishívják"
+

@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Özel"
+
+msgid "Controller LED (default)"
+msgstr "Kumanda LED'i (varsayılan)"
+
+msgid "Monochrome"
+msgstr "Tek renkli"
+
+msgid "Warm"
+msgstr "Sıcak"
+
+msgid "Night"
+msgstr "Gece"
+
+msgid "Low battery warning:"
+msgstr "Düşük pil uyarısı:"
+
+msgid "Notify when:"
+msgstr "Şu durumda bildir:"
+
+msgid "the battery drops below the warning level"
+msgstr "pil uyarı seviyesinin altına düştüğünde"
+
+msgid "the battery is fully charged"
+msgstr "pil tamamen dolduğunda"
+
+msgid "the signal gets weak (puck)"
+msgstr "sinyal zayıfladığında (aparat)"
+
+msgid "the controller disconnects"
+msgstr "kumandanın bağlantısı kesildiğinde"
+
+msgid "Appearance"
+msgstr "Görünüm"
+
+msgid "Preset:"
+msgstr "Hazır ayar:"
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "Reset appearance to defaults"
+msgstr "Varsayılan görünüme sıfırla"
+
+msgid "Card background:"
+msgstr "Kart arka planı:"
+
+msgid "Dark"
+msgstr "Koyu"
+
+msgid "Glass"
+msgstr "Cam"
+
+msgid "None (shadow only)"
+msgstr "Yok (yalnızca gölge)"
+
+msgid "Background colour:"
+msgstr "Arka plan rengi:"
+
+msgid "Glass colour:"
+msgstr "Cam rengi:"
+
+msgid "Background opacity:"
+msgstr "Arka plan opaklığı:"
+
+msgid "Percentage opacity:"
+msgstr "Yüzde opaklığı:"
+
+msgid "Controller outline:"
+msgstr "Kumanda çerçevesi:"
+
+msgid "Controller fill:"
+msgstr "Kumanda dolgusu:"
+
+msgid "Text and icons:"
+msgstr "Metin ve simgeler:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Metin ve simgeler: %, durum, sinyal, bağlantı simgesi ve pil çerçevesi. Pil dolgusu ve durum işareti kumandanın LED renklerini korur; düşük pil / zayıf sinyal kırmızı kalır. İşaretsiz: varsayılan görünüm."
+
+msgid "Status colours"
+msgstr "Durum renkleri"
+
+msgid "Puck:"
+msgstr "Aparat:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C kablosu:"
+
+msgid "Off, on the dock:"
+msgstr "Kapalı, yuvada:"
+
+msgid "Low battery:"
+msgstr "Düşük pil:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "İşaretsiz: kumandanın kendi LED'inin renkleri."
+
+msgid "Signal strength:"
+msgstr "Sinyal gücü:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Widget'ta göster (masaüstü kartı)"
+
+msgid "Show in the panel / system tray"
+msgstr "Panelde / sistem tepsisinde göster"
+
+msgid "Show as:"
+msgstr "Gösterim:"
+
+msgid "Bars"
+msgstr "Çubuklar"
+
+msgid "Bars and dBm"
+msgstr "Çubuklar ve dBm"
+
+msgid "dBm only"
+msgstr "Yalnızca dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Yalnızca kablosuz aparat için (Steam Machine'in dahili olanı da). Bluetooth veya kabloda sinyal ölçümü yoktur. Sistem tepsisinde her öğe küçük, sabit bir kare alır; bu yüzden orada simgenin üzerinde küçük bir gösterge vardır, % ve dBm araç ipucundadır. Doğrudan bir panele yerleştirildiğinde widget bunları simgenin yanında gösterir."
+
+msgid "Connected"
+msgstr "Bağlı"
+
+msgid "Charging"
+msgstr "Şarj oluyor"
+
+msgid "via internal puck"
+msgstr "dahili aparat üzerinden"
+
+msgid "No signal"
+msgstr "Sinyal yok"
+
+msgid "Weak"
+msgstr "Zayıf"
+
+msgid "Fair"
+msgstr "Orta"
+
+msgid "Good"
+msgstr "İyi"
+
+msgid "Excellent"
+msgstr "Mükemmel"
+
+msgid "%1 min"
+msgstr "%1 dk"
+
+msgid "%1 h"
+msgstr "%1 sa"
+
+msgid "%1 h %2 min"
+msgstr "%1 sa %2 dk"
+
+msgid "Connected · internal puck"
+msgstr "Bağlı · dahili aparat"
+
+msgid "Low — plug in"
+msgstr "Pil düşük — takın"
+
+msgid "Charging · on puck"
+msgstr "Şarj oluyor · aparatta"
+
+msgid "Charging · USB-C"
+msgstr "Şarj oluyor · USB-C"
+
+msgid "Charging · cable"
+msgstr "Şarj oluyor · kablo"
+
+msgid "Disconnected"
+msgstr "Bağlı değil"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C kablosu"
+
+msgid "Docked on puck"
+msgstr "Aparat yuvasında"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Dahili aparat (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Kablosuz (aparat)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Sinyal: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Sinyal: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Sinyal: %1 dBm"
+
+msgid "full in %1"
+msgstr "%1 içinde dolacak"
+
+msgid "%1 left"
+msgstr "%1 kaldı"
+
+msgid "Find controller"
+msgstr "Kumandayı bul"
+
+msgid "Steam Controller battery low"
+msgstr "Steam Controller pili düşük"
+
+msgid "%1% left — plug it in"
+msgstr "%%1 kaldı — şarja takın"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller şarj oldu"
+
+msgid "The battery is full."
+msgstr "Pil dolu."
+
+msgid "Weak controller signal"
+msgstr "Zayıf kumanda sinyali"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Kumanda alıcıdan uzakta ve bağlantısı kesilebilir."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller bağlantısı kesildi"
+
+msgid "The controller is no longer connected."
+msgstr "Kumanda artık bağlı değil."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 sa"
+
+msgid "−%1 min"
+msgstr "−%1 dk"
+
+msgid "now"
+msgstr "şimdi"
+
+msgid "Connected · internal chongle"
+msgstr "Bağlı · dahili chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Bağlı · dahili dongle"
+
+msgid "Charging · on chongle"
+msgstr "Şarj oluyor · chongle'da"
+
+msgid "Charging · on dongle"
+msgstr "Şarj oluyor · dongle'da"
+
+msgid "Docked on chongle"
+msgstr "Chongle yuvasında"
+
+msgid "Docked on dongle"
+msgstr "Dongle yuvasında"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Dahili chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Dahili dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Kablosuz (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Kablosuz (dongle)"
+
+msgid "via internal chongle"
+msgstr "dahili chongle üzerinden"
+
+msgid "via internal dongle"
+msgstr "dahili dongle üzerinden"
+
+msgid "Names"
+msgstr "Adlar"
+
+msgid "Puck name:"
+msgstr "Aparatın adı:"
+
+msgid "Puck"
+msgstr "Aparat"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Steam Machine'e “GabeCube” de"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: aparatın Valve içindeki adı. Dongle: birçok oyuncunun ona verdiği ad. GabeCube: hayranların Steam Machine'e taktığı lakap."
+
+msgid "Language:"
+msgstr "Dil:"
+
+msgid "System language"
+msgstr "Sistem dili"
+
+msgid "Charged"
+msgstr "Şarj oldu"
+
+msgid "Fully charged"
+msgstr "Tamamen şarj oldu"
+
+msgid "Find controller sound:"
+msgstr "Kumandayı bulma sesi:"
+
+msgid "Vibration only"
+msgstr "Yalnızca titreşim"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Kuşcuk"
+
+msgid "Ringing"
+msgstr "Zil"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Hızlı alarm"
+
+msgid "Play"
+msgstr "Çal"
+
+msgid "via puck"
+msgstr "aparat üzerinden"
+
+msgid "via chongle"
+msgstr "chongle üzerinden"
+
+msgid "via dongle"
+msgstr "dongle üzerinden"
+
+msgid "via Bluetooth"
+msgstr "Bluetooth üzerinden"
+
+msgid "via USB-C"
+msgstr "USB-C üzerinden"
+
+msgid "Details:"
+msgstr "Ayrıntılar:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Nasıl bağlı olduğunu veya şarj olduğunu göster (aparat, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Sistem tepsisi:"
+
+msgid "Show an icon in the system tray"
+msgstr "Sistem tepsisinde bir simge göster"
+
+msgid "Settings:"
+msgstr "Ayarlar:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Bu ayarları masaüstünde ve tepside kullan"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "İkisi de hemen geçerli olur. Kopyalama: bu sayfadaki her şey widget'ın her kopyasına, masaüstü kartına ve tepsi simgesine gider."
+
+msgid "Connected · internal gizmo"
+msgstr "Bağlı · dahili sabun"
+
+msgid "Charging · on the gizmo"
+msgstr "Şarj oluyor · sabunda"
+
+msgid "Docked on the gizmo"
+msgstr "Sabunlukta"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Dahili sabun (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Kablosuz (sabun)"
+
+msgid "via the internal gizmo"
+msgstr "dahili sabun üzerinden"
+
+msgid "via the gizmo"
+msgstr "sabun üzerinden"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Bağlı · dahili şey"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Şarj oluyor · şeyde"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Şeyin yuvasında"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Dahili şey (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Kablosuz (şey)"
+
+msgid "via the internal whatchamacallit"
+msgstr "dahili şey üzerinden"
+
+msgid "via the whatchamacallit"
+msgstr "şey üzerinden"
+
+msgid "Gizmo"
+msgstr "Sabun"
+
+msgid "Whatchamacallit"
+msgstr "Şey"
+

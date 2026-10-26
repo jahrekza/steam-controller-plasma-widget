@@ -1,7 +1,7 @@
 import QtQuick
 import org.kde.kirigami as Kirigami
 
-// Controller illustration: dark body + line art tinted with the configured colour.
+// Controller illustration: body and line art, each tinted with its configured colour.
 // Double-click while the pad is connected: it shakes, the real pad rumbles, and a
 // sound plays (easter egg).
 Item {
@@ -14,12 +14,12 @@ Item {
         anchors.fill: parent
         transformOrigin: Item.Center
 
-        Image {
+        Kirigami.Icon {
             anchors.fill: parent
+            roundToIconSize: false
             source: Qt.resolvedUrl("../images/steam-controller-body.svg")
-            sourceSize: Qt.size(width, height)
-            fillMode: Image.PreserveAspectFit
-            smooth: true
+            isMask: true
+            color: root.artFill
         }
         Kirigami.Icon {
             anchors.fill: parent

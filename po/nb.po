@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Egendefinert"
+
+msgid "Controller LED (default)"
+msgstr "Kontrollerens LED (standard)"
+
+msgid "Monochrome"
+msgstr "Monokrom"
+
+msgid "Warm"
+msgstr "Varm"
+
+msgid "Night"
+msgstr "Natt"
+
+msgid "Low battery warning:"
+msgstr "Varsel om lavt batteri:"
+
+msgid "Notify when:"
+msgstr "Varsle når:"
+
+msgid "the battery drops below the warning level"
+msgstr "batteriet faller under varselsnivået"
+
+msgid "the battery is fully charged"
+msgstr "batteriet er fulladet"
+
+msgid "the signal gets weak (puck)"
+msgstr "signalet blir svakt (puck)"
+
+msgid "the controller disconnects"
+msgstr "kontrolleren kobles fra"
+
+msgid "Appearance"
+msgstr "Utseende"
+
+msgid "Preset:"
+msgstr "Forhåndsvalg:"
+
+msgid "Apply"
+msgstr "Bruk"
+
+msgid "Reset appearance to defaults"
+msgstr "Tilbakestill til standardutseende"
+
+msgid "Card background:"
+msgstr "Kortbakgrunn:"
+
+msgid "Dark"
+msgstr "Mørk"
+
+msgid "Glass"
+msgstr "Glass"
+
+msgid "None (shadow only)"
+msgstr "Ingen (bare skygge)"
+
+msgid "Background colour:"
+msgstr "Bakgrunnsfarge:"
+
+msgid "Glass colour:"
+msgstr "Glassfarge:"
+
+msgid "Background opacity:"
+msgstr "Bakgrunnens dekkevne:"
+
+msgid "Percentage opacity:"
+msgstr "Prosentvisningens dekkevne:"
+
+msgid "Controller outline:"
+msgstr "Kontrollerens omriss:"
+
+msgid "Controller fill:"
+msgstr "Kontrollerens fyll:"
+
+msgid "Text and icons:"
+msgstr "Tekst og ikoner:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Tekst og ikoner: %, status, signal, tilkoblingsikon og batteriomriss. Batterifyllet og statusmerket beholder kontrollerens LED-farger, og lavt batteri / svakt signal forblir røde. Ikke avkrysset: standardutseende."
+
+msgid "Status colours"
+msgstr "Statusfarger"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C-kabel:"
+
+msgid "Off, on the dock:"
+msgstr "Av, i dokken:"
+
+msgid "Low battery:"
+msgstr "Lavt batteri:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Ikke avkrysset: fargene fra kontrollerens egen LED."
+
+msgid "Signal strength:"
+msgstr "Signalstyrke:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Vis i skjermelementet (skrivebordskort)"
+
+msgid "Show in the panel / system tray"
+msgstr "Vis i panelet / systemkurven"
+
+msgid "Show as:"
+msgstr "Vis som:"
+
+msgid "Bars"
+msgstr "Streker"
+
+msgid "Bars and dBm"
+msgstr "Streker og dBm"
+
+msgid "dBm only"
+msgstr "Bare dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Bare for den trådløse pucken (også den i Steam Machine). Via Bluetooth eller kabel finnes ingen signalmåling. I systemkurven får hvert element en liten fast rute, så der er det en liten måler på ikonet; % og dBm står i verktøytipset. Plassert direkte i et panel viser skjermelementet dem ved siden av ikonet."
+
+msgid "Connected"
+msgstr "Tilkoblet"
+
+msgid "Charging"
+msgstr "Lader"
+
+msgid "via internal puck"
+msgstr "via innebygd puck"
+
+msgid "No signal"
+msgstr "Intet signal"
+
+msgid "Weak"
+msgstr "Svakt"
+
+msgid "Fair"
+msgstr "Middels"
+
+msgid "Good"
+msgstr "Godt"
+
+msgid "Excellent"
+msgstr "Utmerket"
+
+msgid "%1 min"
+msgstr "%1 min"
+
+msgid "%1 h"
+msgstr "%1 t"
+
+msgid "%1 h %2 min"
+msgstr "%1 t %2 min"
+
+msgid "Connected · internal puck"
+msgstr "Tilkoblet · innebygd puck"
+
+msgid "Low — plug in"
+msgstr "Lavt batteri — koble til"
+
+msgid "Charging · on puck"
+msgstr "Lader · i pucken"
+
+msgid "Charging · USB-C"
+msgstr "Lader · USB-C"
+
+msgid "Charging · cable"
+msgstr "Lader · kabel"
+
+msgid "Disconnected"
+msgstr "Frakoblet"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C-kabel"
+
+msgid "Docked on puck"
+msgstr "I puckens dokk"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Innebygd puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Trådløst (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signal: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signal: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signal: %1 dBm"
+
+msgid "full in %1"
+msgstr "fullt om %1"
+
+msgid "%1 left"
+msgstr "%1 igjen"
+
+msgid "Find controller"
+msgstr "Finn kontrolleren"
+
+msgid "Steam Controller battery low"
+msgstr "Lavt batteri på Steam Controller"
+
+msgid "%1% left — plug it in"
+msgstr "%1 % igjen — koble den til"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller ladet"
+
+msgid "The battery is full."
+msgstr "Batteriet er fullt."
+
+msgid "Weak controller signal"
+msgstr "Svakt kontrollersignal"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Kontrolleren er langt fra mottakeren og kan bli frakoblet."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller frakoblet"
+
+msgid "The controller is no longer connected."
+msgstr "Kontrolleren er ikke lenger tilkoblet."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 t"
+
+msgid "−%1 min"
+msgstr "−%1 min"
+
+msgid "now"
+msgstr "nå"
+
+msgid "Connected · internal chongle"
+msgstr "Tilkoblet · innebygd chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Tilkoblet · innebygd dongle"
+
+msgid "Charging · on chongle"
+msgstr "Lader · i chonglen"
+
+msgid "Charging · on dongle"
+msgstr "Lader · i donglen"
+
+msgid "Docked on chongle"
+msgstr "I chonglens dokk"
+
+msgid "Docked on dongle"
+msgstr "I donglens dokk"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Innebygd chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Innebygd dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Trådløst (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Trådløst (dongle)"
+
+msgid "via internal chongle"
+msgstr "via innebygd chongle"
+
+msgid "via internal dongle"
+msgstr "via innebygd dongle"
+
+msgid "Names"
+msgstr "Navn"
+
+msgid "Puck name:"
+msgstr "Navn på pucken:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Kall Steam Machine «GabeCube»"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: puckens interne navn hos Valve. Dongle: det kaller mange spillere den. GabeCube: fansens kallenavn på Steam Machine."
+
+msgid "Language:"
+msgstr "Språk:"
+
+msgid "System language"
+msgstr "Systemspråk"
+
+msgid "Charged"
+msgstr "Ladet"
+
+msgid "Fully charged"
+msgstr "Fulladet"
+
+msgid "Find controller sound:"
+msgstr "Lyd ved søking:"
+
+msgid "Vibration only"
+msgstr "Bare vibrasjon"
+
+msgid "Tick-tock"
+msgstr "Tikk-takk"
+
+msgid "Little bird"
+msgstr "Liten fugl"
+
+msgid "Ringing"
+msgstr "Ringing"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Rask alarm"
+
+msgid "Play"
+msgstr "Spill av"
+
+msgid "via puck"
+msgstr "via puck"
+
+msgid "via chongle"
+msgstr "via chongle"
+
+msgid "via dongle"
+msgstr "via dongle"
+
+msgid "via Bluetooth"
+msgstr "via Bluetooth"
+
+msgid "via USB-C"
+msgstr "via USB-C"
+
+msgid "Details:"
+msgstr "Detaljer:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Vis hvordan den er tilkoblet eller lader (via puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Systemkurv:"
+
+msgid "Show an icon in the system tray"
+msgstr "Vis et ikon i systemkurven"
+
+msgid "Settings:"
+msgstr "Innstillinger:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Bruk disse innstillingene på skrivebordet og i systemkurven"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Begge virker med en gang. Kopieringen: alt på denne siden går til hver kopi av elementet, kortet på skrivebordet og ikonet i systemkurven."
+
+msgid "Connected · internal gizmo"
+msgstr "Tilkoblet · innebygd såpestykke"
+
+msgid "Charging · on the gizmo"
+msgstr "Lader · på såpestykket"
+
+msgid "Docked on the gizmo"
+msgstr "I såpestykkets dokk"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Innebygd såpestykke (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Trådløst (såpestykke)"
+
+msgid "via the internal gizmo"
+msgstr "via innebygd såpestykke"
+
+msgid "via the gizmo"
+msgstr "via såpestykket"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Tilkoblet · innebygd dippedutt"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Lader · i dippedutten"
+
+msgid "Docked on the whatchamacallit"
+msgstr "I dippeduttens dokk"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Innebygd dippedutt (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Trådløst (dippedutt)"
+
+msgid "via the internal whatchamacallit"
+msgstr "via innebygd dippedutt"
+
+msgid "via the whatchamacallit"
+msgstr "via dippedutten"
+
+msgid "Gizmo"
+msgstr "Såpestykke"
+
+msgid "Whatchamacallit"
+msgstr "Dippedutt"
+

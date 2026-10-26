@@ -1,0 +1,609 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the steam-controller-battery package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 18:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/ColorChoice.qml:15
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:289
+msgid "Custom"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:146
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:146
+msgid "Connected"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:147
+msgid "Charged"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:147
+msgid "Charging"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:163
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:168
+msgid "via puck"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:163
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:168
+msgid "via chongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:163
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:168
+msgid "via dongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:163
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:168
+msgid "via the gizmo"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:163
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:168
+msgid "via the whatchamacallit"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:164
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:166
+msgid "via USB-C"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:165
+msgid "via Bluetooth"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:167
+msgid "via internal puck"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:167
+msgid "via internal chongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:167
+msgid "via internal dongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:167
+msgid "via the internal gizmo"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:167
+msgid "via the internal whatchamacallit"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/DesktopCard.qml:310
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:249
+msgid "Find controller"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/SignalIndicator.qml:32
+msgid "%1 dBm"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/ToolTipContent.qml:70
+msgid "−%1 h"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/ToolTipContent.qml:70
+msgid "−%1 min"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/ToolTipContent.qml:74
+msgid "now"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:18
+msgid "Vibration only"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:18
+msgid "Tick-tock"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:18
+msgid "Little bird"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:19
+msgid "Ringing"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:19
+msgid "SOS"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:19
+msgid "Fast alarm"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:86
+msgid "System language"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:148
+msgid "Controller LED (default)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:149
+msgid "Monochrome"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:151
+msgid "Warm"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:155
+msgid "Night"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:174
+msgid "Language:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:180
+msgid "System tray:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:181
+msgid "Show an icon in the system tray"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:187
+msgid "Settings:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:188
+msgid "Use these settings on the desktop and in the tray"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:193
+msgid ""
+"Both take effect right away. The copy: everything on this page goes to every "
+"copy of this widget, the desktop card and the tray icon."
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:202
+msgid "Low battery warning:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:209
+msgid "Notify when:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:210
+msgid "the battery drops below the warning level"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:214
+msgid "the battery is fully charged"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:218
+msgid "the signal gets weak (puck)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:222
+msgid "the controller disconnects"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:225
+msgid "Find controller sound:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:236
+msgid "Play"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:242
+msgid "Appearance"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:244
+msgid "Preset:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:250
+msgid "Apply"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:256
+msgid "Reset appearance to defaults"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:263
+msgid "Details:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:264
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:270
+msgid "Card background:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:271
+msgid "Dark"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:271
+msgid "Glass"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:271
+msgid "None (shadow only)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:274
+msgid "Background colour:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:280
+msgid "Glass colour:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:286
+msgid "Background opacity:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:305
+msgid "Percentage opacity:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:315
+msgid "Controller outline:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:321
+msgid "Controller fill:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:327
+msgid "Text and icons:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:333
+msgid ""
+"Text and icons: the %, status, signal, connection icon and battery outline. "
+"The battery fill and status mark keep the controller's LED colours, and low "
+"battery / weak signal stay red. Unticked: the default look."
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:340
+msgid "Status colours"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:342
+msgid "Puck:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:347
+msgid "Bluetooth:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:352
+msgid "USB-C cable:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:357
+msgid "Off, on the dock:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:362
+msgid "Low battery:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:367
+msgid "Unticked: the colours of the controller's own LED."
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:375
+msgid "Signal strength:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:376
+msgid "Show on the widget (desktop card)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:380
+msgid "Show in the panel / system tray"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:386
+msgid "Show as:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:387
+msgid "Bars"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:387
+msgid "Bars and dBm"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:387
+msgid "dBm only"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:390
+msgid ""
+"Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a "
+"cable there is no signal reading. In the system tray every entry gets a "
+"small fixed square, so there it's a tiny meter on the icon; % and dBm are in "
+"the tooltip. Placed directly on a panel, the widget shows them next to the "
+"icon."
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:397
+msgid "Names"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:402
+msgid "Puck name:"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:403
+msgid "Puck"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:403
+msgid "Chongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:403
+msgid "Dongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:403
+msgid "Gizmo"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:403
+msgid "Whatchamacallit"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:407
+msgid "Call the Steam Machine “GabeCube”"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/configGeneral.qml:410
+msgid ""
+"Chongle: what Valve called the puck internally. Dongle: what many players "
+"call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:67
+msgid "No signal"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:67
+msgid "Weak"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:67
+msgid "Fair"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:67
+msgid "Good"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:67
+msgid "Excellent"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:137
+msgid "%1 min"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:139
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:140
+msgid "%1 h"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:140
+msgid "%1 h %2 min"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:145
+msgid "Connected · internal puck"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:145
+msgid "Connected · internal chongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:145
+msgid "Connected · internal dongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:145
+msgid "Connected · internal gizmo"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:145
+msgid "Connected · internal whatchamacallit"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:147
+msgid "Low — plug in"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:148
+msgid "Fully charged"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:149
+msgid "Charging · on puck"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:149
+msgid "Charging · on chongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:149
+msgid "Charging · on dongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:149
+msgid "Charging · on the gizmo"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:149
+msgid "Charging · on the whatchamacallit"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:150
+msgid "Charging · USB-C"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:151
+msgid "Charging · cable"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:153
+msgid "Disconnected"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:158
+msgid "Bluetooth"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:159
+msgid "USB-C cable"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:160
+msgid "Docked on puck"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:160
+msgid "Docked on chongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:160
+msgid "Docked on dongle"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:160
+msgid "Docked on the gizmo"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:160
+msgid "Docked on the whatchamacallit"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:161
+msgid "Internal puck (Steam Machine)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:161
+msgid "Internal chongle (Steam Machine)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:161
+msgid "Internal dongle (Steam Machine)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:161
+msgid "Internal gizmo (Steam Machine)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:161
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:162
+msgid "Wireless (puck)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:162
+msgid "Wireless (chongle)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:162
+msgid "Wireless (dongle)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:162
+msgid "Wireless (gizmo)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:162
+msgid "Wireless (whatchamacallit)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:181
+msgid "Steam Controller"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:184
+msgid "Signal: %1"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:185
+msgid "Signal: %1 (%2 dBm)"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:186
+msgid "Signal: %1 dBm"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:189
+msgid "full in %1"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:189
+msgid "%1 left"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:363
+msgid "Steam Controller battery low"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:363
+#, javascript-format
+msgid "%1% left — plug it in"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:373
+msgid "Steam Controller charged"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:373
+msgid "The battery is full."
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:385
+msgid "Weak controller signal"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:385
+msgid "The controller is far from the receiver and may disconnect."
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:401
+msgid "Steam Controller disconnected"
+msgstr ""
+
+#: /var/mnt/dashboard/Projekty/steam-controller-plasma-widget/plasmoid/com.jahrek.steamcontroller/contents/ui/main.qml:401
+msgid "The controller is no longer connected."
+msgstr ""

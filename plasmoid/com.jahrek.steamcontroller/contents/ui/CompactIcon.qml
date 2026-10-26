@@ -84,7 +84,7 @@ MouseArea {
                 height: Math.round(glyph.h * 0.55)
                 barWidth: Math.max(1.5, glyph.h * 0.11)
                 level: root.signalLevel
-                color: root.signalLevel === 1 ? root.colorLow : Kirigami.Theme.textColor
+                color: root.signalLevel === 1 ? root.colorLow : root.uiColor
             }
 
             // Badge: charging bolt, or the Bluetooth logo
@@ -104,7 +104,7 @@ MouseArea {
             visible: compact.showText
             text: root.pctText()
             font.features: { "tnum": 1 }
-            color: root.mode === "low" ? root.colorLow : Kirigami.Theme.textColor
+            color: root.mode === "low" ? root.colorLow : root.uiColor
         }
         SignalIndicator {
             visible: root.showSignalTray && root.signalLevel > 0 && !compact.vertical && !compact.inTray

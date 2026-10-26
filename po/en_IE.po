@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: see build.py\n"
+"Language-Team: none\n"
+"Language: en_IE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Connected · internal gizmo"
+msgstr "Connected · internal yoke"
+
+msgid "Charging · on the gizmo"
+msgstr "Charging · on the yoke"
+
+msgid "Docked on the gizmo"
+msgstr "Docked on the yoke"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Internal yoke (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Wireless (the yoke)"
+
+msgid "via the internal gizmo"
+msgstr "via the yoke inside"
+
+msgid "via the gizmo"
+msgstr "via the yoke"
+
+msgid "Gizmo"
+msgstr "The yoke"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Connected · yer man inside"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Charging · on yer man"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Docked on yer man"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Yer man inside (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Wireless (yer man)"
+
+msgid "via the internal whatchamacallit"
+msgstr "via yer man inside"
+
+msgid "via the whatchamacallit"
+msgstr "via yer man"
+
+msgid "Whatchamacallit"
+msgstr "Yer man"
+

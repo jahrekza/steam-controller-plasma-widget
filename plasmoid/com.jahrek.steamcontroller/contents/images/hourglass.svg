@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<!-- time estimate: a small hourglass. Drawn from scratch. -->
+<path d="M6 3 H18 M6 21 H18 M7 3 C7 9 11 10 12 12 C13 10 17 9 17 3 M7 21 C7 15 11 14 12 12 C13 14 17 15 17 21" fill="none" stroke="#fcfcfc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.5 19.5 H14.5 L12 16.5 Z" fill="#fcfcfc"/>
+</svg>

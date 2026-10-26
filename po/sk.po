@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Vlastné"
+
+msgid "Controller LED (default)"
+msgstr "LED ovládača (predvolené)"
+
+msgid "Monochrome"
+msgstr "Jednofarebné"
+
+msgid "Warm"
+msgstr "Teplé"
+
+msgid "Night"
+msgstr "Noc"
+
+msgid "Low battery warning:"
+msgstr "Upozornenie na slabú batériu:"
+
+msgid "Notify when:"
+msgstr "Upozorniť, keď:"
+
+msgid "the battery drops below the warning level"
+msgstr "batéria klesne pod úroveň upozornenia"
+
+msgid "the battery is fully charged"
+msgstr "je batéria úplne nabitá"
+
+msgid "the signal gets weak (puck)"
+msgstr "signál zoslabne (puk)"
+
+msgid "the controller disconnects"
+msgstr "sa ovládač odpojí"
+
+msgid "Appearance"
+msgstr "Vzhľad"
+
+msgid "Preset:"
+msgstr "Predvoľba:"
+
+msgid "Apply"
+msgstr "Použiť"
+
+msgid "Reset appearance to defaults"
+msgstr "Obnoviť predvolený vzhľad"
+
+msgid "Card background:"
+msgstr "Pozadie karty:"
+
+msgid "Dark"
+msgstr "Tmavé"
+
+msgid "Glass"
+msgstr "Sklo"
+
+msgid "None (shadow only)"
+msgstr "Žiadne (len tieň)"
+
+msgid "Background colour:"
+msgstr "Farba pozadia:"
+
+msgid "Glass colour:"
+msgstr "Farba skla:"
+
+msgid "Background opacity:"
+msgstr "Krytie pozadia:"
+
+msgid "Percentage opacity:"
+msgstr "Krytie percent:"
+
+msgid "Controller outline:"
+msgstr "Obrys ovládača:"
+
+msgid "Controller fill:"
+msgstr "Výplň ovládača:"
+
+msgid "Text and icons:"
+msgstr "Text a ikony:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Text a ikony: %, stav, signál, ikona pripojenia a obrys batérie. Výplň batérie a značka stavu si ponechávajú farby LED ovládača a slabá batéria / slabý signál zostávajú červené. Nezaškrtnuté: predvolený vzhľad."
+
+msgid "Status colours"
+msgstr "Farby stavu"
+
+msgid "Puck:"
+msgstr "Puk:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "Kábel USB-C:"
+
+msgid "Off, on the dock:"
+msgstr "Vypnutý, v doku:"
+
+msgid "Low battery:"
+msgstr "Slabá batéria:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Nezaškrtnuté: farby LED samotného ovládača."
+
+msgid "Signal strength:"
+msgstr "Sila signálu:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Zobraziť vo widgete (karta na ploche)"
+
+msgid "Show in the panel / system tray"
+msgstr "Zobraziť na paneli / v systémovej lište"
+
+msgid "Show as:"
+msgstr "Zobraziť ako:"
+
+msgid "Bars"
+msgstr "Čiarky"
+
+msgid "Bars and dBm"
+msgstr "Čiarky a dBm"
+
+msgid "dBm only"
+msgstr "Len dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Len pre bezdrôtový puk (aj ten v Steam Machine). Cez Bluetooth alebo kábel sa signál nemeria. V systémovej lište má každá položka malý pevný štvorec, takže tam je to malý ukazovateľ na ikone; % a dBm sú v bublinovom tipe. Umiestnený priamo na paneli ich widget ukazuje vedľa ikony."
+
+msgid "Connected"
+msgstr "Pripojené"
+
+msgid "Charging"
+msgstr "Nabíja sa"
+
+msgid "via internal puck"
+msgstr "cez vstavaný puk"
+
+msgid "No signal"
+msgstr "Žiadny signál"
+
+msgid "Weak"
+msgstr "Slabý"
+
+msgid "Fair"
+msgstr "Priemerný"
+
+msgid "Good"
+msgstr "Dobrý"
+
+msgid "Excellent"
+msgstr "Výborný"
+
+msgid "%1 min"
+msgstr "%1 min"
+
+msgid "%1 h"
+msgstr "%1 h"
+
+msgid "%1 h %2 min"
+msgstr "%1 h %2 min"
+
+msgid "Connected · internal puck"
+msgstr "Pripojené · vstavaný puk"
+
+msgid "Low — plug in"
+msgstr "Slabá batéria — pripojte"
+
+msgid "Charging · on puck"
+msgstr "Nabíja sa · na puku"
+
+msgid "Charging · USB-C"
+msgstr "Nabíja sa · USB-C"
+
+msgid "Charging · cable"
+msgstr "Nabíja sa · kábel"
+
+msgid "Disconnected"
+msgstr "Odpojené"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "Kábel USB-C"
+
+msgid "Docked on puck"
+msgstr "V doku puku"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Vstavaný puk (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Bezdrôtovo (puk)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signál: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signál: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signál: %1 dBm"
+
+msgid "full in %1"
+msgstr "plne o %1"
+
+msgid "%1 left"
+msgstr "zostáva %1"
+
+msgid "Find controller"
+msgstr "Nájsť ovládač"
+
+msgid "Steam Controller battery low"
+msgstr "Slabá batéria Steam Controllera"
+
+msgid "%1% left — plug it in"
+msgstr "Zostáva %1 % — pripojte ho"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller nabitý"
+
+msgid "The battery is full."
+msgstr "Batéria je plná."
+
+msgid "Weak controller signal"
+msgstr "Slabý signál ovládača"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Ovládač je ďaleko od prijímača a môže sa odpojiť."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller odpojený"
+
+msgid "The controller is no longer connected."
+msgstr "Ovládač už nie je pripojený."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 h"
+
+msgid "−%1 min"
+msgstr "−%1 min"
+
+msgid "now"
+msgstr "teraz"
+
+msgid "Connected · internal chongle"
+msgstr "Pripojené · vstavaný chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Pripojené · vstavaný dongle"
+
+msgid "Charging · on chongle"
+msgstr "Nabíja sa · na chongli"
+
+msgid "Charging · on dongle"
+msgstr "Nabíja sa · na dongli"
+
+msgid "Docked on chongle"
+msgstr "V doku chonglu"
+
+msgid "Docked on dongle"
+msgstr "V doku donglu"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Vstavaný chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Vstavaný dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Bezdrôtovo (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Bezdrôtovo (dongle)"
+
+msgid "via internal chongle"
+msgstr "cez vstavaný chongle"
+
+msgid "via internal dongle"
+msgstr "cez vstavaný dongle"
+
+msgid "Names"
+msgstr "Názvy"
+
+msgid "Puck name:"
+msgstr "Názov puku:"
+
+msgid "Puck"
+msgstr "Puk"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Volať Steam Machine „GabeCube“"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: interný názov puku vo Valve. Dongle: tak ho volá veľa hráčov. GabeCube: prezývka, ktorú fanúšikovia dali Steam Machine."
+
+msgid "Language:"
+msgstr "Jazyk:"
+
+msgid "System language"
+msgstr "Jazyk systému"
+
+msgid "Charged"
+msgstr "Nabité"
+
+msgid "Fully charged"
+msgstr "Úplne nabité"
+
+msgid "Find controller sound:"
+msgstr "Zvuk pri hľadaní ovládača:"
+
+msgid "Vibration only"
+msgstr "Len vibrácie"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Vtáčik"
+
+msgid "Ringing"
+msgstr "Zvonenie"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Rýchly alarm"
+
+msgid "Play"
+msgstr "Prehrať"
+
+msgid "via puck"
+msgstr "cez puk"
+
+msgid "via chongle"
+msgstr "cez chongle"
+
+msgid "via dongle"
+msgstr "cez dongle"
+
+msgid "via Bluetooth"
+msgstr "cez Bluetooth"
+
+msgid "via USB-C"
+msgstr "cez USB-C"
+
+msgid "Details:"
+msgstr "Podrobnosti:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Zobraziť, ako je pripojený alebo nabíjaný (cez puk, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Systémová lišta:"
+
+msgid "Show an icon in the system tray"
+msgstr "Zobraziť ikonu v systémovej lište"
+
+msgid "Settings:"
+msgstr "Nastavenia:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Použiť tieto nastavenia na ploche aj v lište"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Oboje platí hneď. Kopírovanie: všetko z tejto stránky ide do každej kópie widgetu, karty na ploche aj ikony v lište."
+
+msgid "Connected · internal gizmo"
+msgstr "Pripojené · vstavané mydielko"
+
+msgid "Charging · on the gizmo"
+msgstr "Nabíja sa · na mydielku"
+
+msgid "Docked on the gizmo"
+msgstr "V doku mydielka"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Vstavané mydielko (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Bezdrôtovo (mydielko)"
+
+msgid "via the internal gizmo"
+msgstr "cez vstavané mydielko"
+
+msgid "via the gizmo"
+msgstr "cez mydielko"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Pripojené · vstavané zariadeníčko"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Nabíja sa · na zariadeníčku"
+
+msgid "Docked on the whatchamacallit"
+msgstr "V doku zariadeníčka"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Vstavané zariadeníčko (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Bezdrôtovo (zariadeníčko)"
+
+msgid "via the internal whatchamacallit"
+msgstr "cez vstavané zariadeníčko"
+
+msgid "via the whatchamacallit"
+msgstr "cez zariadeníčko"
+
+msgid "Gizmo"
+msgstr "Mydielko"
+
+msgid "Whatchamacallit"
+msgstr "Zariadeníčko"
+

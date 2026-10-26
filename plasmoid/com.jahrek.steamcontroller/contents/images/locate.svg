@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<!-- find controller: a crosshair. Drawn from scratch. -->
+<circle cx="12" cy="12" r="6" fill="none" stroke="#fcfcfc" stroke-width="2"/>
+<circle cx="12" cy="12" r="1.8" fill="#fcfcfc"/>
+<path d="M12 2 V5.5 M12 18.5 V22 M2 12 H5.5 M18.5 12 H22" fill="none" stroke="#fcfcfc" stroke-width="2" stroke-linecap="round"/>
+</svg>

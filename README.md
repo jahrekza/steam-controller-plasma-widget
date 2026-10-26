@@ -5,7 +5,7 @@ connection status of the Steam Controller 2 ("Triton", released May 2026) on
 Linux — reverse-engineered from its raw HID protocol, since the Linux kernel's
 `hid-steam` driver doesn't support this controller yet (see below).
 
-![status](https://img.shields.io/badge/version-1.2.0-brightgreen)
+![status](https://img.shields.io/badge/version-1.4.0-brightgreen)
 
 ![Widget states](screenshots/gallery-states.png)
 
@@ -99,6 +99,14 @@ If it doesn't appear in the widget list, restart Plasma:
 kquitapp6 plasmashell && kstart plasmashell
 ```
 
+The desktop card and the tray icon are separate copies with their own settings;
+**Use these settings on the desktop and in the tray** (in the settings) copies them
+over, and **Show an icon in the system tray** turns the tray icon on or off.
+
+**Tray icon gone after an update?** Plasma drops a tray entry when the widget is
+updated while Plasma runs (the desktop card stays). Turn it back on in the widget's
+settings (*Show an icon in the system tray*), or in *Configure System Tray… → Entries*.
+
 ### Uninstall
 
 ```bash
@@ -114,15 +122,18 @@ If you installed v0.1, also remove its standalone daemon:
 - Report ID `0x43` (sent every ~3.5 s) carries the battery percentage in
   byte[2]; the daemon reads it from every report, so the % follows the battery
   live. (Older versions read it only once per connection.)
-- Every `0x43` also carries a charging flag (byte[1]: 1 = on battery,
-  2 = charging) — in all modes, including a cable that only charges while the
-  pad stays on Bluetooth.
+- Every `0x43` also carries the charge state (byte[1]: 1 = on battery,
+  2 = charging, 4 = fully charged; names from SDL's `TritonBatteryStatus_t`) — in
+  all modes, including a cable that only charges while the pad stays on Bluetooth.
 - Over Bluetooth the pad exposes a standard Battery Service, so the battery %
   there is live and exact (read from BlueZ).
 - Signal strength (puck only) comes from byte[9] of report `0x7b`, a signed
   dBm value; over Bluetooth the pad sends no such value.
 - Whether a silent pad is on the puck's dock or switched off is asked from the
   puck itself (command `0xB4` on its dock interface), every 3 s.
+- "Find controller" rumbles the pad and can play a short tune on its haptic
+  actuators (output report `0x83`, a tone with frequency, duration, gain and LFO —
+  layout from SDL). The pad has no speaker, but the actuators are clearly audible.
 - The daemon writes `$XDG_RUNTIME_DIR/sc-battery.json` (atomic rename) the
   moment something changes; the widget reads it every second, so it follows
   the controller within a few seconds.
@@ -142,6 +153,27 @@ two dead-end hypotheses that were ruled out with real data.
 
 ## Changelog
 
+- **1.4.0** (2026-10-26) — settings for the look: card background (dark, glass or
+  none with a soft shadow), background and glass colour, opacity, controller outline
+  and fill, one colour for text and icons, the status colours, presets and "reset to
+  defaults". The % sits at the bottom of the battery, see-through (adjustable).
+  New: time to empty / to full, a 24 h battery graph in the tooltip, notifications
+  (fully charged, weak signal, disconnected), and **Find controller** — a crosshair
+  in the card's corner on hover (and in the right-click menu) that rumbles the pad
+  and plays a tune on its haptic actuators (tick-tock, little bird, ringing, SOS or
+  fast alarm). "Fully charged" is now read from the pad itself (it stops pulsing).
+  A second line under the status says how the pad is connected or what charges it
+  ("via puck", "via Bluetooth", "via USB-C"; can be turned off).
+  Translated into 20 languages (machine-assisted — corrections welcome), with a
+  language option in the settings. For those who dig through the settings, the puck
+  can be renamed: Chongle (Valve's internal name), Dongle, or one of two jokey names
+  that each language says its own way — a little soap (it does look like one) and
+  "that whatchamacallit"; in English the gizmo is "the yoke" in Ireland, "the hingmy"
+  in Scotland and "the thingo" in Australia. The Steam Machine can be called GabeCube.
+  A wider card gives the extra room to the text; long texts never run into the
+  connection icon. The tray icon can be turned on or off from the widget's settings,
+  and the settings copied between the desktop card and the tray icon in one click.
+  (1.3.0 was never released.)
 - **1.2.0** (2026-10-25) — the popup from the panel/tray icon is now the same card
   as on the desktop (icons and colours instead of a text table) and scales with the
   popup. Fixed: the popup never opened from the system tray (since 0.3). In the tray
@@ -206,6 +238,18 @@ two dead-end hypotheses that were ruled out with real data.
 
 - [u/Yurij89](https://www.reddit.com/user/Yurij89/) — tested on the Steam Machine
   and sent the details that made its built-in receiver work (0.3.9).
+
+## Translations
+
+The widget speaks Czech, Danish, Dutch, Estonian, Finnish, German, Greek, Croatian,
+Hungarian, Italian, Latvian, Lithuanian, Norwegian (bokmål), Polish, Portuguese
+(also Brazilian), Slovak, Spanish, Swedish, Turkish and Ukrainian. The translations
+were machine-assisted; the puck uses Valve's own term where the Steam store has one
+("puk" in Czech, "aparat" in Turkish). English also comes in Irish, Scottish and
+Australian flavours — they only differ in the two jokey puck names. Fixes are welcome: edit
+`po/translations_*.py` and run `python3 po/build.py` (needs gettext), which checks
+every string and placeholder and rebuilds the `.mo` files, the widget's own
+translation table and the localized names in `metadata.json`.
 
 ## Contributing
 

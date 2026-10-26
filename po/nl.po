@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Aangepast"
+
+msgid "Controller LED (default)"
+msgstr "Controller-led (standaard)"
+
+msgid "Monochrome"
+msgstr "Monochroom"
+
+msgid "Warm"
+msgstr "Warm"
+
+msgid "Night"
+msgstr "Nacht"
+
+msgid "Low battery warning:"
+msgstr "Waarschuwing bij lage batterij:"
+
+msgid "Notify when:"
+msgstr "Melden wanneer:"
+
+msgid "the battery drops below the warning level"
+msgstr "de batterij onder het waarschuwingsniveau zakt"
+
+msgid "the battery is fully charged"
+msgstr "de batterij volledig is opgeladen"
+
+msgid "the signal gets weak (puck)"
+msgstr "het signaal zwak wordt (puck)"
+
+msgid "the controller disconnects"
+msgstr "de controller de verbinding verbreekt"
+
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+msgid "Preset:"
+msgstr "Voorinstelling:"
+
+msgid "Apply"
+msgstr "Toepassen"
+
+msgid "Reset appearance to defaults"
+msgstr "Standaarduiterlijk herstellen"
+
+msgid "Card background:"
+msgstr "Kaartachtergrond:"
+
+msgid "Dark"
+msgstr "Donker"
+
+msgid "Glass"
+msgstr "Glas"
+
+msgid "None (shadow only)"
+msgstr "Geen (alleen schaduw)"
+
+msgid "Background colour:"
+msgstr "Achtergrondkleur:"
+
+msgid "Glass colour:"
+msgstr "Glaskleur:"
+
+msgid "Background opacity:"
+msgstr "Dekking van de achtergrond:"
+
+msgid "Percentage opacity:"
+msgstr "Dekking van het percentage:"
+
+msgid "Controller outline:"
+msgstr "Omtrek van de controller:"
+
+msgid "Controller fill:"
+msgstr "Vulling van de controller:"
+
+msgid "Text and icons:"
+msgstr "Tekst en pictogrammen:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Tekst en pictogrammen: het %, de status, het signaal, het verbindingspictogram en de batterijomtrek. De batterijvulling en de statusmarkering houden de ledkleuren van de controller, en lage batterij / zwak signaal blijven rood. Niet aangevinkt: standaarduiterlijk."
+
+msgid "Status colours"
+msgstr "Statuskleuren"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C-kabel:"
+
+msgid "Off, on the dock:"
+msgstr "Uit, in het dock:"
+
+msgid "Low battery:"
+msgstr "Lage batterij:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Niet aangevinkt: de kleuren van de led van de controller zelf."
+
+msgid "Signal strength:"
+msgstr "Signaalsterkte:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Tonen in de widget (bureaubladkaart)"
+
+msgid "Show in the panel / system tray"
+msgstr "Tonen in het paneel / systeemvak"
+
+msgid "Show as:"
+msgstr "Tonen als:"
+
+msgid "Bars"
+msgstr "Balkjes"
+
+msgid "Bars and dBm"
+msgstr "Balkjes en dBm"
+
+msgid "dBm only"
+msgstr "Alleen dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Alleen voor de draadloze puck (ook die van de Steam Machine). Via Bluetooth of kabel is er geen signaalmeting. In het systeemvak krijgt elk item een klein vast vierkant, dus daar is het een kleine meter op het pictogram; % en dBm staan in de tooltip. Direct op een paneel toont de widget ze naast het pictogram."
+
+msgid "Connected"
+msgstr "Verbonden"
+
+msgid "Charging"
+msgstr "Bezig met opladen"
+
+msgid "via internal puck"
+msgstr "via interne puck"
+
+msgid "No signal"
+msgstr "Geen signaal"
+
+msgid "Weak"
+msgstr "Zwak"
+
+msgid "Fair"
+msgstr "Redelijk"
+
+msgid "Good"
+msgstr "Goed"
+
+msgid "Excellent"
+msgstr "Uitstekend"
+
+msgid "%1 min"
+msgstr "%1 min"
+
+msgid "%1 h"
+msgstr "%1 u"
+
+msgid "%1 h %2 min"
+msgstr "%1 u %2 min"
+
+msgid "Connected · internal puck"
+msgstr "Verbonden · interne puck"
+
+msgid "Low — plug in"
+msgstr "Batterij bijna leeg — aansluiten"
+
+msgid "Charging · on puck"
+msgstr "Opladen · op de puck"
+
+msgid "Charging · USB-C"
+msgstr "Opladen · USB-C"
+
+msgid "Charging · cable"
+msgstr "Opladen · kabel"
+
+msgid "Disconnected"
+msgstr "Niet verbonden"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C-kabel"
+
+msgid "Docked on puck"
+msgstr "In het dock van de puck"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Interne puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Draadloos (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signaal: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signaal: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signaal: %1 dBm"
+
+msgid "full in %1"
+msgstr "vol over %1"
+
+msgid "%1 left"
+msgstr "nog %1"
+
+msgid "Find controller"
+msgstr "Controller zoeken"
+
+msgid "Steam Controller battery low"
+msgstr "Batterij van Steam Controller bijna leeg"
+
+msgid "%1% left — plug it in"
+msgstr "Nog %1% — sluit hem aan"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller opgeladen"
+
+msgid "The battery is full."
+msgstr "De batterij is vol."
+
+msgid "Weak controller signal"
+msgstr "Zwak controllersignaal"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "De controller is ver van de ontvanger en kan de verbinding verliezen."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controller niet meer verbonden"
+
+msgid "The controller is no longer connected."
+msgstr "De controller is niet langer verbonden."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 u"
+
+msgid "−%1 min"
+msgstr "−%1 min"
+
+msgid "now"
+msgstr "nu"
+
+msgid "Connected · internal chongle"
+msgstr "Verbonden · interne chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Verbonden · interne dongle"
+
+msgid "Charging · on chongle"
+msgstr "Opladen · op de chongle"
+
+msgid "Charging · on dongle"
+msgstr "Opladen · op de dongle"
+
+msgid "Docked on chongle"
+msgstr "In het dock van de chongle"
+
+msgid "Docked on dongle"
+msgstr "In het dock van de dongle"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Interne chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Interne dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Draadloos (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Draadloos (dongle)"
+
+msgid "via internal chongle"
+msgstr "via interne chongle"
+
+msgid "via internal dongle"
+msgstr "via interne dongle"
+
+msgid "Names"
+msgstr "Namen"
+
+msgid "Puck name:"
+msgstr "Naam van de puck:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "De Steam Machine „GabeCube” noemen"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: zo heette de puck intern bij Valve. Dongle: zo noemen veel spelers hem. GabeCube: de bijnaam die fans de Steam Machine gaven."
+
+msgid "Language:"
+msgstr "Taal:"
+
+msgid "System language"
+msgstr "Systeemtaal"
+
+msgid "Charged"
+msgstr "Opgeladen"
+
+msgid "Fully charged"
+msgstr "Volledig opgeladen"
+
+msgid "Find controller sound:"
+msgstr "Geluid bij zoeken:"
+
+msgid "Vibration only"
+msgstr "Alleen trillen"
+
+msgid "Tick-tock"
+msgstr "Tik-tak"
+
+msgid "Little bird"
+msgstr "Vogeltje"
+
+msgid "Ringing"
+msgstr "Rinkelen"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Snel alarm"
+
+msgid "Play"
+msgstr "Afspelen"
+
+msgid "via puck"
+msgstr "via puck"
+
+msgid "via chongle"
+msgstr "via chongle"
+
+msgid "via dongle"
+msgstr "via dongle"
+
+msgid "via Bluetooth"
+msgstr "via Bluetooth"
+
+msgid "via USB-C"
+msgstr "via USB-C"
+
+msgid "Details:"
+msgstr "Details:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Tonen hoe hij verbonden is of oplaadt (via puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Systeemvak:"
+
+msgid "Show an icon in the system tray"
+msgstr "Een pictogram in het systeemvak tonen"
+
+msgid "Settings:"
+msgstr "Instellingen:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Deze instellingen op het bureaublad en in het systeemvak gebruiken"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Beide werken meteen. Het kopiëren: alles op deze pagina gaat naar elke kopie van de widget, de kaart op het bureaublad en het pictogram in het systeemvak."
+
+msgid "Connected · internal gizmo"
+msgstr "Verbonden · intern zeepje"
+
+msgid "Charging · on the gizmo"
+msgstr "Opladen · op het zeepje"
+
+msgid "Docked on the gizmo"
+msgstr "In het dock van het zeepje"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Intern zeepje (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Draadloos (zeepje)"
+
+msgid "via the internal gizmo"
+msgstr "via intern zeepje"
+
+msgid "via the gizmo"
+msgstr "via het zeepje"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Verbonden · intern hoe-heet-het"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Opladen · op het hoe-heet-het"
+
+msgid "Docked on the whatchamacallit"
+msgstr "In het dock van het hoe-heet-het"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Intern hoe-heet-het (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Draadloos (hoe-heet-het)"
+
+msgid "via the internal whatchamacallit"
+msgstr "via intern hoe-heet-het"
+
+msgid "via the whatchamacallit"
+msgstr "via het hoe-heet-het"
+
+msgid "Gizmo"
+msgstr "Zeepje"
+
+msgid "Whatchamacallit"
+msgstr "Hoe-heet-het"
+

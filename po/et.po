@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: steam-controller-battery\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: machine-assisted, see translations_*.py\n"
+"Language-Team: none\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Custom"
+msgstr "Kohandatud"
+
+msgid "Controller LED (default)"
+msgstr "Puldi LED (vaikimisi)"
+
+msgid "Monochrome"
+msgstr "Ühevärviline"
+
+msgid "Warm"
+msgstr "Soe"
+
+msgid "Night"
+msgstr "Öö"
+
+msgid "Low battery warning:"
+msgstr "Tühjeneva aku hoiatus:"
+
+msgid "Notify when:"
+msgstr "Teavita, kui:"
+
+msgid "the battery drops below the warning level"
+msgstr "aku langeb alla hoiatustaseme"
+
+msgid "the battery is fully charged"
+msgstr "aku on täis laetud"
+
+msgid "the signal gets weak (puck)"
+msgstr "signaal nõrgeneb (puck)"
+
+msgid "the controller disconnects"
+msgstr "pult katkestab ühenduse"
+
+msgid "Appearance"
+msgstr "Välimus"
+
+msgid "Preset:"
+msgstr "Eelseadistus:"
+
+msgid "Apply"
+msgstr "Rakenda"
+
+msgid "Reset appearance to defaults"
+msgstr "Taasta vaikimisi välimus"
+
+msgid "Card background:"
+msgstr "Kaardi taust:"
+
+msgid "Dark"
+msgstr "Tume"
+
+msgid "Glass"
+msgstr "Klaas"
+
+msgid "None (shadow only)"
+msgstr "Puudub (ainult vari)"
+
+msgid "Background colour:"
+msgstr "Taustavärv:"
+
+msgid "Glass colour:"
+msgstr "Klaasi värv:"
+
+msgid "Background opacity:"
+msgstr "Tausta läbipaistmatus:"
+
+msgid "Percentage opacity:"
+msgstr "Protsendi läbipaistmatus:"
+
+msgid "Controller outline:"
+msgstr "Puldi kontuur:"
+
+msgid "Controller fill:"
+msgstr "Puldi täide:"
+
+msgid "Text and icons:"
+msgstr "Tekst ja ikoonid:"
+
+msgid "Text and icons: the %, status, signal, connection icon and battery outline. The battery fill and status mark keep the controller's LED colours, and low battery / weak signal stay red. Unticked: the default look."
+msgstr "Tekst ja ikoonid: %, olek, signaal, ühenduse ikoon ja aku kontuur. Aku täide ja olekumärk säilitavad puldi LED-i värvid ning tühjenev aku / nõrk signaal jäävad punaseks. Märkimata: vaikimisi välimus."
+
+msgid "Status colours"
+msgstr "Oleku värvid"
+
+msgid "Puck:"
+msgstr "Puck:"
+
+msgid "Bluetooth:"
+msgstr "Bluetooth:"
+
+msgid "USB-C cable:"
+msgstr "USB-C-kaabel:"
+
+msgid "Off, on the dock:"
+msgstr "Väljas, dokis:"
+
+msgid "Low battery:"
+msgstr "Tühjenev aku:"
+
+msgid "Unticked: the colours of the controller's own LED."
+msgstr "Märkimata: puldi enda LED-i värvid."
+
+msgid "Signal strength:"
+msgstr "Signaali tugevus:"
+
+msgid "Show on the widget (desktop card)"
+msgstr "Näita vidinas (töölauakaart)"
+
+msgid "Show in the panel / system tray"
+msgstr "Näita paneelil / süsteemisalves"
+
+msgid "Show as:"
+msgstr "Näita kui:"
+
+msgid "Bars"
+msgstr "Tulbad"
+
+msgid "Bars and dBm"
+msgstr "Tulbad ja dBm"
+
+msgid "dBm only"
+msgstr "Ainult dBm"
+
+msgid "Only for the wireless puck (also the Steam Machine's). Over Bluetooth or a cable there is no signal reading. In the system tray every entry gets a small fixed square, so there it's a tiny meter on the icon; % and dBm are in the tooltip. Placed directly on a panel, the widget shows them next to the icon."
+msgstr "Ainult juhtmevaba pucki jaoks (ka Steam Machine'i sisseehitatud). Bluetoothi või kaabli kaudu signaali ei mõõdeta. Süsteemisalves saab iga kirje väikese fikseeritud ruudu, seega on seal ikoonil väike näidik; % ja dBm on kohtspikris. Otse paneelile paigutatuna näitab vidin neid ikooni kõrval."
+
+msgid "Connected"
+msgstr "Ühendatud"
+
+msgid "Charging"
+msgstr "Laeb"
+
+msgid "via internal puck"
+msgstr "sisseehitatud pucki kaudu"
+
+msgid "No signal"
+msgstr "Signaal puudub"
+
+msgid "Weak"
+msgstr "Nõrk"
+
+msgid "Fair"
+msgstr "Keskmine"
+
+msgid "Good"
+msgstr "Hea"
+
+msgid "Excellent"
+msgstr "Suurepärane"
+
+msgid "%1 min"
+msgstr "%1 min"
+
+msgid "%1 h"
+msgstr "%1 h"
+
+msgid "%1 h %2 min"
+msgstr "%1 h %2 min"
+
+msgid "Connected · internal puck"
+msgstr "Ühendatud · sisseehitatud puck"
+
+msgid "Low — plug in"
+msgstr "Aku tühjeneb — ühenda"
+
+msgid "Charging · on puck"
+msgstr "Laeb · puckis"
+
+msgid "Charging · USB-C"
+msgstr "Laeb · USB-C"
+
+msgid "Charging · cable"
+msgstr "Laeb · kaabel"
+
+msgid "Disconnected"
+msgstr "Ühendus katkestatud"
+
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+msgid "USB-C cable"
+msgstr "USB-C-kaabel"
+
+msgid "Docked on puck"
+msgstr "Pucki dokis"
+
+msgid "Internal puck (Steam Machine)"
+msgstr "Sisseehitatud puck (Steam Machine)"
+
+msgid "Wireless (puck)"
+msgstr "Juhtmevabalt (puck)"
+
+msgid "Steam Controller"
+msgstr "Steam Controller"
+
+msgid "Signal: %1"
+msgstr "Signaal: %1"
+
+msgid "Signal: %1 (%2 dBm)"
+msgstr "Signaal: %1 (%2 dBm)"
+
+msgid "Signal: %1 dBm"
+msgstr "Signaal: %1 dBm"
+
+msgid "full in %1"
+msgstr "täis %1 pärast"
+
+msgid "%1 left"
+msgstr "jäänud %1"
+
+msgid "Find controller"
+msgstr "Leia pult"
+
+msgid "Steam Controller battery low"
+msgstr "Steam Controlleri aku tühjeneb"
+
+msgid "%1% left — plug it in"
+msgstr "Jäänud %1% — ühenda laadijaga"
+
+msgid "Steam Controller charged"
+msgstr "Steam Controller laetud"
+
+msgid "The battery is full."
+msgstr "Aku on täis."
+
+msgid "Weak controller signal"
+msgstr "Puldi nõrk signaal"
+
+msgid "The controller is far from the receiver and may disconnect."
+msgstr "Pult on vastuvõtjast kaugel ja ühendus võib katkeda."
+
+msgid "Steam Controller disconnected"
+msgstr "Steam Controlleri ühendus katkes"
+
+msgid "The controller is no longer connected."
+msgstr "Pult ei ole enam ühendatud."
+
+msgid "%1 dBm"
+msgstr "%1 dBm"
+
+msgid "−%1 h"
+msgstr "−%1 h"
+
+msgid "−%1 min"
+msgstr "−%1 min"
+
+msgid "now"
+msgstr "nüüd"
+
+msgid "Connected · internal chongle"
+msgstr "Ühendatud · sisseehitatud chongle"
+
+msgid "Connected · internal dongle"
+msgstr "Ühendatud · sisseehitatud dongle"
+
+msgid "Charging · on chongle"
+msgstr "Laeb · chongle'is"
+
+msgid "Charging · on dongle"
+msgstr "Laeb · dongle'is"
+
+msgid "Docked on chongle"
+msgstr "Chongle'i dokis"
+
+msgid "Docked on dongle"
+msgstr "Dongle'i dokis"
+
+msgid "Internal chongle (Steam Machine)"
+msgstr "Sisseehitatud chongle (Steam Machine)"
+
+msgid "Internal dongle (Steam Machine)"
+msgstr "Sisseehitatud dongle (Steam Machine)"
+
+msgid "Wireless (chongle)"
+msgstr "Juhtmevabalt (chongle)"
+
+msgid "Wireless (dongle)"
+msgstr "Juhtmevabalt (dongle)"
+
+msgid "via internal chongle"
+msgstr "sisseehitatud chongle'i kaudu"
+
+msgid "via internal dongle"
+msgstr "sisseehitatud dongle'i kaudu"
+
+msgid "Names"
+msgstr "Nimed"
+
+msgid "Puck name:"
+msgstr "Pucki nimi:"
+
+msgid "Puck"
+msgstr "Puck"
+
+msgid "Chongle"
+msgstr "Chongle"
+
+msgid "Dongle"
+msgstr "Dongle"
+
+msgid "Call the Steam Machine “GabeCube”"
+msgstr "Kutsu Steam Machine'i „GabeCube“"
+
+msgid "Chongle: what Valve called the puck internally. Dongle: what many players call it. GabeCube: the fans' nickname for the Steam Machine."
+msgstr "Chongle: pucki sisenimi Valve'is. Dongle: nii kutsuvad seda paljud mängijad. GabeCube: fännide hüüdnimi Steam Machine'ile."
+
+msgid "Language:"
+msgstr "Keel:"
+
+msgid "System language"
+msgstr "Süsteemi keel"
+
+msgid "Charged"
+msgstr "Laetud"
+
+msgid "Fully charged"
+msgstr "Täis laetud"
+
+msgid "Find controller sound:"
+msgstr "Pulti otsimise heli:"
+
+msgid "Vibration only"
+msgstr "Ainult värin"
+
+msgid "Tick-tock"
+msgstr "Tiksumine"
+
+msgid "Little bird"
+msgstr "Linnuke"
+
+msgid "Ringing"
+msgstr "Helin"
+
+msgid "SOS"
+msgstr "SOS"
+
+msgid "Fast alarm"
+msgstr "Kiire häire"
+
+msgid "Play"
+msgstr "Esita"
+
+msgid "via puck"
+msgstr "pucki kaudu"
+
+msgid "via chongle"
+msgstr "chongle'i kaudu"
+
+msgid "via dongle"
+msgstr "dongle'i kaudu"
+
+msgid "via Bluetooth"
+msgstr "Bluetoothi kaudu"
+
+msgid "via USB-C"
+msgstr "USB-C kaudu"
+
+msgid "Details:"
+msgstr "Üksikasjad:"
+
+msgid "Show how it is connected or charging (via puck, Bluetooth, USB-C)"
+msgstr "Näita, kuidas pult on ühendatud või laeb (puck, Bluetooth, USB-C)"
+
+msgid "System tray:"
+msgstr "Süsteemisalv:"
+
+msgid "Show an icon in the system tray"
+msgstr "Näita ikooni süsteemisalves"
+
+msgid "Settings:"
+msgstr "Seadistused:"
+
+msgid "Use these settings on the desktop and in the tray"
+msgstr "Kasuta neid seadistusi töölaual ja salves"
+
+msgid "Both take effect right away. The copy: everything on this page goes to every copy of this widget, the desktop card and the tray icon."
+msgstr "Mõlemad hakkavad kohe kehtima. Kopeerimine: kõik sellel lehel läheb vidina igasse koopiasse, töölaua kaardile ja salve ikoonile."
+
+msgid "Connected · internal gizmo"
+msgstr "Ühendatud · sisseehitatud seebitükk"
+
+msgid "Charging · on the gizmo"
+msgstr "Laeb · seebitükil"
+
+msgid "Docked on the gizmo"
+msgstr "Seebitüki dokis"
+
+msgid "Internal gizmo (Steam Machine)"
+msgstr "Sisseehitatud seebitükk (Steam Machine)"
+
+msgid "Wireless (gizmo)"
+msgstr "Juhtmevabalt (seebitükk)"
+
+msgid "via the internal gizmo"
+msgstr "sisseehitatud seebitüki kaudu"
+
+msgid "via the gizmo"
+msgstr "seebitüki kaudu"
+
+msgid "Connected · internal whatchamacallit"
+msgstr "Ühendatud · sisseehitatud asjandus"
+
+msgid "Charging · on the whatchamacallit"
+msgstr "Laeb · asjanduses"
+
+msgid "Docked on the whatchamacallit"
+msgstr "Asjanduse dokis"
+
+msgid "Internal whatchamacallit (Steam Machine)"
+msgstr "Sisseehitatud asjandus (Steam Machine)"
+
+msgid "Wireless (whatchamacallit)"
+msgstr "Juhtmevabalt (asjandus)"
+
+msgid "via the internal whatchamacallit"
+msgstr "sisseehitatud asjanduse kaudu"
+
+msgid "via the whatchamacallit"
+msgstr "asjanduse kaudu"
+
+msgid "Gizmo"
+msgstr "Seebitükk"
+
+msgid "Whatchamacallit"
+msgstr "Asjandus"
+
